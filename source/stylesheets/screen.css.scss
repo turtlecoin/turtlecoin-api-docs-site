@@ -1,6 +1,9 @@
 @charset "utf-8";
 @import 'normalize';
+@import 'font-faces';
+@import 'turtle-theme-variables';
 @import 'variables';
+@import 'turtle-theme-placeholder-overrides';
 @import 'icon-font';
 // @import 'rtl'; // uncomment to switch to RTL format
 
@@ -351,8 +354,8 @@ html, body {
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    border-top: 1px solid $black;
+    border-bottom: 1px solid $black;
     background-color: #fdfdfd;
   }
 
@@ -613,3 +616,6 @@ html, body {
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+
+// at the end to override
+@import 'turtle-styles';

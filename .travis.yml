@@ -1,10 +1,15 @@
-sudo: false
-
 language: ruby
-
 rvm:
-  - 2.3.3
-  - 2.4.0
-
+- 2.4.0
 cache: bundler
 script: bundle exec middleman build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github-token: "$GITHUB_TOKEN"
+  keep-history: true
+  local_dir: build
+  on: turtle-master
+env:
+  global:
+    secure: a+lY5Cg9DaMLrVjDM8ETDu04753/MvvtJc+j8NyDWTpsh4cXfAlLjG2nphbOKZjK+OdquhuQ1Q7MQ98zc+1rM/pE2QlV/8/mEHr9ayzdYHMdI5LKRIhTjDlsOjpLbvMUBrWNhpaUWlmpz4lTJ3lfnyiCt/8gTvFhqKu39stv0Jq5KzO+LqozcipOhHnnT/LErS4Unb63814/mTqm5CWjLQfkhY0Yxd8pPiiE2izKYPV1nA4kxIvz2b2lvSYEYFs6LwJNKjuXHtZeHQLDXy7QRrO+lByoReAgGxeG+yg/hbQu0uBGw8FoRV/aN2yW/pxsOPGy5+LH37NothQABEAhbi3VlfbKz/+NqwR+PvCes8Sq0DAnACAmah2ozxeEuQUW04GN/TIlLYPyFDiXiecf1+I1KflKu28ScW1MaKx8HlRqPl3HPam4zd2LAgCjXsN/F7WJDa6ThwNkRkF6DUypAiaJkx54QOcQOhveq3VJdQ3YhsEUcUyoVC7zONyX8yKMJWCzweG4KH+PX502DO1omtfgM+M5LQlhkRPzf6gdmceegfi5qAo2Gp1nDhHVpOofxgwhGua60XYGcgI7W/tbG2wsLeFpWw9sLlvFefMoVryRNL4puYVFRW10+MItnOePT/3jcbX7kLZvd2ymXngwFyADNGkYREkM49/MvuJmlt4=

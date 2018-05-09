@@ -1,0 +1,27 @@
+aside {
+  &.notice,
+  &.success,
+  &.warning {
+    color: $white;
+  }
+}
+
+.content {
+  h1 {
+    border-top: 0;
+    font-size: 2em;
+  }
+}
+
+.toc-wrapper {
+  font-size: 0.9em;
+
+  .toc-h1 {
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+  }
+
+  .toc-h2 {
+    font-size: 0.9em;
+  }
+}
