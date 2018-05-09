@@ -47,10 +47,3 @@ $h1-margin-bottom: 21px !default; // padding under the largest header tags
 $tablet-width: 930px !default; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width !default; // min width before reverting to mobile size
 
-aside {
-  &.notice,
-  &.success,
-  &.warning {
-    color: $white;
-  }
-}
