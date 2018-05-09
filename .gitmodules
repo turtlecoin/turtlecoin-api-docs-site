@@ -1,3 +1,4 @@
 [submodule "turtlecoin-wiki"]
 	path = turtlecoin-wiki
 	url = https://github.com/ar-x/turtlecoin-wiki.git
+  ignore = dirty
