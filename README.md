@@ -16,4 +16,4 @@ This project is based on [Slate](https://github.com/lord/slate). Slate, in turn 
 
 ## Deployment
 
-This project includes `turtlecoin/wiki` as a Git submodule. A commit to the `master` branch on the wiki, sends a webhook to a AWS lamda function. The AWS lambda function then triggers a CI run on the `master` branch of this project. The CI run fetches the latest `turtlecoin/wiki` submodule, builds the site, and deploys it to Github pages. These steps can also be done manually.
+This project includes `turtlecoin/wiki` as a Git submodule. A commit to the `master` branch of `turtlecoin/wiki` sends a webhook to a AWS lamda function. The AWS lambda function then triggers a CI run on the `master` branch of this project. The CI run fetches the latest `turtlecoin/wiki` submodule, builds the site, and deploys it to Github pages. These steps can also be done manually.
