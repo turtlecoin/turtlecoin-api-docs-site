@@ -8,6 +8,10 @@
 4. Run `bundle exec middleman server` to run start the development server at `http://127.0.0.1:4567`.
 5. Changes should target the `turtle-master` branch, instead of `master`.
 
+### Developing along with turtlecoin-wiki content
+
+The `turtlecoin-wiki` folder is a git submodule which ignores any changes made inside it (from a `git` point of view). So if needed, feel free to add content there (under `api` folder) while developing this project locally. But if this content needs to be seen on production, commit it to the `turtlecoin-wiki` repo. 
+
 
 ## About Slate 
 
