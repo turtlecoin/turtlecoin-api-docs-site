@@ -1,41 +1,36 @@
-// COLORS
+// TURTLE BRAND COLORS
 ////////////////////
 $black: #000000;
 $white: #FFFFFF;
-$gray-10: #2F2F2F;
-$green-10: #2ECC71;
+$gray-10: #1D1D1D;
+$gray-20: #2F2F2F;
+$green-10: #40C18E;
 $green-20: #00853D;
+$red-10: #DE5F5F;
+$purple-10: #8E7CC3;
 
 
 // BACKGROUND COLORS
 ////////////////////
 $nav-bg: $white;
-$examples-bg: #2E3336;
-$code-bg: #1E2224;
-$code-annotation-bg: #191D1F;
+$examples-bg: $gray-20;
+$code-bg: $gray-10;
+$code-annotation-bg: $gray-20;
 $nav-subitem-bg: $white;
 $nav-active-bg: $green-20;
 $nav-active-parent-bg: $white;
-$lang-select-border: #000;
-$lang-select-bg: #1E2224;
-$lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #F3F7F9;
-$aside-notice-bg: #8fbcd4;
-$aside-warning-bg: #c97a7e;
-$aside-success-bg: #6ac174;
-$search-notice-bg: #c97a7e;
+$main-bg: $white;
+$aside-notice-bg: $green-10;
+$aside-warning-bg: $red-10;
+$aside-success-bg: $green-10;
 
 
 // TEXT COLORS
 ////////////////////
 $main-text: $black;
 $nav-text: $green-20;
-$nav-active-text: #fff;
+$nav-active-text: $white;
 $nav-active-parent-text: $green-20;
-$lang-select-text: #fff;
-$lang-select-active-text: #fff;
-$lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
 
 
 // SIZES
@@ -51,3 +46,11 @@ $code-annotation-padding: 13px !default; // padding inside code annotations
 $h1-margin-bottom: 21px !default; // padding under the largest header tags
 $tablet-width: 930px !default; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width !default; // min width before reverting to mobile size
+
+aside {
+  &.notice,
+  &.success,
+  &.warning {
+    color: $white;
+  }
+}
