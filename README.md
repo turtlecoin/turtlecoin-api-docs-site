@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ar-x/turtlecoin-dev-docs-site.svg?branch=turtle-master)](https://travis-ci.org/ar-x/turtlecoin-dev-docs-site)
+[![Build Status](https://travis-ci.org/ar-x/turtlecoin-api-reference-site.svg?branch=turtle-master)](https://travis-ci.org/ar-x/turtlecoin-api-reference-site)
 
 ## Developing
 
