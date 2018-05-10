@@ -1,9 +1,9 @@
 @charset "utf-8";
 @import 'normalize';
-@import 'font-faces';
-@import 'turtle-theme-variables';
+@import 'turtlecoin/font-faces';
+@import 'turtlecoin/theme-variables';
 @import 'variables';
-@import 'turtle-theme-placeholder-overrides';
+@import 'turtlecoin/theme-placeholder-overrides';
 @import 'icon-font';
 // @import 'rtl'; // uncomment to switch to RTL format
 
@@ -618,4 +618,4 @@ html, body {
 }
 
 // at the end to override
-@import 'turtle-styles';
+@import 'turtlecoin/styles';

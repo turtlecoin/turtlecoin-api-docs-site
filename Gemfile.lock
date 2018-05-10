@@ -25,7 +25,7 @@ GEM
     fast_blank (1.0.0)
     fastimage (2.0.1)
       addressable (~> 2)
-    ffi (1.9.17)
+    ffi (1.9.23)
     haml (4.0.7)
       tilt
     hamster (3.0.0)
@@ -92,9 +92,9 @@ GEM
     parallel (1.10.0)
     public_suffix (2.0.5)
     rack (2.0.1)
-    rb-fsevent (0.9.8)
-    rb-inotify (0.9.8)
-      ffi (>= 0.5.0)
+    rb-fsevent (0.10.3)
+    rb-inotify (0.9.10)
+      ffi (>= 0.5.0, < 2)
     redcarpet (3.4.0)
     rouge (2.0.7)
     sass (3.4.23)
@@ -126,4 +126,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.14.5
+   1.15.4

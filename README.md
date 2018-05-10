@@ -5,9 +5,18 @@
 1. Make sure you have [Ruby](https://www.ruby-lang.org/en) 2.3 or newer installed.
 2. Run `gem install bundler` to install [bundler](http://bundler.io).
 3. Run `bundle install` to install the dependencies of this project.
-4. Run `bundle exec middleman server` to run start the development server at `http://127.0.0.1:4567`.
+4. Run `bundle exec middleman server` to run start the development server at `http://localhost:4567`.
 5. Changes should target the `turtle-master` branch, instead of `master`.
+6. Site specific styles are in `source/stylesheets/turtlecoin`.
 
+### Developing with local turtlecoin-wiki content
+
+The `turtlecoin-wiki` folder is a git submodule which ignores any changes made inside it (from a `git` point of view). So if needed, feel free to add content there (under `api` folder) while developing this project locally. But if this content needs to be seen on production, commit it to the `turtlecoin-wiki` repo. 
+
+### Developing with turtlecoin-wiki content from a specific branch on the turtlecoin/turtlecoin-wiki repo
+
+`cd` into the `turtlecoin-wiki` folder/git submodule. Switch branch from `master` to the other branch on turtlecoin-wiki. And commit.
+ 
 
 ## About Slate 
 
