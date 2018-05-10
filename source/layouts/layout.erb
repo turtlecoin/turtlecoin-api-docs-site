@@ -15,13 +15,10 @@ under the License.
 %>
 <% language_tabs = current_page.data.language_tabs || [] %>
 <% page_content = yield %>
-<%
-  if current_page.data.includes
-    current_page.data.includes.each do |include|
-      page_content += partial("includes/#{include}")
-    end
-  end
-%>
+
+<% sidebar_page_paths.each do |page_path| %>
+  <% page_content += wiki_partial(page_path) %>
+<% end %>
 
 <!doctype html>
 <html>

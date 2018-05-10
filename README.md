@@ -5,8 +5,9 @@
 1. Make sure you have [Ruby](https://www.ruby-lang.org/en) 2.3 or newer installed.
 2. Run `gem install bundler` to install [bundler](http://bundler.io).
 3. Run `bundle install` to install the dependencies of this project.
-4. Run `bundle exec middleman server` to run start the development server at `http://127.0.0.1:4567`.
+4. Run `bundle exec middleman server` to run start the development server at `http://localhost:4567`.
 5. Changes should target the `turtle-master` branch, instead of `master`.
+6. Site specific styles are in `source/stylesheets/turtlecoin`.
 
 ### Developing along with turtlecoin-wiki content
 

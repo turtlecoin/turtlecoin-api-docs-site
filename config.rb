@@ -1,6 +1,9 @@
 # Unique header generation
 require './lib/unique_head.rb'
 
+files.watch :source, path: File.join(root, "source")
+files.watch :source, path: File.join(root, "turtlecoin-wiki")
+
 # Markdown
 set :markdown_engine, :redcarpet
 set :markdown,
@@ -54,4 +57,5 @@ set :port, 4567
 
 helpers do
   require './lib/toc_data.rb'
+  require './lib/sidebar_data.rb'
 end
