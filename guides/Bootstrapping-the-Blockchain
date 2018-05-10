@@ -1,0 +1,91 @@
+<h1 id='how-to-bootstrap-the-turtlecoin-blockchain'>How to Bootstrap the TurtleCoin Blockchain</h1>
+<p>This guide will help you install a recent copy of the blockchain. This should significantly speed up the task of getting the blockchain synced up so you can use your wallet.</p>
+<h2 id='windows'>Windows:</h2>
+<ol>
+<li><p>Make sure <code>TurtleCoind.exe</code>, <code>walletd.exe</code>, and/or the GUI wallet are not running.</p></li>
+<li><p>Open File Explorer and type <code>%APPDATA%\TurtleCoin</code> and hit enter.</p></li>
+</ol>
+
+<p><img src="/guides/images/bootstrap/file_explorer.jpg" alt="file explorer" /></p>
+
+<p><strong>Note: if the folder doesn&#39;t exist, just go to <code>%APPDATA%</code> instead and create a folder named <code>TurtleCoin</code>.</strong></p>
+
+<ol>
+<li>Delete the following if they exist:</li>
+</ol>
+
+<ul>
+<li><p>blockindexes.bin</p></li>
+<li><p>blocks.bin</p></li>
+<li><p>&quot;DB&quot; folder</p>
+
+<p>Note: In case it is unable to delete the files due to them being used by some other program, follow these steps:</p>
+
+<ul>
+<li>Open Task Manager with the shortcut <code>Ctrl + Shift+ Escape</code>.</li>
+<li>Click on <code>Processes</code>.</li>
+<li>Click on <code>Image Name</code>.</li>
+<li>Scroll to the bottom.</li>
+<li>Click on <code>walletd.exe</code>.</li>
+<li>Click on <code>End Process</code>.</li>
+<li>Click on <code>End Process</code> again.</li>
+<li>Try to delete them again.</li>
+</ul>
+
+<p><img src="/guides/images/bootstrap/close_walletd.png" alt="closewallet" /></p>
+
+<p>​</p></li>
+</ul>
+
+<ol>
+<li><p><a href="https://f000.backblazeb2.com/file/turtle-blockchain/latest.zip">Download</a> the latest snapshot of the blockchain.</p></li>
+<li><p>Move the two new downloaded files to the <code>%APPDATA%\TurtleCoin</code> folder.</p></li>
+<li><p>Start <code>TurtleCoind.exe</code> or the GUI wallet like you normally do.</p></li>
+<li><p>See <a href="#ExpectedResults">Expected Results</a> section below.</p></li>
+</ol>
+<h2 id='mac-amp-linux'>Mac &amp; Linux:</h2>
+<ol>
+<li><p>Make sure <code>TurtleCoind</code>, <code>walletd</code>, and/or the GUI wallet are not running.</p></li>
+<li><p>Open <code>Finder</code>.</p></li>
+<li><p>Use the shortcut <code>Command + Shift + G</code> to bring up <code>Go to Folder</code>:</p></li>
+</ol>
+
+<p><img src="/guides/images/bootstrap/findergoto.jpg" alt="findergoto.jpg" /></p>
+
+<ol>
+<li>Delete the following if they exist: </li>
+</ol>
+
+<ul>
+<li><p>blockindexes.bin </p></li>
+<li><p>blocks.bin </p></li>
+<li><p>&quot;DB&quot; folder </p></li>
+</ul>
+
+<ol>
+<li><p><a href="https://f000.backblazeb2.com/file/turtle-blockchain/latest.zip">Download</a> the latest snapshot of the blockchain.</p></li>
+<li><p>Move the two new downloaded files, <code>blockindexes.bin</code> and <code>blocks.bin</code> into the <code>~/.TurtleCoin/</code> folder.</p></li>
+<li><p>Start <code>TurtleCoind</code> or the GUI like you normally do.</p></li>
+<li><p>See the <a href="#ExpectedResults">Expected Results</a> section below.</p></li>
+</ol>
+<h2 id='expected-results-if-done-correctly'>Expected Results if Done Correctly <a name="ExpectedResults"></a></h2>
+<p>When you start <code>TurtleCoind</code> you should see this. Note that the blocksize (150246) in this example will be a different number:
+<code>
+2018-Feb-01 18:43:37.216471 INFO    Initializing core...
+2018-Feb-01 18:43:37.225492 INFO    Importing blocks from blockchain storage
+2018-Feb-01 18:43:37.741587 INFO    Imported block with index 1000 / 150246
+2018-Feb-01 18:43:38.258202 INFO    Imported block with index 2000 / 150246
+2018-Feb-01 18:43:38.928033 INFO    Imported block with index 3000 / 150246
+2018-Feb-01 18:43:39.454094 INFO    Imported block with index 4000 / 150246
+2018-Feb-01 18:43:40.142969 INFO    Imported block with index 5000 / 150246
+2018-Feb-01 18:43:40.830674 INFO    Imported block with index 6000 / 150246
+</code></p>
+
+<p>After it completes it will start syncing incrementally like so:
+<code>
+2018-Feb-01 18:47:48.075930 INFO    Imported block with index 150000 / 150246
+2018-Feb-01 18:47:48.860470 INFO    Core initialized OK
+2018-Feb-01 18:47:48.860470 INFO    Initializing p2p server...
+</code></p>
+
+<p>If you are using the GUI wallet, you can instead view the progress by opening <code>walletd.log</code> and scrolling to the bottom.</p>

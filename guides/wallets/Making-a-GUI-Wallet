@@ -1,0 +1,10 @@
+<h1 id='setting-up-a-gui-wallet'>Setting up a GUI Wallet</h1>
+<p>There are two types of GUI Wallets which are being actively developed and maintained as of right now. We will focus on both of them.</p>
+<h2 id='nest-wallet'><a href="https://github.com/turtlecoin/turtle-wallet-go">Nest Wallet</a></h2>
+<p>The Nest Wallet is a TurtleCoin Wallet written in GoLang for MacOS, Linux and Windows. It is mainly developed and maintained by woodyjon</p>
+
+<p>You can view a guide for setting it up <a href="Using-Nest-Wallet">here</a>.</p>
+<h2 id='winforms-wallet'><a href="https://github.com/turtlecoin/turtle-wallet-winforms">WinForms Wallet</a></h2>
+<p>The WinForms wallet is a TurtleCoin Wallet written in C# for Windows and Linux through Mono. It is mainly developed and maintained by jerme404</p>
+
+<p>You can view a guide for setting it up <a href="Using-WinForms-Wallet">here</a>.</p>

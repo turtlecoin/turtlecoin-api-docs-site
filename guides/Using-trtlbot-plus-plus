@@ -1,0 +1,204 @@
+<h1 id='how-to-use-trtlbot'>How to Use trtlbot++</h1><h2 id='registering-your-wallet'>Registering your Wallet</h2>
+<p>Go to the <code>#wallets</code> channel in the <a href="https://discord.gg/J7g99EE">Discord server</a>, type <code>.registerwallet TRTL...</code>, and replace <code>TRTL...</code> with your wallet address. </p>
+
+<p>For example, you would type- </p>
+<pre class="highlight plaintext"><code>.registerwallet TRTLv3pFrFm2yk4cYNtKf5fxV1b594tNrZfEV2CYWJsTSqr9BWoWMrUNpQaeD9StrzQrxpRQKPCdd1FfvT6D6dAg4pY6iB7sqsG
+</code></pre><h2 id='depositing-turtle'>Depositing Turtle</h2>
+<p>After your wallet address has been registered, type <code>.deposit</code> in the #bots channel.</p>
+
+<ul>
+<li>Copy the first line of code he gives and enter it as the address</li>
+<li>Then copy the second line of code he gives and enter it as the address</li>
+<li>After that, enter the amount of mixin and amount you want to use/send and send the transaction!</li>
+</ul>
+<h4 id='cli-wallet'>CLI Wallet</h4>
+<p>Follow the steps given <a href="using-simplewallet#sending-turtlecoin-transactions">here</a> and replace the values of the address and payment ID with the ones provided (<strong>!! PAYMENT ID IS IMPORTANT !!</strong>).</p>
+
+<ul>
+<li>See <a href="#expected-results">Expected Results</a> section below</li>
+</ul>
+<h4 id='gui-wallet'>GUI Wallet</h4><h5 id='nest-wallet'>Nest Wallet</h5>
+<p>Follow the steps given <a href="using-nest-wallet#sending-turtlecoin-transactions">here</a> and replace the values of the address and Payment ID with the ones provided (<strong>!! PAYMENT ID IS IMPORTANT !!</strong>)</p>
+<h5 id='winforms-wallet'>WinForms Wallet</h5>
+<p>Follow the steps given <a href="using-winforms-wallet#sending-turtlecoin-transactions">here</a> and replace the values of the address(recipient) and Payment ID with the ones provided (<strong>!! PAYMENT ID IS IMPORTANT !!</strong>)</p>
+
+<ul>
+<li>See <a href="#expected-results">Expected Results</a> section below</li>
+</ul>
+
+<p><strong><em>PLEASE ENTER YOUR OWN VALUES WHICH THE BOT SENDS YOU!</em></strong></p>
+<h4 id='expected-results'>Expected Results</h4>
+<p>When the bot recieves the payment, it will send you a PM letting you know. Now you can tip people! </p>
+
+<p><img src="/guides/images/trtlbot-plus-plus/dep.png" alt="received" /></p>
+<h2 id='checking-your-balance'>Checking your Balance</h2>
+<p>Before you can tip, you need to know your balance. Your balance is the amount of TRTL you have in your tipjar wallet to tip to others.</p>
+
+<p>To check your balance, type <code>.balance</code>. trtlbot++ will PM you with how much balance you have remaining in your tipjar wallet.</p>
+
+<p><img src="/guides/images/trtlbot-plus-plus/balance.png" alt="balance" /></p>
+
+<p>If it shows <code>0.00</code>, then make sure you have <a href="#depositing-turtle">deposited</a> some TRTL and it has <a href="#expected-results">been received</a></p>
+<h2 id='tipping-people'>Tipping People</h2>
+<p>To tip someone, type <code>.tip &lt;amount&gt; &lt;@person&gt;</code>. </p>
+
+<p><code>&lt;amount&gt;</code> is how much you will tip the person. 
+<code>&lt;@person&gt;</code> is whom you&#39;ll tip it to.</p>
+
+<p>For example, <code>.tip 1 @RockSteady#7588</code> will tip the user called &quot;RockSteady&quot;  1 TRTL.</p>
+
+<p><em>The minimum you can send is 0.11 TRTL, and the bot will take an extra 0.1 TRTL on top of what you tipped to account for fees
+So if you tipped 1 TRTL, 1.1 TRTL will be pulled from your account so that the full 1 TRTL reaches the recipient</em></p>
+<h3 id='adding-a-message-when-tipping'>Adding a Message when Tipping</h3>
+<p><strong><em>The syntax for tipping someone is- <code>.tip &lt;amount&gt; &lt;@person&gt;</code></em></strong></p>
+
+<ul>
+<li><p>Trying to add a message before it, will not work. 
+For example, <code>hey .tip 1 @RockSteady#7588</code> will <strong>not</strong> send RockSteady 1 TRTL.</p></li>
+<li><p>Trying to add it on a seperate line in 1 message will not work.
+For example,
+```
+heyo there.
+I&#39;m tipping you</p></li>
+</ul>
+
+<p>.tip 1 @RockSteady#7588
+  ```</p>
+
+<p>will <strong>not</strong> send RockSteady 1 TRTL.</p>
+
+<ul>
+<li>Trying to add a message <em>after</em> it will <strong>will</strong> work.</li>
+<li><p>For example, <code>.tip 1 @RockSteady#7588 hey</code> <strong>will</strong> send RockSteady 1 TRTL</p></li>
+<li><p>Trying to add a message after the command on a seperate line in an existing message <strong>will</strong> work.
+For example,
+``` 
+.tip 1 @RockSteady#7588</p></li>
+</ul>
+
+<p>hey
+  ```
+  will send RockSteady 1 TRTL.</p>
+
+<p>Trying to add a message <em>between</em> the <em>amount</em> and the <em>recipient</em> <strong>will</strong> work.
+  For example, <code>.tip  1 hey @RockSteady#7588</code> <strong>will</strong> send RockSteady 1 TRTL.</p>
+
+<ul>
+<li>If you make a typo in the command, like <code>.tpi 1 @RockSteady#7588</code> and trying to edit the message to fix the typo, like- <code>.tip 1 @RockSteady#7588</code> will <strong>not</strong> work.</li>
+</ul>
+
+<p><strong>Basically, keep these in mind-</strong>  </p>
+
+<ul>
+<li>Any text must go <strong>after</strong> the command</li>
+<li>Trying to <strong>edit</strong> the command will <em>not</em> work</li>
+</ul>
+<h3 id='tipping-with-emojis'>Tipping with Emojis</h3>
+<p>Reacting with the emoji <img src="/guides/images/trtlbot-plus-plus/almost100.png" alt="99" /> on someone&#39;s message will tip them 99 TRTL.</p>
+
+<p>If someone has tipped someone, then reacting with <img src="/guides/images/trtlbot-plus-plus/rsz_tip.png" alt="tip" /> on the message on which they tipped the person (<code>.tip 1 @RockSteady#7588</code>) will send the recipient (in this case, RockSteady) the same amount he was originally tipped (in this case, 1). So the recipient (RockSteady) gets 2 TRTL.</p>
+
+<p>Reacting with <img src="/guides/images/trtlbot-plus-plus/rsz_tip.png" alt="tip" /> on a message where in a person was tipping with the emoji <img src="/guides/images/trtlbot-plus-plus/almost100.png" alt="99" /> will <strong>not</strong> tip the original poster of the message 99 TRTL.
+You <em>can</em> react with the emoji <img src="/guides/images/trtlbot-plus-plus/almost100.png" alt="99" /> (again) however, to tip the person 99 TRTL.</p>
+<h3 id='tipping-multiple-people'>Tipping Multiple People</h3>
+<p>The syntax for tipping multiple people is- <code>.tip 1 &lt;@person1 @person2&gt;</code></p>
+
+<p>For example, <code>.tip 1 @RockSteady#7588 @bebop#2640</code></p>
+
+<p>This will tip RockSteady <em>and</em> bebop 1 TRTL <strong>each</strong> (it will not divide the 1 TRTL in between the 2).</p>
+
+<p>The bot will still pull a fee of 0.1 TRTL extra from your balance.</p>
+
+<p>This can be used to tip - so far - an unlimited amount of people, given that you have enough balance.
+The bot will PM you after it has sent the payments to everyone, letting you know the TX Hash, your updated balance, and how many people it sent it to, along with the number of 
+- successful payments (the recipent had registered their wallet and the payment was successfully sent)
+- unsuccessful payments (the recipent had not registered their wallet and/or the payment was not successfully sent)</p>
+
+<p>If you tip multiple people, some who have registered their wallets and some who haven&#39;t, the bot will react with :almost100: and :sos: for both(only once).
+However, it will not let you know whose wallet has not been registered, simply the amount of people it did send it to (so you can deduce the number of people it was not able to send to by subtracting the number of successful payments from the number of people you tipped).</p>
+
+<p><em>Sadly, trying to tip &quot;Roles&quot; (like <code>@dev-turtle</code>, <code>@everyone</code>, <code>@here</code> etc) and expecting the bot to automatically tip everyone with that said role won&#39;t work, as it has not been programmed to do so :(</em></p>
+<h3 id='where-do-these-tips-go'>Where Do These Tips Go?</h3>
+<p>When you tip someone, the desired amount plus 0.1 TRTL is pulled from your tipjar wallet balance and sent to the recipient&#39;s registered wallet (if he has not registered a wallet, he cannot receive tips).</p>
+
+<p>When you get tipped, the sender sends the desired amount plus 0.1 TRTL, pulled from his tipjar wallet balance, directly to your registered wallet (if you haven&#39;t registered a wallet, you can&#39;t receive tips).
+It also reacts to the message on which the person was tipped (<code>.tip 1 @RockSteady#7588</code>) with <img src="/guides/images/trtlbot-plus-plus/rsz_money_with_wings.png" alt="moneywings" /></p>
+
+<p>It <em>does not</em> send the TRTL to your tipjar balance. It sends it <em>directly</em> to your <strong>wallet</strong>.
+This is to ensure that more and more TRTL is introduced into the ecosystem, rather than the same TRTL being circulated around.</p>
+
+<ul>
+<li>If you try to tip someone who isn&#39;t registered, the bot will react with :sos: and PM him with instructions on how to register their wallet and tip. </li>
+</ul>
+<h2 id='security-of-trtlbot-39-s-tipjar-wallet'>Security of trtlbot++&#39;s tipjar (wallet)</h2>
+<p>trtlbot++ was created and is owned by <a href="https://github.com/krruzic">@krruzic</a>(@madk#1044  in the chat). When he was asked about the security of trtlbot++&#39;s wallet, he said-</p>
+
+<p>&quot;the wallet is pretty secure. All ports are closed except 80, whatever minecraft is and my SSH port. The SSH has no root login and only two valid keys. ~~One of the keys is for an account that has no permissions to go anywhere but one folder (I may revoke this key)~~ <em>[This key has since been revoked]</em>. There are other security features but I don&#39;t want to reveal any possible attack surfaces by accident.&quot;</p>
+
+<p>and follows up with-</p>
+
+<p>&quot;And if the wallet gets hacked I will refund people&#39;s coins.&quot;</p>
+
+<p>and ends it with-</p>
+
+<p>&quot;I&#39;m not gonna up and run with the tipjar like the doge tipbot guy either :)&quot;</p>
+
+<p>So rest assured, trtlbot++&#39;s wallet is extremely secure, and in the rare occasion that anything <em>does</em> happen, you can relax knowing that you&#39;ll get it back :)</p>
+<h2 id='other-commands'>Other Commands</h2>
+<p>trtlbot++ isn&#39;t just a tip bot, it&#39;s so much more! Here&#39;s a table of it&#39;s other commands, what each of them do, and how to use them (which aren&#39;t explained above).</p>
+
+<table><thead>
+<tr>
+<th style="text-align: center">Name</th>
+<th style="text-align: center">Usage</th>
+<th style="text-align: center">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">hashrate</td>
+<td style="text-align: center"><code>.hashrate</code></td>
+<td style="text-align: center">Returns current network hashrate.</td>
+</tr>
+<tr>
+<td style="text-align: center">height</td>
+<td style="text-align: center"><code>.height</code></td>
+<td style="text-align: center">Returns current blockchain height.</td>
+</tr>
+<tr>
+<td style="text-align: center">difficulty</td>
+<td style="text-align: center"><code>.difficulty</code></td>
+<td style="text-align: center">Returns current network difficulty.</td>
+</tr>
+<tr>
+<td style="text-align: center">supply</td>
+<td style="text-align: center"><code>.supply</code></td>
+<td style="text-align: center">Returns current circulating supply.</td>
+</tr>
+<tr>
+<td style="text-align: center">faucet</td>
+<td style="text-align: center"><code>.faucet</code></td>
+<td style="text-align: center">Returns information about current amount of TRTL in the faucet&#39;s wallet.</td>
+</tr>
+<tr>
+<td style="text-align: center">updatewallet</td>
+<td style="text-align: center"><code>.updatewallet TRTL...</code></td>
+<td style="text-align: center">Updates your currently registered wallet address in case of a change(is not a replacement for <code>.registerwallet TRTL...</code> ).</td>
+</tr>
+<tr>
+<td style="text-align: center">wallet</td>
+<td style="text-align: center"><code>.wallet @&lt;user&gt;</code></td>
+<td style="text-align: center">PM&#39;s you with the wallet address of the user tagged(<code>.wallet @Sajo8#2953</code>). If you type only <code>.wallet</code> it will PM you with your own wallet address.</td>
+</tr>
+<tr>
+<td style="text-align: center">marketcap</td>
+<td style="text-align: center"><code>.mcap</code></td>
+<td style="text-align: center">Returns current Market Cap. Cannot be used in the main TurtleCoin Discord, only in the <a href="https://discord.gg/HS7kn3d">Market one</a>.</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center"><code>.price</code></td>
+<td style="text-align: center">Returns current price. Cannot be used in the main TurtleCoin Discord, only in the <a href="https://discord.gg/HS7kn3d">Market one</a>.</td>
+</tr>
+</tbody></table>
+
+<p>That&#39;s it! Enjoy tipping and getting tipped :)</p>

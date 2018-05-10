@@ -1,0 +1,39 @@
+<h1 id='how-to-mine-turtlecoin-with-an-sbc'>How to Mine TurtleCoin with an SBC</h1>
+<p>This guide will get you started mining TurtleCoin on a Raspberry Pi or similar SBC (single-board computer).</p>
+<h2 id='setup'>Setup</h2>
+<p>Make sure you&#39;ve already created a wallet on your PC. You&#39;ll need the wallet address to store any coins you mine. Follow the guide <a href="Using-Simplewallet">here</a> to get started (follow the guide for Linux).</p>
+
+<p>For the SBC, download the latest non-desktop version of <a href="https://www.raspberrypi.org/downloads">Raspbian</a>. Follow their installation guide on how to write the OS image onto the MicroSD card. Once you&#39;ve plugged in the SD Card, booted the Raspberry Pi, and connected it to the internet, run the following commands:</p>
+
+<p>sudo apt-get update &amp;&amp; sudo apt-get upgrade</p>
+
+<p>This may take a few minutes. Next, we&#39;ll have to install some required tools to compile and run the miner. Enter this command:</p>
+
+<p>sudo apt-get install git automake autoconf pkg-config libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev make g++</p>
+<h2 id='install-the-miner'>Install the Miner</h2>
+<p>Next, we need to obtain a CPU miner. We&#39;ll use <code>rPi-xmrig-gcc7.3.0</code></p>
+
+<ol>
+<li><p>Download the <code>.zip</code> source code from the <a href="https://github.com/auto-joe/rPi-xmrig-gcc7.3.0/releases/latest">Releases page</a></p></li>
+<li><p>Download it to a directory of your choice and extract it to a folder called <code>rPi-xmrig</code>, or anything of your choice</p></li>
+</ol>
+<h2 id='configure-and-run-the-miner'>Configure and Run the Miner</h2>
+<p>Open the file <code>start.sh</code> with a text editor and replace the existing parameters with these-</p>
+<pre class="highlight shell tab-shell"><code>./xmrig -algo<span class="o">=</span>cryptonight-lite --variant<span class="o">=</span>1 --user<span class="o">=[</span>public address] --pass<span class="o">=</span>x --url<span class="o">=[</span>pool address]
+</code></pre>
+<ul>
+<li>Instead of <code>[public address]</code>, simply paste your TurtleCoin wallet address.</li>
+</ul>
+
+<p>If you don&#39;t have one yet, you can generate a <a href="Making-a-Paper-Wallet">paper wallet</a> to mine towards for now, and later import into a CLI or GUI wallet.</p>
+
+<ul>
+<li>In place of <code>[pool address]</code>, you&#39;ll need to choose a pool to mine towards. You can check the full list <a href="Pools">here</a>.</li>
+</ul>
+
+<p>Then start the miner-</p>
+<pre class="highlight shell tab-shell"><code>./start.sh
+</code></pre>
+<p>After entering this command, the miner will start scanning your hardware and begin to mine. </p>
+
+<p>Happy mining! :)</p>

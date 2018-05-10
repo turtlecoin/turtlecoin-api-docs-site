@@ -1,0 +1,68 @@
+<h1 id='xmrig-guide-for-turtlecoin'>XMRig Guide for TurtleCoin</h1>
+<p>XMRig uses separate miners for CPU and GPU, you need to download a CPU and GPU miner separately and run two separate instances on your computer.</p>
+<h2 id='downloading-and-installing-for-windows'>Downloading and Installing for Windows</h2>
+<p>XMRig has separate miners for CPU and GPU. You can download them from here:</p>
+
+<ul>
+<li><a href="https://github.com/xmrig/xmrig/releases">XMRig CPU Miner</a></li>
+<li><a href="https://github.com/xmrig/xmrig-nvidia/releases">XMRig GPU Nvidia Miner</a></li>
+<li><a href="https://github.com/xmrig/xmrig-amd/releases">XMRig GPU AMD Miner</a></li>
+</ul>
+
+<p><strong>Note:</strong> You will need to download and run two separate instances if you want to mine with your GPU and CPU at the same time.</p>
+<h2 id='downloading-and-installing-for-mac'>Downloading and Installing for Mac</h2>
+<p>Needs to be compiled. Instructions <a href="https://github.com/xmrig/xmrig/wiki/OS-X-Build">here</a>.</p>
+<h2 id='xmrig-setup-and-configuration'>XMRig Setup and Configuration</h2><h3 id='cpu-xmrig-configuration'>CPU XMRig Configuration</h3>
+<ol>
+<li>Unzip the file and extract the files into a new folder (Make sure your anti-virus doesn&#39;t delete the files)</li>
+<li>Open the <code>config.json</code> file with Notepad</li>
+<li>Find and change the following lines:</li>
+<li><code>&quot;algo: &quot;cryptonight-lite&quot;</code></li>
+<li><code>&quot;url: &quot;[pool address]&quot;</code></li>
+<li><code>&quot;user: &quot;[wallet address]&quot;</code></li>
+<li><code>&quot;variant&quot;: 1</code></li>
+</ol>
+
+<ul>
+<li><p>Instead of <code>[public address]</code>, simply paste your TurtleCoin wallet&#39;s address. Make sure to keep the <code>&quot;</code>!</p></li>
+<li><p>If you don&#39;t have one yet, you can generate a <a href="Making-a-Paper-Wallet">paper wallet</a> to mine towards for now, and later import into a CLI or GUI wallet.</p></li>
+</ul>
+
+<p>​</p>
+
+<ul>
+<li>In place of <code>[pool address]</code>, you&#39;ll need to choose a pool to mine towards. You can check the full list <a href="Pools">here</a>. Make sure to keep the <code>&quot;</code>!</li>
+</ul>
+
+<ol>
+<li>Save the file and start <code>xmrig.exe</code>.</li>
+</ol>
+<h3 id='gpu-xmrig-configuration'>GPU XMRig Configuration</h3>
+<ol>
+<li>Unzip the file and extract the files into a new folder (Make sure your anti-virus doesn&#39;t delete the files)</li>
+<li>Open the <code>config.json</code> file with Notepad</li>
+<li>Find and change the following lines:</li>
+<li><code>&quot;algo: &quot;cryptonight-lite&quot;</code></li>
+<li><code>&quot;url: &quot;[pool address]&quot;</code></li>
+<li><code>&quot;user: &quot;[wallet address]&quot;</code></li>
+<li><code>&quot;variant&quot;: 1</code></li>
+</ol>
+
+<ul>
+<li><p>Instead of <code>[public address]</code>, simply paste your TurtleCoin wallet&#39;s address. Make sure to keep the <code>&quot;</code>!</p></li>
+<li><p>If you don&#39;t have one yet, you can generate a <a href="Making-a-Paper-Wallet">paper wallet</a> to mine towards for now, and later import into a CLI or GUI wallet.</p></li>
+</ul>
+
+<p>​</p>
+
+<ul>
+<li>In place of <code>[pool address]</code>, you&#39;ll need to choose a pool to mine towards. You can check the full list <a href="Pools">here</a>. Make sure to keep the <code>&quot;</code>!</li>
+</ul>
+
+<ol>
+<li>Save the file and start <code>xmrig-amd.exe</code>. if you&#39;re mining with an AMD GPU, or <code>xmrig-nvidia.exe</code> if you&#39;re mining with a nVidia GPU.</li>
+</ol>
+
+<p><strong>Remember:</strong> if you want to mine with both your CPU and your GPU you must have both programs open at the same time!</p>
+
+<p>That&#39;s it! You should be mining away now! :)</p>

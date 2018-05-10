@@ -1,0 +1,34 @@
+<h1 id='recovering-your-wallet'>Recovering your Wallet</h1>
+<p>In case you have lost your wallet, but still have either your private spend and view keys <em>or</em> your 25 word mnemonic seed, you can still recover it. Below are the guides for various types of wallets.</p>
+<h2 id='private-spend-and-view-keys'>Private Spend and View Keys</h2>
+<p>Guides for recovering your wallet with your private spend and view keys-</p>
+<h3 id='cli-wallet'>CLI Wallet<a name="keys-cli-wallet"></a></h3><h4 id='simplewallet'>SimpleWallet<a name="keys-simple-wallet"></a></h4>
+<p>View <a href="Using-Simplewallet#private-spend-and-view-keys">this guide</a> for steps on recovering your wallet with your private spend and view keys with SimpleWallet.</p>
+<h3 id='gui-wallets'>GUI Wallets<a name="keys-gui-wallet"></a></h3><h4 id='nest-wallet'>Nest Wallet<a name="keys-nest-wallet"></a></h4>
+<p>View <a href="Using-Nest-Wallet#private-view-and-spend-keys">this guide</a> for steps on recovering your wallet with your private view and spend keys with Nest Wallet.</p>
+<h4 id='winforms-wallet'>WinForms Wallet<a name="keys-winforms-wallet"></a></h4>
+<p>View <a href="Using-WinForms-Wallet#private-view-and-spend-keys">this guide</a> for steps on recovering your wallet with your private view and spend keys with WinForms Wallet.</p>
+<h2 id='25-word-mnemonic-seed'>25 Word Mnemonic Seed</h2>
+<p>Guides for recovering your wallet with your 25 word mnemonic seed-</p>
+<h3 id='cli-wallet-2'>CLI Wallet<a name="25-cli-wallet"></a></h3><h4 id='simplewallet-2'>SimpleWallet<a name="25-simple-wallet"></a></h4>
+<p>View <a href="Using-Simplewallet#25-word-mnemonic-seed">this guide</a> for steps on recovering your wallet with your 25 word mnemonic seed with SimpleWallet.</p>
+<h3 id='gui-wallets-2'>GUI Wallets<a name="25-gui-wallet"></a></h3><h4 id='nest-wallet-2'>Nest Wallet<a name="25-nest-wallet"></a></h4>
+<p>You cannot recover your wallet directly with your 25 word mnemonic seed through Nest Wallet, you have to derive the private spend and view keys first. Follow these steps-</p>
+
+<ul>
+<li>Go to <a href="https://turtlecoin.lol/wallet">this paper wallet generator</a></li>
+<li>Click on <code>Restore keys from seed phrase</code></li>
+<li>Enter your 25 word mnemonic seed and press <code>Restore Keys</code></li>
+<li>Your Private View and Spend Keys will be in the bottom-most box, in red.</li>
+<li>Follow <a href="Using-Nest-Wallet#private-view-and-spend-keys">this guide</a> for steps on recovering your wallet with your private view and spend keys with Nest Wallet.</li>
+</ul>
+<h4 id='winforms-wallet-2'>WinForms Wallet<a name="25-winforms-wallet"></a></h4>
+<p>You cannot recover your wallet directly with your 25 word mnemonic seed through WinForms Wallet, you have to derive the private spend and view keys first. Follow these steps-</p>
+
+<ul>
+<li>Go to <a href="https://turtlecoin.lol/wallet">this paper wallet generator</a></li>
+<li>Click on <code>Restore keys from seed phrase</code></li>
+<li>Enter your 25 word mnemonic seed and press <code>Restore Keys</code></li>
+<li>Your Private View and Spend Keys will be in the bottom most box, in red.</li>
+<li>Follow <a href="Using-WinForms-Wallet#private-view-and-spend-keys">this guide</a> for steps on recovering your wallet with your private view and spend keys with WinForms Wallet.</li>
+</ul>

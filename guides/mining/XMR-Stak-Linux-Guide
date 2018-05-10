@@ -1,0 +1,203 @@
+<h1 id='how-to-set-up-xmr-stak-on-linux'>How to Set Up XMR-Stak on Linux</h1>
+<p>Native binaries may be available for your distribution&#39;s package manager. </p>
+
+<p>If no binaries are available, or you prefer to compile, follow these instructions-</p>
+<h2 id='ubuntu-16-04'>Ubuntu 16.04<a name="ubuntu-16-04"></a></h2>
+<p><em>Guide sponsored by <a href="https://monerise.com">Monerise</a></em></p>
+
+<ol>
+<li>If you want to use your GPU for mining, do the following-</li>
+</ol>
+
+<ul>
+<li><p>for AMD GPU’s- </p>
+
+<ul>
+<li>Install drivers for your card</li>
+<li><p>download the latest APP SDK from <a href="https://developer.amd.com/amd-accelerated-parallel-processing-app-sdk/">here</a>. It should have the name <code>AMD-APP-SDKInstaller-v(version number)-GA-linux64.tar.bz2</code></p>
+
+<ul>
+<li>Extract it</li>
+<li>Open the terminal wherever it is located
+
+<ul>
+<li>(optional) name it to something simpler</li>
+<li>In the terminal, type <code>./(name).sh</code></li>
+<li>After installing, you should be good.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>for nVidia GPU’s-</p>
+
+<ul>
+<li>Install drivers for your card</li>
+<li><p>Download the latest CUDA Toolkit from <a href="https://developer.nvidia.com/cuda-downloads?target_os=Linux&amp;target_arch=x86_64">here</a>.</p>
+
+<ul>
+<li>Download the base installer and follow the compilation instructions</li>
+<li>Download every patch one-by-one in order and apply the patches</li>
+<li>After that, you should be good.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<ol>
+<li><p>Open the terminal and install dependencies by running this command- </p>
+
+<p><code>sudo apt install libmicrohttpd-dev libssl-dev cmake build-essential libhwloc-dev</code></p></li>
+<li><p>Clone the package- </p>
+
+<p><code>git clone https://github.com/fireice-uk/xmr-stak.git</code></p></li>
+<li><p>To remove donations, type-</p>
+
+<p><code>gedit xmr-stak/xmrstak/donate-level.hpp</code></p></li>
+</ol>
+
+<ul>
+<li><p>Change-</p>
+
+<p><code>constexpr double fDevDonationLevel = 2.0 / 100.0;</code></p></li>
+<li><p>to</p>
+
+<p><code>constexpr double fDevDonationLevel = 0.0 / 100.0;</code></p></li>
+</ul>
+
+<ol>
+<li><p>Make a directory- </p>
+
+<p><code>mkdir xmr-stak/build</code></p>
+
+<ol>
+<li>Move over there-<br></li>
+</ol>
+
+<p><code>cd xmr-stak/build</code>
+7. Run cmake-</p>
+
+<p><code>cmake ..</code></p></li>
+</ol>
+
+<ul>
+<li><p>If you don’t have nVidia GPUs, type-</p>
+
+<p><code>cmake .. -DCUDA_ENABLE=OFF</code></p></li>
+<li><p>If you don’t have AMD GPUs, type-</p>
+
+<p><code>cmake .. -DOpenCL_ENABLE=OFF</code></p></li>
+<li><p>If you have neither (only CPU mining) type-</p>
+
+<p><code>cmake .. -DCUDA_ENABLE=OFF -DOpenCL_ENABLE=OFF</code></p></li>
+</ul>
+
+<ol>
+<li><p>Finish building it-</p>
+
+<p><code>make install</code></p></li>
+<li><p>XMR-Stak will now be located in <code>/home/user/xmr-stak/build/bin</code></p></li>
+<li><p>In the terminal, type- (install if not installed)-</p>
+
+<p><code>ccmake ..</code></p></li>
+<li><p>Using the Up and Down arrows, scroll to the 2nd page. Then, on <code>XMR-STAK_CURRENCY</code>, press enter to change it to <code>cryptonight_lite_v7</code> (if needed, you can make personal tweaks by reading the descriptions of each value).</p></li>
+<li><p>Once you&#39;re done, press <code>c</code> and then <code>g</code> on your keyboard. </p></li>
+<li><p>Type- </p>
+
+<p><code>./xmr-stak</code></p></li>
+<li><p>Check <a href="#setup-and-config">XMR-Stak Setup and Configuration</a></p></li>
+<li><p>If you see something like this, that means it’s working!</p></li>
+</ol>
+
+<p><img src="/guides/mining/images/xmrstak-ubuntuwork.png" alt="workubuntu" /></p>
+<h2 id='xmr-stak-setup-and-configuration'>XMR-Stak Setup and Configuration<a name="setup-and-config"></a></h2>
+<p>Upon first launching XMR-Stak, the software will ask you several setup and configuration questions.</p>
+
+<ol>
+<li><code>Please enter: - Do you want to use the HTTP interface? Unlike the screen display, browser interface is not affected by the GPU lag. If you don&#39;t want to use it, please enter 0, otherwise enter port number that the miner should listen on</code></li>
+</ol>
+
+<p>Enter <code>0</code>, if you are like most people, and do not need to remotely check your hashrate.</p>
+
+<p>If you do need to, then enter a port number. 
+Let&#39;s take the port number as <code>0101</code> and your IP address as <code>26.24.105.14</code> as an example.</p>
+
+<p>To check the hashrate, enter in the address bar of your web browser, <code>&lt;26.24.105.14&gt;:&lt;0101&gt;</code>. It should show a page with your rig&#39;s hashrate.
+If you are checking from the same IP address, you can alternatively enter, <code>localhost:&lt;0101&gt;</code></p>
+
+<p>Make sure to enter your own IP address if you enable this feature. You can choose any port you want!</p>
+
+<ol>
+<li>``` </li>
+</ol>
+
+<p>Please enter: 
+   - Please enter the currency that you want to mine:</p>
+
+<ul>
+<li>aeon7</li>
+<li>bbscoin</li>
+<li>croat</li>
+<li>cryptonight</li>
+<li>cryptonight_heavy</li>
+<li>cryptonight_lite</li>
+<li>cryptonight_lite_v7</li>
+<li>cryptonight_v7</li>
+<li>edollar</li>
+<li>electroneum</li>
+<li>graft</li>
+<li>haven</li>
+<li>intense</li>
+<li>karbo</li>
+<li>monero7</li>
+<li>stellite</li>
+<li>sumokoin</li>
+</ul>
+<pre class="highlight plaintext"><code>
+​       Enter `cryptonight_lite_v7`
+
+3. `- Pool address: e.g. pool.example.com:3333 `
+
+   Choose a pool from any of the [available pools](Pools) that is **closest to you** and enter its URL (you will be able to add more later).
+
+4. `- Username (Wallet address or pool login):`  
+
+If you have not yet downloaded and ran the TurtleCoin core software to sync the blockchain and create a wallet, you can make a [paper wallet](Making-a-Paper-Wallet) to start mining towards now, and import the wallet later.
+
+5. `- Password (mostly empty or x):`  
+
+Enter `x`.
+
+6. `- Rig identifier for pool-side statistics (needs pool support). Can be empty:`
+
+Leave it empty and press enter.
+
+7. `- Does this pool port support TLS/SSL? Use no if unknown. (y/N)`  
+
+In most cases, `N` is fine.
+
+8. `- Do you want to use nicehash on this pool? (y/n)`  
+
+Enter `n`(in case you do, enter `y`).
+
+9. `- Do you want to use multiple pools? (y/n)`  
+
+* Enter `y` if you would like to add more pools. 
+* Give them all a weight of `10` if you're tired of reading, or if you want the best experience, give the pools nearest to you a higher number, and the ones further from you a lower number.  
+* XMR-Stak will prioritize the highest weight pool, and fall back to the others if it cannot connect.
+* If they are all given the same weight, it will connect to them in order of how they are listed, form top to bottom, in the configuration file.
+* If you are on Windows 7/8, it will ask for administrator permission again. Click `Yes` to grant it permission.
+* If you are on Windows 10, it will not ask for it again.
+
+Done! The miner will now start scanning your hardware and will begin mining. Awesome!
+
+
+
+
+
+XMR-Stak will save your configuration in `config.txt`  in the same directory from which it was first run. 
+
+Your configuration for pools(algorithm to mine, address, port etc) will be saved in `pools.txt`
+The configuration of the device it mines(CPU/AMD/NVIDIA) will be saved in `cpu.txt`, `amd.txt` or `nvidia.txt`, respectively.
+
+
+
+Run XMR-Stak again from the same directory to reuse the configuration
+</code></pre>
