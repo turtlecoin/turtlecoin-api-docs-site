@@ -9,10 +9,14 @@
 5. Changes should target the `turtle-master` branch, instead of `master`.
 6. Site specific styles are in `source/stylesheets/turtlecoin`.
 
-### Developing along with turtlecoin-wiki content
+### Developing with local turtlecoin-wiki content
 
 The `turtlecoin-wiki` folder is a git submodule which ignores any changes made inside it (from a `git` point of view). So if needed, feel free to add content there (under `api` folder) while developing this project locally. But if this content needs to be seen on production, commit it to the `turtlecoin-wiki` repo. 
 
+### Developing with turtlecoin-wiki content from a specific branch on the turtlecoin/turtlecoin-wiki repo
+
+`cd` into the `turtlecoin-wiki` folder/git submodule. Switch branch from `master` to the other branch on turtlecoin-wiki. And commit.
+ 
 
 ## About Slate 
 
