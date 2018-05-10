@@ -1,12 +1,17 @@
-aside {
-  &.notice,
-  &.success,
-  &.warning {
-    color: $white;
-  }
-}
-
 .content {
+  aside {
+    font-size: 0.9em;
+    &.notice,
+    &.success,
+    &.warning {
+      color: $white;
+    }
+
+    &:before {
+      display: none;
+    }
+  }
+
   h1 {
     border-top: 0;
     border-bottom: 1px solid $gray-30;
@@ -40,4 +45,8 @@ aside {
   .search input {
     border-bottom: 0;
   }
+}
+
+table {
+  font-size: 0.9em;
 }
