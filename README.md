@@ -11,12 +11,8 @@
 
 ### Developing with local turtlecoin-wiki content
 
-The `turtlecoin-wiki` folder is a git submodule which ignores any changes made inside it (from a `git` point of view). So if needed, feel free to add content there (under `api` folder) while developing this project locally. But if this content needs to be seen on production, commit it to the `turtlecoin-wiki` repo. 
+Create a symlink called `turtlecoin-wiki-dev` in this project to the `turtlecoin-wiki` repo on your machine. Editing files in that repo would now show up on this app. For example: `ln -s ../turtlecoin-wiki turtlecoin-wiki-dev` to link to the `turtlecoin-wiki` folder located at the same level as the folder containing this repo. Once done, remove the link by running `unlink turtlecoin-wiki-dev`.
 
-### Developing with turtlecoin-wiki content from a specific branch on the turtlecoin/turtlecoin-wiki repo
-
-`cd` into the `turtlecoin-wiki` folder/git submodule. Switch branch from `master` to the other branch on turtlecoin-wiki. And commit.
- 
 
 ## About Slate 
 

@@ -2,7 +2,13 @@
 require './lib/unique_head.rb'
 
 files.watch :source, path: File.join(root, "source")
-files.watch :source, path: File.join(root, "turtlecoin-wiki")
+
+# support working against a symlinked wiki repo in dev env
+turtlecoin_wiki_folder = File.exists?("turtlecoin-wiki-dev") ? "turtlecoin-wiki-dev" : "turtlecoin-wiki"
+
+set :turtlecoin_wiki_folder, File.join(root, turtlecoin_wiki_folder)
+
+files.watch :source, path: config[:turtlecoin_wiki_folder]
 
 # Markdown
 set :markdown_engine, :redcarpet
