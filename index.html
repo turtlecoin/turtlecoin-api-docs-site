@@ -206,7 +206,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -217,6 +217,7 @@
       <img src="images/logo.png" class="logo" alt="TurtleCoin" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -230,13 +231,37 @@
             <a href="#wallet-rpc-api" class="toc-h1 toc-link" data-title="Wallet Rpc Api">Wallet RPC API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#one" class="toc-h2 toc-link" data-title="one">One</a>
+                    <a href="#interacting-with-the-api" class="toc-h2 toc-link" data-title="Interacting With The Api">Interacting with the API</a>
                   </li>
                   <li>
-                    <a href="#two" class="toc-h2 toc-link" data-title="two">Two</a>
+                    <a href="#reset" class="toc-h2 toc-link" data-title="Reset">reset</a>
                   </li>
                   <li>
-                    <a href="#three" class="toc-h2 toc-link" data-title="three">Three</a>
+                    <a href="#save" class="toc-h2 toc-link" data-title="Save">save</a>
+                  </li>
+                  <li>
+                    <a href="#getviewkey" class="toc-h2 toc-link" data-title="Get View Key">getViewKey</a>
+                  </li>
+                  <li>
+                    <a href="#getspendkeys" class="toc-h2 toc-link" data-title="Get Spend Keys">getSpendKeys</a>
+                  </li>
+                  <li>
+                    <a href="#getstatus" class="toc-h2 toc-link" data-title="Get Status">getStatus</a>
+                  </li>
+                  <li>
+                    <a href="#getaddresses" class="toc-h2 toc-link" data-title="Get Addresses">getAddresses</a>
+                  </li>
+                  <li>
+                    <a href="#createaddress" class="toc-h2 toc-link" data-title="Create Address">createAddress</a>
+                  </li>
+                  <li>
+                    <a href="#deleteaddress" class="toc-h2 toc-link" data-title="Delete Address">deleteAddress</a>
+                  </li>
+                  <li>
+                    <a href="#getbalance" class="toc-h2 toc-link" data-title="Get Balance">getBalance</a>
+                  </li>
+                  <li>
+                    <a href="#getblockhashes" class="toc-h2 toc-link" data-title="Get Block Hashes">getBlockHashes</a>
                   </li>
               </ul>
           </li>
@@ -248,20 +273,278 @@
         <h1 id='introduction'>Introduction</h1>
 <p>If you want to integrate Bytecoin into your service - this part of the wiki will assist you to do just that. With the help of our Bytecoin RPC Wallet or Daemon &amp; Simplewallet pair you will be able to integrate Bytecoin within several minutes.</p>
 <h1 id='wallet-rpc-api'>Wallet RPC API</h1>
-<p>On this page you will find description of every method in Bytecoin RPC Wallet API. Bytecoin RPC Wallet is a HTTP server which provides JSON 2.0 RPC interface for Bytecoin payment operations and address management.</p>
+<p>Bytecoin RPC Wallet is a HTTP server which provides JSON 2.0 RPC interface for Bytecoin payment operations and address management.</p>
+<h2 id='interacting-with-the-api'>Interacting with the API</h2>
+<p>To make a JSON PRC request to your Bytecoin RPC Wallet you should use a POST request that looks like this:</p>
 
-<p>To make a JSON PRC request to your Bytecoin RPC Wallet you should use POST request that looks like this:</p>
-<h2 id='one'>One</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<h2 id='two'>Two</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<h2 id='three'>Three</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p><code>http://&lt;service address&gt;:&lt;service port&gt;/json_rpc</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;service address&gt;</code></td>
+<td>IP of Bytecoin RPC Wallet, if RPC Wallet is located on local machine it is either 127.0.0.1 or localhost</td>
+</tr>
+<tr>
+<td><code>&lt;service port&gt;</code></td>
+<td>Bytecoin RPC Wallet port, by default it is binded to 8070 port, but it can be manually binded to any port you want, read more about this here.</td>
+</tr>
+</tbody></table>
+<h2 id='reset'>reset</h2>
+<p><code>reset()</code> method allows you to re-sync your wallet.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>viewSecretKey</td>
+<td>No</td>
+<td>Private view key</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p>No output in case of success.</p>
+
+<aside class="success">
+  If the view_secret_key was not pointed out reset() methods resets the wallet and re-syncs it. If the view_secret_key argument was pointed out reset() method substitutes the existing wallet with a new one with a specified view_secret_key and creates an address for it.
+</aside>
+<h2 id='save'>save</h2>
+<p><code>save()</code> method allows you to save your wallet by request.</p>
+
+<p>No input.
+No output in case of success.</p>
+<h2 id='getviewkey'>getViewKey</h2>
+<p><code>getViewKey()</code> method returns your view key.</p>
+
+<p>No input.</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>viewSecretKey</td>
+<td>Private view key</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='getspendkeys'>getSpendKeys</h2>
+<p><code>getSpendKeys()</code> method returns your spend keys.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>Yes</td>
+<td>Valid and existing in this container address</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>spendSecretKey</td>
+<td>Private spend key</td>
+<td>string</td>
+</tr>
+<tr>
+<td>spendPublicKey</td>
+<td>Public spend key</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='getstatus'>getStatus</h2>
+<p><code>getStatus()</code> method returns information about the current RPC Wallet state: block_count, known_block_count, last_block_hash and peer_count.</p>
+
+<p>No input.</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>blockCount</td>
+<td>Node&#39;s known number of blocks</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>knownBlockCount</td>
+<td>Maximum known number of blocks of all seeds that are connected to the node</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>lastBlockHash</td>
+<td>Hash of the last known block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>peerCount</td>
+<td>Connected peers number</td>
+<td>uint32</td>
+</tr>
+</tbody></table>
+<h2 id='getaddresses'>getAddresses</h2>
+<p><code>getAddresses()</code> method returns an array of your RPC Wallet&#39;s addresses.</p>
+
+<p>No input.</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>addresses</td>
+<td>Array of strings, where each string is an address</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='createaddress'>createAddress</h2>
+<p><code>createAddress()</code> method creates an additional address in your wallet.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>secretSpendKey</td>
+<td>No</td>
+<td>Private spend key. If <code>secretSpendKey</code> was specified, RPC Wallet creates spend address</td>
+<td>string</td>
+</tr>
+<tr>
+<td>publicSpendKey</td>
+<td>No</td>
+<td>Public spend key. If <code>publicSpendKey</code> was specified, RPC Wallet creates view address</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='deleteaddress'>deleteAddress</h2>
+<p><code>deleteAddress()</code> method deletes a specified address.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>Yes</td>
+<td>An address to be deleted</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<p>In case of success returns an empty JSON object.</p>
+<h2 id='getbalance'>getBalance</h2>
+<p><code>getBalance()</code> method returns a balance for a specified address.</p>
+
+<aside class="success">
+  If address is not specified, returns a cumulative balance of all RPC Wallet's addresses.
+</aside>
+<h2 id='getblockhashes'>getBlockHashes</h2>
+<p><code>getBlockHashes()</code> method returns an array of block hashes for a specified block range.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>firstBlockIndex</td>
+<td>Yes</td>
+<td>Starting height</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>blockCount</td>
+<td>Yes</td>
+<td>Number of blocks to process</td>
+<td>uint32</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>blockHashes</td>
+<td>Array of strings, where each element is a block hash</td>
+<td>array</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
