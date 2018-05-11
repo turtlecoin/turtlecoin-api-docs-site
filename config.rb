@@ -1,6 +1,15 @@
 # Unique header generation
 require './lib/unique_head.rb'
 
+files.watch :source, path: File.join(root, "source")
+
+# support working against a symlinked wiki repo in dev env
+turtlecoin_wiki_folder = File.exists?("turtlecoin-wiki-dev") ? "turtlecoin-wiki-dev" : "turtlecoin-wiki"
+
+set :turtlecoin_wiki_folder, File.join(root, turtlecoin_wiki_folder)
+
+files.watch :source, path: config[:turtlecoin_wiki_folder]
+
 # Markdown
 set :markdown_engine, :redcarpet
 set :markdown,
@@ -54,4 +63,5 @@ set :port, 4567
 
 helpers do
   require './lib/toc_data.rb'
+  require './lib/sidebar_data.rb'
 end
