@@ -272,6 +272,30 @@
                   <li>
                     <a href="#getunconfirmedtransactionhashes" class="toc-h2 toc-link" data-title="Get Unconfirmed Transaction Hashes">getUnconfirmedTransactionHashes</a>
                   </li>
+                  <li>
+                    <a href="#gettransaction" class="toc-h2 toc-link" data-title="Get Transaction">getTransaction</a>
+                  </li>
+                  <li>
+                    <a href="#sendtransaction" class="toc-h2 toc-link" data-title="Send Transaction">sendTransaction</a>
+                  </li>
+                  <li>
+                    <a href="#createdelayedtransaction" class="toc-h2 toc-link" data-title="Create Delayed Transaction">createDelayedTransaction</a>
+                  </li>
+                  <li>
+                    <a href="#getdelayedtransactionhashes" class="toc-h2 toc-link" data-title="Get Delayed Transaction Hashes">getDelayedTransactionHashes</a>
+                  </li>
+                  <li>
+                    <a href="#deletedelayedtransaction" class="toc-h2 toc-link" data-title="Delete Delayed Transaction">deleteDelayedTransaction</a>
+                  </li>
+                  <li>
+                    <a href="#senddelayedtransaction" class="toc-h2 toc-link" data-title="Send Delayed Transaction">sendDelayedTransaction</a>
+                  </li>
+                  <li>
+                    <a href="#sendfusiontransaction" class="toc-h2 toc-link" data-title="Send Fusion Transaction">sendFusionTransaction</a>
+                  </li>
+                  <li>
+                    <a href="#estimatefusion" class="toc-h2 toc-link" data-title="Estimate Fusion">estimateFusion</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -820,6 +844,451 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <td>transactionHashes</td>
 <td>Array of strings, where each string is a hash of an unconfirmed transaction</td>
 <td>array</td>
+</tr>
+</tbody></table>
+<h2 id='gettransaction'>getTransaction</h2>
+<p><code>getTransaction()</code> method returns information about a particular transaction.</p>
+
+<p>Transaction consists of transfers. Transfer is an amount-address pair. There could be several transfers in a single transaction.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionHash</td>
+<td>Yes</td>
+<td>Hash of the requested transaction</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transaction</td>
+<td>see below</td>
+</tr>
+</tbody></table>
+
+<p>Transaction attributes:</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionHash</td>
+<td>hash of the  transaction</td>
+<td>string</td>
+</tr>
+<tr>
+<td>blockIndex</td>
+<td>number of the block that contains a transaction</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>timestamp of the transaction</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>isBase</td>
+<td>shows if the transaction is a CoinBase transaction or not</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>unlockTime</td>
+<td>height of the block when transaction is going to be available for spending</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>amount of the transaction</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>transaction fee</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>hash of the  transaction</td>
+<td>string</td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>payment_id of the transaction (optional)</td>
+<td>string</td>
+</tr>
+<tr>
+<td>transfers</td>
+<td>array of address (string), amount (uint64)</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='sendtransaction'>sendTransaction</h2>
+<p><code>sendTransaction()</code> method allows you to send transaction to one or several addresses. Also, it allows you to use a payment_id for a transaction to a single address.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>addresses</td>
+<td>No</td>
+<td>Array of strings, where each string is an address to take the funds from</td>
+<td>array</td>
+</tr>
+<tr>
+<td>transfers</td>
+<td>Yes</td>
+<td>Array of address (string), amount (int64)</td>
+<td>array</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>Yes</td>
+<td>Transaction fee. Minimal fee in Bytecoin network is .01 BCN. This parameter should be specified in minimal available BCN units. For example, if your fee is .01 BCN, you should pass it as 1000000</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>unlockTime</td>
+<td>No</td>
+<td>Height of the block until which transaction is going to be locked for spending.</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>anonymity</td>
+<td>Yes</td>
+<td>Privacy level (a discrete number from 1 to infinity). Level 6 and higher is recommended</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>No</td>
+<td>String of variable length. Can contain A-Z, 0-9 characters.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>No</td>
+<td>payment_id</td>
+<td>string</td>
+</tr>
+<tr>
+<td>changeAddress</td>
+<td>No</td>
+<td>Valid and existing in this container address.</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>If container contains only 1 address, <code>changeAddress</code> field can be left empty and the change is going to be sent to this address.</li>
+<li>If addresses field contains only 1 address, <code>changeAddress</code> can be left empty and the change is going to be sent to this address.</li>
+<li>In the rest of the cases, <code>changeAddress</code> field is mandatory and must contain an address.</li>
+</ul>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionHash</td>
+<td>Hash of the sent transaction</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='createdelayedtransaction'>createDelayedTransaction</h2>
+<p><code>createDelayedTransaction()</code> method creates a delayed transaction. Such transactions are not sent into the network automatically and should be pushed using <code>sendDelayedTransaction</code> method.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>addresses</td>
+<td>No</td>
+<td>Array of strings, where each string is an address</td>
+<td>array</td>
+</tr>
+<tr>
+<td>transfers</td>
+<td>Yes</td>
+<td>Array of address (string), amount (int64)</td>
+<td>array</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>Yes</td>
+<td>Transaction fee. Minimal fee in Bytecoin network is .01 BCN. This parameter should be specified in minimal available BCN units. For example, if your fee is .01 BCN, you should pass it as 1000000</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>unlockTime</td>
+<td>No</td>
+<td>Height of the block until which transaction is going to be locked for spending.</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>anonymity</td>
+<td>Yes</td>
+<td>Privacy level (a discrete number from 1 to infinity). Level 6 and higher is recommended.</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>No</td>
+<td>String of variable length. Can contain A-Z, 0-9 characters.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>No</td>
+<td>payment_id</td>
+<td>string</td>
+</tr>
+<tr>
+<td>changeAddress</td>
+<td>No</td>
+<td>Valid and existing in this container address.</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>if container contains only 1 address, changeAddress field can be left empty and the change is going to be sent to this address</li>
+<li>if addresses field contains only 1 address, changeAddress can be left empty and the change is going to be sent to this address</li>
+<li>in the rest of the cases, changeAddress field is mandatory and must contain an address.</li>
+<li>outputs that were used for this transactions will be locked until the transaction is sent or cancelled</li>
+</ul>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionHash</td>
+<td>Hash of the sent transaction</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='getdelayedtransactionhashes'>getDelayedTransactionHashes</h2>
+<p><code>getDelayedTransactionHashes()</code> method returns hashes of delayed transactions.</p>
+
+<p>No input.</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionHashes</td>
+<td>Array of strings, where each string is a transaction hash</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='deletedelayedtransaction'>deleteDelayedTransaction</h2>
+<p><code>deleteDelayedTransaction()</code> method deletes a specified delayed transaction.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionHash</td>
+<td>Yes</td>
+<td>Valid, existing delayed transaction</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<p>In case of success returns an empty JSON object.</p>
+<h2 id='senddelayedtransaction'>sendDelayedTransaction</h2>
+<p><code>sendDelayedTransaction()</code> method sends a specified delayed transaction.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionHash</td>
+<td>Yes</td>
+<td>Valid, existing delayed transaction</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<p>In case of success returns an empty JSON object.</p>
+<h2 id='sendfusiontransaction'>sendFusionTransaction</h2>
+<p><code>sendFusionTransaction()</code> method allows you to send a fusion transaction, by taking funds from selected addresses and 
+transferring them to the destination address.
+If there aren&#39;t any outputs that can be optimized, <code>sendFusionTransaction()</code> will return an error. You can 
+use <code>estimateFusion</code> to check the outputs, available for the optimization.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>threshold</td>
+<td>Yes</td>
+<td>Value that determines which outputs will be optimized. Only the outputs, lesser than the threshold value, will be included into a fusion transaction.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>anonymity</td>
+<td>Yes</td>
+<td>Privacy level (a discrete number from 1 to infinity). Level 6 and higher is recommended.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>addresses</td>
+<td>No</td>
+<td>Array of strings, where each string is an address to take the funds from.</td>
+<td>array</td>
+</tr>
+<tr>
+<td>destinationAddress</td>
+<td>No</td>
+<td>An address that the optimized funds will be sent to. Valid and existing in this container address.</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>if container contains only 1 address, destinationAddress field can be left empty and the funds are going to be sent to this address.</li>
+<li>if addresses field contains only 1 address, destinationAddress can be left empty and the funds are going to be sent to this address.</li>
+<li>in the rest of the cases, destinationAddress field is mandatory and must contain an address.</li>
+</ul>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionHash</td>
+<td>Hash of the sent transaction</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='estimatefusion'>estimateFusion</h2>
+<p><code>estimateFusion()</code> method counts the number of unspent outputs of the specified addresses and returns how many of those outputs can be optimized.
+This method is used to understand if a fusion transaction can be created. If <code>fusionReadyCount</code> returns a value = 0, then a fusion transaction cannot be created.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>threshold</td>
+<td>Yes</td>
+<td>Value that determines which outputs will be optimized. Only the outputs, lesser than the threshold value, will be included into a fusion transaction.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>addresses</td>
+<td>No</td>
+<td>Array of strings, where each string is an address to take the funds from.</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalOutputCount</td>
+<td>Total number of unspent outputs of the specified addresses.</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>fusionReadyCount</td>
+<td>Number of outputs that can be optimized.</td>
+<td>uint64</td>
 </tr>
 </tbody></table>
 
