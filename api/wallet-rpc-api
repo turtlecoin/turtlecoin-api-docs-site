@@ -265,3 +265,76 @@ No output in case of success.</p>
 <td>array</td>
 </tr>
 </tbody></table>
+<h2 id='gettransactionhashes'>getTransactionHashes</h2>
+<p><code>getTransactionHashes()</code> method returns an array of block and transaction hashes. Transaction consists of transfers.
+Transfer is an amount-address pair. There could be several transfers in a single transaction.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>addresses</td>
+<td>No</td>
+<td>Array of strings, where each string is an address</td>
+<td>array</td>
+</tr>
+<tr>
+<td>blockHash</td>
+<td>Only one of these parameters (blockHash or firstBlockIndex) is allowed</td>
+<td>Hash of the starting block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>firstBlockIndex</td>
+<td>Only one of these parameters (blockHash or firstBlockIndex) is allowed</td>
+<td>Starting height</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>blockCount</td>
+<td>Yes</td>
+<td>Number of blocks to return transaction hashes from</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>No</td>
+<td>Valid payment_id</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>If <code>paymentId</code> parameter is set, <code>getTransactionHashes()</code> method returns transaction hashes of transactions that contain specified payment_id. (in the set block range).</li>
+<li>If <code>addresses</code> parameter is set, <code>getTransactionHashes()</code> method returns transaction hashes of transactions that contain transfer from at least one of specified addresses.</li>
+<li>If both above mentioned parameters are set, <code>getTransactionHashes()</code> method returns transaction hashes of transactions that contain both specified payment_id and transfer from at least one of specified addresses.</li>
+</ul>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>items</td>
+<td><strong>Array that contains:</strong></td>
+</tr>
+<tr>
+<td></td>
+<td><code>blockHash</code> - <code>string</code> - hash of the block which contains transaction hashes</td>
+</tr>
+<tr>
+<td></td>
+<td><code>transactionHashes</code> - <code>array</code> - array of strings, where each string is a transaction hash</td>
+</tr>
+</tbody></table>
