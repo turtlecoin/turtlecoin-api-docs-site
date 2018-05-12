@@ -343,11 +343,27 @@
 <li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-php">PHP</a></li>
 </ul>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">walletd</span><span class="o">-</span><span class="nx">rpc</span><span class="o">-</span><span class="nx">js</span>
+</code></pre><pre class="highlight php tab-php"><code>composer require turtlecoin/turtlecoin-walletd-rpc-php
+</code></pre><pre class="highlight python tab-python"><code><span class="n">pip</span> <span class="n">install</span> <span class="n">turtlecoin</span>
 </code></pre><h2 id='interacting-with-the-api'>Interacting with the API</h2>
 <blockquote>
 <p>API endpoint example</p>
 </blockquote>
 <pre class="highlight plaintext"><code>http://localhost:8070/json_rpc
+</code></pre>
+<blockquote>
+<p>Instantiation / Configuration</p>
+</blockquote>
+<pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
+
+<span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'rpcHost'</span>     <span class="o">=&gt;</span> <span class="s1">'http://127.0.0.1'</span><span class="p">,</span>
+    <span class="s1">'rpcPort'</span>     <span class="o">=&gt;</span> <span class="mi">8070</span><span class="p">,</span>
+    <span class="s1">'rpcPassword'</span> <span class="o">=&gt;</span> <span class="s1">'test'</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 </code></pre>
 <p>To make a JSON PRC request to your TurtleCoin RPC Wallet you should use a POST request that looks like this:</p>
 
@@ -368,7 +384,19 @@
 <td>TurtleCoin RPC Wallet port, by default it is binded to 8070 port, but it can be manually binded to any port you want, read more about this here.</td>
 </tr>
 </tbody></table>
-<h2 id='reset'>reset</h2>
+<h2 id='reset'>reset</h2><pre class="highlight shell tab-shell"><code>// 
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// </span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
+
+<span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+
+<span class="nv">$key</span> <span class="o">=</span> <span class="s1">'YOUR PRIVATE VIEW KEY'</span><span class="p">;</span>
+
+<span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">reset</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="o">//</span> 
+</code></pre><pre class="highlight go tab-go"><code><span class="c">// </span><span class="x">
+</span></code></pre>
 <p><code>reset()</code> method allows you to re-sync your wallet.</p>
 
 <p><strong>Input</strong></p>
