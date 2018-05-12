@@ -1,3 +1,11 @@
+// GLOBAL
+////////////////////
+a {
+  color: $green-20;
+}
+
+// MARKDOWN content
+////////////////////
 .content {
   aside {
     font-size: 0.9rem;
@@ -23,8 +31,14 @@
     border-bottom: 0;
     font-size: 1.5rem;
   }
+
+  table {
+    font-size: 0.9rem;
+  }
 }
 
+// LEFT SIDEBAR
+////////////////////
 .toc-wrapper {
   border-right: 1px solid $gray-30;
 
@@ -66,17 +80,15 @@
   }
 }
 
-table {
-  font-size: 0.9rem;
-}
-
+// RIGHT CODE SECTION
+////////////////////
 .page-wrapper {
   .lang-selector {
     padding: 1em 28px;
     border-bottom: 0;
 
     a {
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: normal;
     }
   }
