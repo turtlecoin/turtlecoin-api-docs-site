@@ -321,10 +321,31 @@
             _/ /   _| |    _| |   \ \
            (___|  (___|   (___|  (___|
 </code></pre>
-<p>If you want to integrate Bytecoin into your service - this part of the wiki will assist you to do just that. With the help of our Bytecoin RPC Wallet or Daemon &amp; Simplewallet pair you will be able to integrate Bytecoin within several minutes.</p>
+<p>This website documents the public APIs of TurtleCoin.</p>
+
+<p>You can view code examples in the dark area to the right; switch the programming language of the examples with the tabs in the top right.</p>
+
+<p>We also have some specific language bindings to make integration easier. You can switch the programming language of the examples with the tabs in the top right.</p>
+
+<p>If anything is missing or seems incorrect, please check the <a href="https://github.com/ar-x/turtlecoin-wiki/issues">GitHub issues</a> for existing known issues or <a href="https://github.com/ar-x/turtlecoin-wiki/issues/new">create a new issue</a>.</p>
 <h1 id='wallet-rpc-api'>Wallet RPC API</h1>
 <p>TurtleCoin RPC Wallet is a HTTP server which provides JSON 2.0 RPC interface for TurtleCoin payment operations and address management.</p>
-<h2 id='interacting-with-the-api'>Interacting with the API</h2>
+
+<p>Currently we support the following official client bindings:</p>
+
+<ul>
+<li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-js">JavaScript</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-python">Python</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-go">Go</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-php">PHP</a></li>
+</ul>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">walletd</span><span class="o">-</span><span class="nx">rpc</span><span class="o">-</span><span class="nx">js</span>
+</code></pre><h2 id='interacting-with-the-api'>Interacting with the API</h2>
+<blockquote>
+<p>API endpoint example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>http://localhost:8070/json_rpc
+</code></pre>
 <p>To make a JSON PRC request to your TurtleCoin RPC Wallet you should use a POST request that looks like this:</p>
 
 <p><code>http://&lt;service address&gt;:&lt;service port&gt;/json_rpc</code></p>
