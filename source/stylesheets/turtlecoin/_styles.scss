@@ -1,6 +1,6 @@
 .content {
   aside {
-    font-size: 0.9em;
+    font-size: 0.9rem;
     &.notice,
     &.success,
     &.warning {
@@ -15,38 +15,48 @@
   h1 {
     border-top: 0;
     border-bottom: 1px solid $gray-30;
-    font-size: 2em;
+    font-size: 2rem;
   }
 
   h2 {
     border-top: 0;
     border-bottom: 0;
-    font-size: 1.5em;
+    font-size: 1.5rem;
   }
 }
 
 .toc-wrapper {
   border-right: 1px solid $gray-30;
-  font-size: 0.9em;
 
   .toc-h1 {
+    font-size: 0.9rem;
     font-weight: normal;
     padding-bottom: 0.5em;
     padding-top: 0.5em;
   }
 
   .toc-h2 {
-    font-size: 1em;
+    font-size: 0.9rem;
     font-weight: normal;
-    padding-bottom: 0.3em;
-    padding-top: 0.3em;
+    padding-bottom: 0.3rem;
+    padding-top: 0.3rem;
   }
 
   .search input {
     border-bottom: 0;
   }
+
+  .toc-footer {
+    border-top: 0;
+    text-align: center;
+
+    a {
+      font-size: 0.9rem;
+      font-weight: normal;
+    }
+  }
 }
 
 table {
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
