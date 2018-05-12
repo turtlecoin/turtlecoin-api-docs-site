@@ -6,6 +6,6 @@ end
 Padrino::Helpers::RenderHelpers.class_eval do
   def wiki_partial(template_path, options = {}, &block)
     options = { locals: {}, layout: false }
-    render(nil, "api/#{template_path}", options)
+    render(nil, template_path, options)
   end
 end

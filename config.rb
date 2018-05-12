@@ -8,7 +8,7 @@ turtlecoin_wiki_folder = File.exists?("turtlecoin-wiki-dev") ? "turtlecoin-wiki-
 
 set :turtlecoin_wiki_folder, File.join(root, turtlecoin_wiki_folder)
 
-files.watch :source, path: config[:turtlecoin_wiki_folder]
+files.watch :source, path: "#{config[:turtlecoin_wiki_folder]}/api"
 
 # Markdown
 set :markdown_engine, :redcarpet
