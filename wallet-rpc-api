@@ -1,7 +1,7 @@
 <h1 id='wallet-rpc-api'>Wallet RPC API</h1>
-<p>Bytecoin RPC Wallet is a HTTP server which provides JSON 2.0 RPC interface for Bytecoin payment operations and address management.</p>
+<p>TurtleCoin RPC Wallet is a HTTP server which provides JSON 2.0 RPC interface for TurtleCoin payment operations and address management.</p>
 <h2 id='interacting-with-the-api'>Interacting with the API</h2>
-<p>To make a JSON PRC request to your Bytecoin RPC Wallet you should use a POST request that looks like this:</p>
+<p>To make a JSON PRC request to your TurtleCoin RPC Wallet you should use a POST request that looks like this:</p>
 
 <p><code>http://&lt;service address&gt;:&lt;service port&gt;/json_rpc</code></p>
 
@@ -13,11 +13,11 @@
 </thead><tbody>
 <tr>
 <td><code>&lt;service address&gt;</code></td>
-<td>IP of Bytecoin RPC Wallet, if RPC Wallet is located on local machine it is either 127.0.0.1 or localhost</td>
+<td>IP of TurtleCoin RPC Wallet, if RPC Wallet is located on local machine it is either 127.0.0.1 or localhost</td>
 </tr>
 <tr>
 <td><code>&lt;service port&gt;</code></td>
-<td>Bytecoin RPC Wallet port, by default it is binded to 8070 port, but it can be manually binded to any port you want, read more about this here.</td>
+<td>TurtleCoin RPC Wallet port, by default it is binded to 8070 port, but it can be manually binded to any port you want, read more about this here.</td>
 </tr>
 </tbody></table>
 <h2 id='reset'>reset</h2>
@@ -661,7 +661,7 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <tr>
 <td>fee</td>
 <td>Yes</td>
-<td>Transaction fee. Minimal fee in Bytecoin network is .01 BCN. This parameter should be specified in minimal available BCN units. For example, if your fee is .01 BCN, you should pass it as 1000000</td>
+<td>Transaction fee. Minimal fee in TurtleCoin network is .01 BCN. This parameter should be specified in minimal available BCN units. For example, if your fee is .01 BCN, you should pass it as 1000000</td>
 <td>uint64</td>
 </tr>
 <tr>
@@ -745,7 +745,7 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <tr>
 <td>fee</td>
 <td>Yes</td>
-<td>Transaction fee. Minimal fee in Bytecoin network is .01 BCN. This parameter should be specified in minimal available BCN units. For example, if your fee is .01 BCN, you should pass it as 1000000</td>
+<td>Transaction fee. Minimal fee in TurtleCoin network is .01 BCN. This parameter should be specified in minimal available BCN units. For example, if your fee is .01 BCN, you should pass it as 1000000</td>
 <td>uint64</td>
 </tr>
 <tr>
