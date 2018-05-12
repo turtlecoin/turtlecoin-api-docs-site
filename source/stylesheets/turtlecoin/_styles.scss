@@ -47,16 +47,37 @@
   }
 
   .toc-footer {
-    border-top: 0;
-    text-align: center;
+    border-top-color: $gray-30;
 
-    a {
-      font-size: 0.9rem;
-      font-weight: normal;
+    li {
+      padding-bottom: 0.3rem;
+      padding-top: 0.3rem;
+
+      a {
+        font-size: 0.9rem;
+        font-weight: normal;
+      }
+    }
+
+    .img-license {
+      display: block;
+      width: 88px;
     }
   }
 }
 
 table {
   font-size: 0.9rem;
+}
+
+.page-wrapper {
+  .lang-selector {
+    padding: 1em 28px;
+    border-bottom: 0;
+
+    a {
+      border-radius: 8px;
+      font-weight: normal;
+    }
+  }
 }
