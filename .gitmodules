@@ -2,4 +2,4 @@
   branch = import-api-docs
 	path = turtlecoin-wiki
 	url = https://github.com/ar-x/turtlecoin-wiki.git
-  ignore = dirty
+  ignore = all

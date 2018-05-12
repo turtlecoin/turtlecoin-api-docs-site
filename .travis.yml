@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-- 2.4.0
+  - 2.4
 cache: bundler
 script: bundle exec middleman build
 deploy:
@@ -12,6 +12,9 @@ deploy:
   on: turtle-master
   fqdn: hinata-104.shadow-clone-jutsu.com
   verbose: true
+
+before_install:
+  - git submodule update --recursive --remote --merge
 
 env:
   global:

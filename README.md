@@ -10,7 +10,7 @@
 4. Run `bundle exec middleman server` to run start the development server at `http://localhost:4567`.
 5. Changes should target the `turtle-master` branch, instead of `master`.
 6. Site specific styles are in `source/stylesheets/turtlecoin`.
-7. Pulls content from the `api` folder in the `turtlecoin/turtlecoin-wiki` repository.
+7. Pulls content from the `api` folder in the `turtlecoin/turtlecoin-wiki` repository. Run `git submodule update --recursive --remote --merge` to get the latest.
 
 #### Developing with local turtlecoin-wiki content
 
