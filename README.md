@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/34389545/35821974-62e0e25c-0a70-11e8-87dd-2cfffeb6ed47.png)
+
 [![Build Status](https://travis-ci.org/ar-x/turtlecoin-api-reference-site.svg?branch=turtle-master)](https://travis-ci.org/ar-x/turtlecoin-api-reference-site)
 
 ## Developing
@@ -10,7 +12,7 @@
 6. Site specific styles are in `source/stylesheets/turtlecoin`.
 7. Pulls content from the `turtlecoin/turtlecoin-wiki` repository.
 
-### Developing with local turtlecoin-wiki content
+#### Developing with local turtlecoin-wiki content
 
 Create a symlink called `turtlecoin-wiki-dev` in this project to the `turtlecoin-wiki` repo on your machine. Editing files in that repo would then show up on this app. For example: `ln -s ../turtlecoin-wiki turtlecoin-wiki-dev` to link to the `turtlecoin-wiki` folder located at the same level as the folder containing this repo. Once done, remove the link by running `unlink turtlecoin-wiki-dev`.
 
