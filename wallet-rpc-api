@@ -43,7 +43,7 @@
 
 <p>No output in case of success.</p>
 
-<aside class="success">
+<aside class="notice">
   If the view_secret_key was not pointed out reset() methods resets the wallet and re-syncs it. If the view_secret_key argument was pointed out reset() method substitutes the existing wallet with a new one with a specified view_secret_key and creates an address for it.
 </aside>
 <h2 id='save'>save</h2>
@@ -220,7 +220,7 @@ No output in case of success.</p>
 <h2 id='getbalance'>getBalance</h2>
 <p><code>getBalance()</code> method returns a balance for a specified address.</p>
 
-<aside class="success">
+<aside class="notice">
   If address is not specified, returns a cumulative balance of all RPC Wallet's addresses.
 </aside>
 <h2 id='getblockhashes'>getBlockHashes</h2>
@@ -323,18 +323,216 @@ Transfer is an amount-address pair. There could be several transfers in a single
 <tr>
 <th>Argument</th>
 <th>Description</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>items</td>
-<td><strong>Array that contains:</strong></td>
+<td><strong>Array of</strong></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td></td>
-<td><code>blockHash</code> - <code>string</code> - hash of the block which contains transaction hashes</td>
+<td><strong>Attribute</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Format</strong></td>
 </tr>
 <tr>
 <td></td>
-<td><code>transactionHashes</code> - <code>array</code> - array of strings, where each string is a transaction hash</td>
+<td>blockHash</td>
+<td>hash of the block which contains transaction hashes</td>
+<td>string</td>
+</tr>
+<tr>
+<td></td>
+<td>transactionHashes</td>
+<td>array of strings, where each string is a transaction hash</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='gettransactions'>getTransactions</h2>
+<p><code>getTransactions()</code> method returns an array of block and transaction hashes.
+Transaction consists of transfers. Transfer is an amount-address pair. There could be several transfers in a single transaction.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>addresses</td>
+<td>No</td>
+<td>Array of strings, where each string is an address</td>
+<td>array</td>
+</tr>
+<tr>
+<td>blockHash</td>
+<td>Only one of these parameters (<code>blockHash</code> or <code>firstBlockIndex</code>) is allowed.</td>
+<td>Hash of the starting block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>firstBlockIndex</td>
+<td>Only one of these parameters (<code>blockHash</code> or <code>firstBlockIndex</code>) is allowed.</td>
+<td>Starting height</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>blockCount</td>
+<td>Yes</td>
+<td>Number of blocks to return transaction hashes from</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>No</td>
+<td>Valid <code>payment_id</code></td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>If <code>paymentId</code> parameter is set, <code>getTransactions()</code> method returns transactions that contain specified <code>payment_id</code>. (in the set block range)</li>
+<li>If <code>addresses</code> parameter is set, <code>getTransactions()</code> method returns transactions that contain transfer from at least one of specified addresses.</li>
+<li>If both above mentioned parameters are set, <code>getTransactions()</code> method returns transactions that contain both specified <code>payment_id</code> and transfer from at least one of specified addresses.</li>
+</ul>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th></th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>items</td>
+<td><strong>Array of</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>block_hash</td>
+<td>hash of the block which contains a transaction</td>
+<td>string</td>
+</tr>
+<tr>
+<td></td>
+<td>transactions</td>
+<td>see below</td>
+<td>array</td>
+</tr>
+</tbody></table>
+
+<p>Transaction attributes:</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionHash</td>
+<td>hash of the  transaction</td>
+<td>string</td>
+</tr>
+<tr>
+<td>blockIndex</td>
+<td>number of the block that contains a transaction</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>timestamp of the transaction</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>isBase</td>
+<td>shows if the transaction is a CoinBase transaction or not</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>unlockTime</td>
+<td>height of the block when transaction is going to be available for spending</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>amount of the transaction</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>transaction fee</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>hash of the  transaction</td>
+<td>string</td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>payment_id of the transaction (optional)</td>
+<td>string</td>
+</tr>
+<tr>
+<td>transfers</td>
+<td>array of address (string), amount (uint64)</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='getunconfirmedtransactionhashes'>getUnconfirmedTransactionHashes</h2>
+<p><code>getUnconfirmedTransactionHashes()</code> method returns information about the current unconfirmed transaction pool or for a specified addresses.</p>
+
+<p>Transaction consists of transfers. Transfer is an amount-address pair. There could be several transfers in a single transaction.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>addresses</td>
+<td>No</td>
+<td>Array of strings, where each string is a valid address</td>
+<td>array</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  If addresses parameter is set, transactions that contain transfer from at least one of specified addresses are returned.
+</aside>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionHashes</td>
+<td>Array of strings, where each string is a hash of an unconfirmed transaction</td>
+<td>array</td>
 </tr>
 </tbody></table>
