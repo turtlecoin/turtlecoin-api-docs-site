@@ -9,7 +9,7 @@
 1. Make sure you have [Ruby](https://www.ruby-lang.org/en) 2.3 or newer installed.
 2. Run `gem install bundler` to install [bundler](http://bundler.io).
 3. Run `bundle install` to install the dependencies of this project.
-4. Run `bundle exec middleman server` to run start the development server at `http://localhost:4567`.
+4. Run `bundle exec middleman server` to start the development server at `http://localhost:4567`.
 
 #### Development notes
 
@@ -20,7 +20,7 @@
 
 #### Developing with local turtlecoin-wiki content
 
-Create a symlink called `turtlecoin-wiki-dev` in this project to the `turtlecoin-wiki` repo on your machine. Editing files in that repo would then show up on this app. For example: `ln -s ../turtlecoin-wiki turtlecoin-wiki-dev` to link to the `turtlecoin-wiki` folder located at the same level as the folder containing this repo. Once development is done, remove the link by running `unlink turtlecoin-wiki-dev`.
+Create a symlink called `turtlecoin-wiki-dev` in this project to the `turtlecoin-wiki` repo on your machine. Editing files in that repo would then show up on this app. For example run `ln -s ../turtlecoin-wiki turtlecoin-wiki-dev` to creata a link to the `turtlecoin-wiki` folder located at the same level as the folder containing this repo. Once development is done, remove the link by running `unlink turtlecoin-wiki-dev`.
 
 
 ## About Slate 
