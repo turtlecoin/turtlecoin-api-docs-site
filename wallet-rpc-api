@@ -32,7 +32,7 @@
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 </code></pre>
-<p>To make a JSON PRC request to your TurtleCoin RPC Wallet you should use a POST request that looks like this:</p>
+<p>To make a JSON RPC request to your TurtleCoin RPC Wallet you should use a POST request that looks like this:</p>
 
 <p><code>http://&lt;service address&gt;:&lt;service port&gt;/json_rpc</code></p>
 
