@@ -352,7 +352,7 @@
 <pre class="highlight plaintext"><code>http://localhost:8070/json_rpc
 </code></pre>
 <blockquote>
-<p>Instantiation / Configuration</p>
+<p>Configuration and instantiation</p>
 </blockquote>
 <pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
@@ -384,18 +384,29 @@
 <td>TurtleCoin RPC Wallet port, by default it is binded to 8070 port, but it can be manually binded to any port you want, read more about this here.</td>
 </tr>
 </tbody></table>
-<h2 id='reset'>reset</h2><pre class="highlight shell tab-shell"><code>// 
+<h2 id='reset'>reset</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"reset","params":{"viewSecretKey":"qehawikl7rl2hochu1ikezl8wubrucidaf4qa3hlm6pru7itrudrekayifeveslx"}}'</span>  http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// </span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 
-<span class="nv">$key</span> <span class="o">=</span> <span class="s1">'YOUR PRIVATE VIEW KEY'</span><span class="p">;</span>
+<span class="nv">$secretViewKey</span> <span class="o">=</span> <span class="s1">'qehawikl7rl2hochu1ikezl8wubrucidaf4qa3hlm6pru7itrudrekayifeveslx'</span><span class="p">;</span>
 
-<span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">reset</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">reset</span><span class="p">(</span><span class="nv">$secretViewKey</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="o">//</span> 
 </code></pre><pre class="highlight go tab-go"><code><span class="c">// </span><span class="x">
+</span></code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><code>reset()</code> method allows you to re-sync your wallet.</p>
 
@@ -422,12 +433,56 @@
 <aside class="notice">
   If the view_secret_key was not pointed out reset() methods resets the wallet and re-syncs it. If the view_secret_key argument was pointed out reset() method substitutes the existing wallet with a new one with a specified view_secret_key and creates an address for it.
 </aside>
-<h2 id='save'>save</h2>
+<h2 id='save'>save</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"save","params":{}}'</span>  http://localhost:8070/json_rpc
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// </span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
+
+<span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="o">//</span> 
+</code></pre><pre class="highlight go tab-go"><code><span class="c">// </span><span class="x">
+</span></code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>save()</code> method allows you to save your wallet by request.</p>
 
 <p>No input.
 No output in case of success.</p>
-<h2 id='getviewkey'>getViewKey</h2>
+<h2 id='getviewkey'>getViewKey</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getViewKey","params":{}}'</span>  http://localhost:8070/json_rpc
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// </span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
+
+<span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getViewKey</span><span class="p">();</span>
+
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="o">//</span> 
+</code></pre><pre class="highlight go tab-go"><code><span class="c">// </span><span class="x">
+</span></code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"viewSecretKey"</span><span class="p">:</span><span class="s2">"qehawikl7rl2hochu1ikezl8wubrucidaf4qa3hlm6pru7itrudrekayifeveslx"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>getViewKey()</code> method returns your view key.</p>
 
 <p>No input.</p>
