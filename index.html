@@ -1127,7 +1127,21 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='getunconfirmedtransactionhashes'>getUnconfirmedTransactionHashes</h2>
+<h2 id='getunconfirmedtransactionhashes'>getUnconfirmedTransactionHashes</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getUnconfirmedTransactionHashes","params":{}}'</span> http://localhost:8070/json_rpc
+</code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"transactionHashes"</span><span class="p">:[</span><span class="w">
+      </span><span class="s2">"55a23..."</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>getUnconfirmedTransactionHashes()</code> method returns information about the current unconfirmed transaction pool or for a specified addresses.</p>
 
 <p>Transaction consists of transfers. Transfer is an amount-address pair. There could be several transfers in a single transaction.</p>
@@ -1169,7 +1183,35 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='gettransaction'>getTransaction</h2>
+<h2 id='gettransaction'>getTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getTransaction","params":{"transactionHash":"55a23..."}}'</span> http://localhost:8070/json_rpc
+</code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"transaction"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"blockIndex"</span><span class="p">:</span><span class="mi">456635</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"extra"</span><span class="p">:</span><span class="s2">"0134b..."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isBase"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"paymentId"</span><span class="p">:</span><span class="s2">"ac9c5..."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="mi">1526477499</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transactionHash"</span><span class="p">:</span><span class="s2">"55a23..."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfers"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"address"</span><span class="p">:</span><span class="s2">"TRTLxxxx..."</span><span class="p">,</span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">5000</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"address"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">-10000</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"address"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">4990</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"unlockTime"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>getTransaction()</code> method returns information about a particular transaction.</p>
 
 <p>Transaction consists of transfers. Transfer is an amount-address pair. There could be several transfers in a single transaction.</p>
@@ -1266,7 +1308,19 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='sendtransaction'>sendTransaction</h2>
+<h2 id='sendtransaction'>sendTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":"5000"}],"fee":10,"anonymity":3,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
+</code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"transactionHash"</span><span class="p">:</span><span class="s2">"ae57e..."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>sendTransaction()</code> method allows you to send transaction(s) to one or several addresses. Also, it allows you to use a payment_id for a transaction to a single address.</p>
 
 <p><strong>Input</strong></p>
@@ -1350,7 +1404,19 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='createdelayedtransaction'>createDelayedTransaction</h2>
+<h2 id='createdelayedtransaction'>createDelayedTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createDelayedTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":"5000"}],"fee":10,"anonymity":3,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
+</code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"transactionHash"</span><span class="p">:</span><span class="s2">"ae57e..."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>createDelayedTransaction()</code> method creates a delayed transaction. Such transactions are not sent into the network automatically and should be pushed using <code>sendDelayedTransaction</code> method.</p>
 
 <p><strong>Input</strong></p>
@@ -1435,7 +1501,19 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='getdelayedtransactionhashes'>getDelayedTransactionHashes</h2>
+<h2 id='getdelayedtransactionhashes'>getDelayedTransactionHashes</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getDelayedTransactionHashes","params":{}}'</span> http://localhost:8070/json_rpc
+</code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"transactionHashes"</span><span class="p">:[</span><span class="s2">"b3e374..."</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>getDelayedTransactionHashes()</code> method returns hashes of delayed transactions.</p>
 
 <p>No input.</p>
@@ -1455,7 +1533,17 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='deletedelayedtransaction'>deleteDelayedTransaction</h2>
+<h2 id='deletedelayedtransaction'>deleteDelayedTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"deleteDelayedTransaction","params":{"transactionHash":"b3e37..."}}'</span> http://localhost:8070/json_rpc
+</code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>deleteDelayedTransaction()</code> method deletes a specified delayed transaction.</p>
 
 <p><strong>Input</strong></p>
@@ -1479,7 +1567,17 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <p><strong>Output</strong></p>
 
 <p>In case of success returns an empty JSON object.</p>
-<h2 id='senddelayedtransaction'>sendDelayedTransaction</h2>
+<h2 id='senddelayedtransaction'>sendDelayedTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendDelayedTransaction","params":{"transactionHash":"c37cd..."}}'</span> http://localhost:8070/json_rpc
+</code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>sendDelayedTransaction()</code> method sends a specified delayed transaction.</p>
 
 <p><strong>Input</strong></p>
@@ -1503,7 +1601,19 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <p><strong>Output</strong></p>
 
 <p>In case of success returns an empty JSON object.</p>
-<h2 id='sendfusiontransaction'>sendFusionTransaction</h2>
+<h2 id='sendfusiontransaction'>sendFusionTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendFusionTransaction","params":{"threshold":1000000,"anonymity":3,"addresses":["TRTLxxxx...","TRTLyyyy..."],"destinationAddress":"TRTLzzzz..."}}'</span> http://localhost:8070/json_rpc
+</code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"transactionHash"</span><span class="p">:</span><span class="s2">"93faed..."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>sendFusionTransaction()</code> method allows you to send a fusion transaction, by taking funds from selected addresses and 
 transferring them to the destination address.
 If there aren&#39;t any outputs that can be optimized, <code>sendFusionTransaction()</code> will return an error. You can 
@@ -1566,7 +1676,20 @@ use <code>estimateFusion</code> to check the outputs, available for the optimiza
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='estimatefusion'>estimateFusion</h2>
+<h2 id='estimatefusion'>estimateFusion</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"estimateFusion","params":{"threshold":1000000,"addresses":["TRTLxxxx...","TRTLyyyy..."]}}'</span> http://localhost:8070/json_rpc
+</code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"fusionReadyCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalOutputCount"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>estimateFusion()</code> method counts the number of unspent outputs of the specified addresses and returns how many of those outputs can be optimized.
 This method is used to understand if a fusion transaction can be created. If <code>fusionReadyCount</code> returns a value = 0, then a fusion transaction cannot be created.</p>
 
