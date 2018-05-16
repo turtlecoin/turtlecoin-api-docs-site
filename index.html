@@ -1065,7 +1065,7 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 </tr>
 </tbody></table>
 <h2 id='sendtransaction'>sendTransaction</h2>
-<p><code>sendTransaction()</code> method allows you to send transaction to one or several addresses. Also, it allows you to use a payment_id for a transaction to a single address.</p>
+<p><code>sendTransaction()</code> method allows you to send transaction(s) to one or several addresses. Also, it allows you to use a payment_id for a transaction to a single address.</p>
 
 <p><strong>Input</strong></p>
 
@@ -1086,26 +1086,26 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <tr>
 <td>transfers</td>
 <td>Yes</td>
-<td>Array of address (string), amount (int64)</td>
+<td>Array of objects, address: (string address), amount: (int amount)</td>
 <td>array</td>
 </tr>
 <tr>
 <td>fee</td>
 <td>Yes</td>
-<td>Transaction fee. Minimal fee in TurtleCoin network is .01 BCN. This parameter should be specified in minimal available BCN units. For example, if your fee is .01 BCN, you should pass it as 1000000</td>
-<td>uint64</td>
+<td>Transaction fee. Minimal fee in TurtleCoin network is 0.10 TRTL. As with other amounts use whole units, 1 TRTL = 100 units, so 0.1 TRTL = 10 units</td>
+<td>int</td>
 </tr>
 <tr>
 <td>unlockTime</td>
 <td>No</td>
-<td>Height of the block until which transaction is going to be locked for spending.</td>
-<td>uint64</td>
+<td>The block height at which the transaction will be unlocked for spending.</td>
+<td>int</td>
 </tr>
 <tr>
 <td>anonymity</td>
 <td>Yes</td>
-<td>Privacy level (a discrete number from 1 to infinity). Level 6 and higher is recommended</td>
-<td>uint64</td>
+<td>Privacy (mixin) level (a discrete number from 0 to &gt; than 0). 6 and higher is recommended</td>
+<td>int</td>
 </tr>
 <tr>
 <td>extra</td>
@@ -1122,7 +1122,7 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <tr>
 <td>changeAddress</td>
 <td>No</td>
-<td>Valid and existing in this container address.</td>
+<td>Valid and existing address in this container.</td>
 <td>string</td>
 </tr>
 </tbody></table>
