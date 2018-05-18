@@ -6,6 +6,9 @@ a {
 
 // MARKDOWN content
 ////////////////////
+
+$content-edge-gutter-width: 28px;
+
 .content {
   aside {
     font-size: 0.9rem;
@@ -32,8 +35,22 @@ a {
     font-size: 1.5rem;
   }
 
+  pre {
+    padding: 0 $content-edge-gutter-width 10px $content-edge-gutter-width;
+
+    code {
+      background-color: $gray-10;
+      border-radius: 5px;
+      display: block;
+      padding: 20px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+  }
+
   table {
     font-size: 0.9rem;
+    margin-bottom: 2em;
   }
 }
 
@@ -84,7 +101,7 @@ a {
 ////////////////////
 .page-wrapper {
   .lang-selector {
-    padding: 1em 28px;
+    padding: 1em $content-edge-gutter-width;
     border-bottom: 0;
 
     a {
