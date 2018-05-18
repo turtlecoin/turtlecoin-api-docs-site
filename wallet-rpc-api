@@ -56,11 +56,8 @@
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$viewSecretKey</span> <span class="o">=</span> <span class="s1">'xxxxx...'</span><span class="p">;</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">reset</span><span class="p">(</span><span class="nv">$viewSecretKey</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -95,16 +92,14 @@
 <p>No output in case of success.</p>
 
 <aside class="notice">
-  If the <code>viewSecretKey</code> argument is not provided, the <code>reset()</code> method resets the wallet and re-syncs it. If the <code>viewSecretKey</code> argument is provided, the <code>reset()</code> method substitutes the existing wallet with a new one with the specified key and creates an address for it.
+  <div>If the <code>viewSecretKey</code> argument is not provided, the <code>reset()</code> method resets the wallet and re-syncs it. If the <code>viewSecretKey</code> argument is provided, the <code>reset()</code> method substitutes the existing wallet with a new one with the specified key and creates an address for it.</div>
 </aside>
 <h2 id='save'>save</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"save","params":{}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -125,9 +120,7 @@ No output in case of success.</p>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getViewKey</span><span class="p">();</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -165,11 +158,8 @@ No output in case of success.</p>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getSpendKeys</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -229,9 +219,7 @@ No output in case of success.</p>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getStatus</span><span class="p">();</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -287,9 +275,7 @@ No output in case of success.</p>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getAddresses</span><span class="p">();</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -333,9 +319,7 @@ No output in case of success.</p>
 
 <span class="nv">$secretSpendKey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$publicSpendKey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">createAddress</span><span class="p">(</span><span class="nv">$secretSpendKey</span><span class="p">,</span> <span class="nv">$publicSpendKey</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -379,11 +363,8 @@ No output in case of success.</p>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">deleteAddress</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -423,11 +404,8 @@ No output in case of success.</p>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getBalance</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -484,19 +462,16 @@ No output in case of success.</p>
 </tbody></table>
 
 <aside class="notice">
-  If address is not specified, returns a cumulative balance of all RPC Wallet's addresses. Also note, balances are expressed in shells, so a balance of 10000 is equal to 100.00 turtles.
+  <div>If address is not specified, returns a cumulative balance of all RPC Wallet's addresses. Also note, balances are expressed in shells, so a balance of 10000 is equal to 100.00 turtles.</div>
 </aside>
 <h2 id='getblockhashes'>getBlockHashes</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getBlockHashes","params":{"firstBlockIndex":0,"blockCount":3}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$firstBlockIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="nv">$blockCount</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getBlockHashes</span><span class="p">(</span><span class="nv">$firstBlockIndex</span><span class="p">,</span> <span class="nv">$blockCount</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -560,7 +535,6 @@ No output in case of success.</p>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$blockCount</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
 <span class="nv">$firstBlockIndex</span> <span class="o">=</span> <span class="mi">400000</span><span class="p">;</span>
 <span class="nv">$blockHash</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -684,7 +658,6 @@ Transfer is an amount-address pair. There could be several transfers in a single
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$blockCount</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
 <span class="nv">$firstBlockIndex</span> <span class="o">=</span> <span class="mi">400000</span><span class="p">;</span>
 <span class="nv">$blockHash</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -899,11 +872,8 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getUnconfirmedTransactionHashes</span><span class="p">(</span><span class="nv">$addresses</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -942,7 +912,7 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 </tbody></table>
 
 <aside class="notice">
-  If addresses parameter is set, transactions that contain transfer from at least one of specified addresses are returned.
+  <div>If addresses parameter is set, transactions that contain transfer from at least one of specified addresses are returned.</div>
 </aside>
 
 <p><strong>Output</strong></p>
@@ -965,11 +935,8 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$transactionHash</span> <span class="o">=</span> <span class="s1">'55a23...'</span><span class="p">;</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getTransaction</span><span class="p">(</span><span class="nv">$transactionHash</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -1100,17 +1067,17 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-<span class="nv">$transfers</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s2">"address"</span> <span class="o">=&gt;</span> <span class="s2">"TRTLxxxx..."</span><span class="p">,</span> <span class="s2">"amount"</span>  <span class="o">=&gt;</span> <span class="mi">5000</span><span class="p">],</span>
-<span class="p">];</span>
 <span class="nv">$fee</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="nv">$addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$unlockTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$extra</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$paymentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$changeAddress</span> <span class="o">=</span> <span class="s1">'TRTLyyyy...'</span><span class="p">;</span>
+
+<span class="nv">$transfers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">"address"</span> <span class="o">=&gt;</span> <span class="s2">"TRTLxxxx..."</span><span class="p">,</span> <span class="s2">"amount"</span>  <span class="o">=&gt;</span> <span class="mi">5000</span><span class="p">],</span>
+<span class="p">];</span>
 
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">sendTransaction</span><span class="p">(</span>
     <span class="nv">$anonymity</span><span class="p">,</span> <span class="nv">$transfers</span><span class="p">,</span> <span class="nv">$fee</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">,</span> <span class="nv">$unlockTime</span><span class="p">,</span> <span class="nv">$extra</span><span class="p">,</span> <span class="nv">$paymentId</span><span class="p">,</span> <span class="nv">$changeAddress</span>
@@ -1217,17 +1184,17 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-<span class="nv">$transfers</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s2">"address"</span> <span class="o">=&gt;</span> <span class="s2">"TRTLxxxx..."</span><span class="p">,</span> <span class="s2">"amount"</span>  <span class="o">=&gt;</span> <span class="mi">5000</span><span class="p">],</span>
-<span class="p">];</span>
 <span class="nv">$fee</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="nv">$addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$unlockTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$extra</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$paymentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$changeAddress</span> <span class="o">=</span> <span class="s1">'TRTLyyyy...'</span><span class="p">;</span>
+
+<span class="nv">$transfers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">"address"</span> <span class="o">=&gt;</span> <span class="s2">"TRTLxxxx..."</span><span class="p">,</span> <span class="s2">"amount"</span>  <span class="o">=&gt;</span> <span class="mi">5000</span><span class="p">],</span>
+<span class="p">];</span>
 
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">createDelayedTransaction</span><span class="p">(</span>
     <span class="nv">$anonymity</span><span class="p">,</span> <span class="nv">$transfers</span><span class="p">,</span> <span class="nv">$fee</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">,</span> <span class="nv">$unlockTime</span><span class="p">,</span> <span class="nv">$extra</span><span class="p">,</span> <span class="nv">$paymentId</span><span class="p">,</span> <span class="nv">$changeAddress</span>
@@ -1335,9 +1302,7 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getDelayedTransactionHashes</span><span class="p">();</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -1375,11 +1340,8 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$transactionHash</span> <span class="o">=</span> <span class="s1">'b3e37...'</span><span class="p">;</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">deleteDelayedTransaction</span><span class="p">(</span><span class="nv">$transactionHash</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -1419,11 +1381,8 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$transactionHash</span> <span class="o">=</span> <span class="s1">'c37cd...'</span><span class="p">;</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">sendDelayedTransaction</span><span class="p">(</span><span class="nv">$transactionHash</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -1463,14 +1422,11 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$threshold</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
 <span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 <span class="nv">$addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'TRTLxxxx...'</span><span class="p">,</span> <span class="s1">'TRTLyyyy...'</span><span class="p">];</span>
 <span class="nv">$destinationAddress</span> <span class="o">=</span> <span class="s1">'TRTLzzzz...'</span><span class="p">;</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">sendFusionTransaction</span><span class="p">(</span><span class="nv">$threshold</span><span class="p">,</span> <span class="nv">$anonymity</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">,</span> <span class="nv">$destinationAddress</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -1551,12 +1507,9 @@ use <code>estimateFusion</code> to check the outputs, available for the optimiza
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
 <span class="nv">$threshold</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
 <span class="nv">$addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'TRTLxxxx...'</span><span class="p">,</span> <span class="s1">'TRTLyyyy...'</span><span class="p">];</span>
-
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">estimateFusion</span><span class="p">(</span><span class="nv">$threshold</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">);</span>
-
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
