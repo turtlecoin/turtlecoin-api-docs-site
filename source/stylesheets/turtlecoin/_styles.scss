@@ -69,7 +69,7 @@ $content-edge-gutter-width: 28px;
     margin-bottom: 2em;
   }
 
-  @media (max-width: $tablet-width) {
+  @media (max-width: $phone-width) {
     blockquote p {
       font-weight: bold;
       background: transparent;
