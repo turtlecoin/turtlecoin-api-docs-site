@@ -16,10 +16,26 @@ $content-edge-gutter-width: 28px;
     &.success,
     &.warning {
       color: $white;
+      background-color: transparent;
     }
 
     &:before {
       display: none;
+    }
+
+    & > div {
+      padding: 20px;
+      background: $aside-notice-bg;
+      border-radius: 5px;
+      background: $aside-notice-bg;
+
+      &.warning {
+        background-color: $aside-warning-bg;
+      }
+
+      &.success {
+        background: $aside-notice-bg;
+      }
     }
   }
 
@@ -51,6 +67,14 @@ $content-edge-gutter-width: 28px;
   table {
     font-size: 0.9rem;
     margin-bottom: 2em;
+  }
+
+  @media (max-width: $tablet-width) {
+    blockquote p {
+      font-weight: bold;
+      background: transparent;
+      color: $main-text;
+    }
   }
 }
 
