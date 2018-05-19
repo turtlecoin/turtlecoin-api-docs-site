@@ -48,7 +48,7 @@
 </tr>
 <tr>
 <td><code>&lt;service port&gt;</code></td>
-<td>TurtleCoin RPC Wallet port, by default it is binded to 8070 port, but it can be manually binded to any port you want, read more about this here.</td>
+<td>TurtleCoin RPC Wallet port, by default it is binded to 8070 port, but it can be manually binded to any port you want</td>
 </tr>
 </tbody></table>
 <h2 id='reset'>reset</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"reset","params":{"viewSecretKey":"xxxxx..."}}'</span> http://localhost:8070/json_rpc
@@ -92,7 +92,9 @@
 <p>No output in case of success.</p>
 
 <aside class="notice">
-  <div>If the <code>viewSecretKey</code> argument is not provided, the <code>reset()</code> method resets the wallet and re-syncs it. If the <code>viewSecretKey</code> argument is provided, the <code>reset()</code> method substitutes the existing wallet with a new one with the specified key and creates an address for it.</div>
+  <div>If the <code>viewSecretKey</code> argument is not provided, the <code>reset()</code> method resets the wallet and 
+  re-syncs it. If the <code>viewSecretKey</code> argument is provided, the <code>reset()</code> method substitutes the 
+  existing wallet with a new one with the specified key and creates an address for it.</div>
 </aside>
 <h2 id='save'>save</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"save","params":{}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
@@ -189,7 +191,7 @@ No output in case of success.</p>
 <tr>
 <td>address</td>
 <td>Yes</td>
-<td>Valid and existing in this container address</td>
+<td>Valid address that exists in this container</td>
 <td>string</td>
 </tr>
 </tbody></table>
@@ -236,7 +238,7 @@ No output in case of success.</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code>getStatus()</code> method returns information about the current RPC Wallet state: block_count, known_block_count, last_block_hash and peer_count.</p>
+<p><code>getStatus()</code> method returns information about the current RPC Wallet state: block count, known block count, last block hash and peer count.</p>
 
 <p>No input.</p>
 
@@ -252,12 +254,12 @@ No output in case of success.</p>
 <tr>
 <td>blockCount</td>
 <td>Node&#39;s known number of blocks</td>
-<td>uint32</td>
+<td>int</td>
 </tr>
 <tr>
 <td>knownBlockCount</td>
 <td>Maximum known number of blocks of all seeds that are connected to the node</td>
-<td>uint32</td>
+<td>int</td>
 </tr>
 <tr>
 <td>lastBlockHash</td>
@@ -267,7 +269,7 @@ No output in case of success.</p>
 <tr>
 <td>peerCount</td>
 <td>Connected peers number</td>
-<td>uint32</td>
+<td>int</td>
 </tr>
 </tbody></table>
 <h2 id='getaddresses'>getAddresses</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getAddresses","params":{}}'</span> http://localhost:8070/json_rpc
@@ -435,7 +437,7 @@ No output in case of success.</p>
 <tr>
 <td>address</td>
 <td>No</td>
-<td>Valid and existing address in this particular wallet</td>
+<td>Valid address that exists in this container</td>
 <td>string</td>
 </tr>
 </tbody></table>
@@ -462,7 +464,8 @@ No output in case of success.</p>
 </tbody></table>
 
 <aside class="notice">
-  <div>If address is not specified, returns a cumulative balance of all RPC Wallet's addresses. Also note, balances are expressed in shells, so a balance of 10000 is equal to 100.00 turtles.</div>
+  <div>If address is not specified, <code>getBalance()</code> returns a cumulative balance of all RPC Wallet's addresses.
+  Also note, balances are expressed in shells, so a balance of 10000 is equal to 100.00 TRTL.</div>
 </aside>
 <h2 id='getblockhashes'>getBlockHashes</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getBlockHashes","params":{"firstBlockIndex":0,"blockCount":3}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
@@ -505,13 +508,13 @@ No output in case of success.</p>
 <td>firstBlockIndex</td>
 <td>Yes</td>
 <td>Starting height</td>
-<td>uint32</td>
+<td>int</td>
 </tr>
 <tr>
 <td>blockCount</td>
 <td>Yes</td>
 <td>Number of blocks to process</td>
-<td>uint32</td>
+<td>int</td>
 </tr>
 </tbody></table>
 
@@ -567,8 +570,8 @@ No output in case of success.</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code>getTransactionHashes()</code> method returns an array of block and transaction hashes. Transaction consists of transfers.
-Transfer is an amount-address pair. There could be several transfers in a single transaction.</p>
+<p><code>getTransactionHashes()</code> method returns an array of block and transaction hashes. A transaction consists of transfers.
+A transfer is an amount-address pair. There could be several transfers in a single transaction.</p>
 
 <p><strong>Input</strong></p>
 
@@ -596,26 +599,26 @@ Transfer is an amount-address pair. There could be several transfers in a single
 <td>firstBlockIndex</td>
 <td>Only one of these parameters (blockHash or firstBlockIndex) is allowed</td>
 <td>Starting height</td>
-<td>uint32</td>
+<td>int</td>
 </tr>
 <tr>
 <td>blockCount</td>
 <td>Yes</td>
 <td>Number of blocks to return transaction hashes from</td>
-<td>uint32</td>
+<td>int</td>
 </tr>
 <tr>
 <td>paymentId</td>
 <td>No</td>
-<td>Valid payment_id</td>
+<td>Valid payment ID</td>
 <td>string</td>
 </tr>
 </tbody></table>
 
 <ul>
-<li>If <code>paymentId</code> parameter is set, <code>getTransactionHashes()</code> method returns transaction hashes of transactions that contain specified payment_id. (in the set block range).</li>
+<li>If <code>paymentId</code> parameter is set, <code>getTransactionHashes()</code> method returns transaction hashes of transactions that contain specified payment ID in the given block range.</li>
 <li>If <code>addresses</code> parameter is set, <code>getTransactionHashes()</code> method returns transaction hashes of transactions that contain transfer from at least one of specified addresses.</li>
-<li>If both above mentioned parameters are set, <code>getTransactionHashes()</code> method returns transaction hashes of transactions that contain both specified payment_id and transfer from at least one of specified addresses.</li>
+<li>If both above mentioned parameters are set, <code>getTransactionHashes()</code> method returns transaction hashes of transactions that contain both specified payment ID and transfer from at least one of specified addresses.</li>
 </ul>
 
 <p><strong>Output</strong></p>
@@ -643,13 +646,13 @@ Transfer is an amount-address pair. There could be several transfers in a single
 <tr>
 <td></td>
 <td>blockHash</td>
-<td>hash of the block which contains transaction hashes</td>
+<td>Hash of the block which contains transaction hashes</td>
 <td>string</td>
 </tr>
 <tr>
 <td></td>
 <td>transactionHashes</td>
-<td>array of strings, where each string is a transaction hash</td>
+<td>Array of strings, where each string is a transaction hash</td>
 <td>array</td>
 </tr>
 </tbody></table>
@@ -727,7 +730,7 @@ Transfer is an amount-address pair. There could be several transfers in a single
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><code>getTransactions()</code> method returns an array of block and transaction hashes.
-Transaction consists of transfers. Transfer is an amount-address pair. There could be several transfers in a single transaction.</p>
+A transaction consists of transfers. A transfer is an amount-address pair. There could be several transfers in a single transaction.</p>
 
 <p><strong>Input</strong></p>
 
@@ -755,26 +758,26 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <td>firstBlockIndex</td>
 <td>Only one of these parameters (<code>blockHash</code> or <code>firstBlockIndex</code>) is allowed.</td>
 <td>Starting height</td>
-<td>uint32</td>
+<td>int</td>
 </tr>
 <tr>
 <td>blockCount</td>
 <td>Yes</td>
 <td>Number of blocks to return transaction hashes from</td>
-<td>uint32</td>
+<td>int</td>
 </tr>
 <tr>
 <td>paymentId</td>
 <td>No</td>
-<td>Valid <code>payment_id</code></td>
+<td>Valid payment ID</td>
 <td>string</td>
 </tr>
 </tbody></table>
 
 <ul>
-<li>If <code>paymentId</code> parameter is set, <code>getTransactions()</code> method returns transactions that contain specified <code>payment_id</code>. (in the set block range)</li>
+<li>If <code>paymentId</code> parameter is set, <code>getTransactions()</code> method returns transactions that contain specified payment ID in the given block range.</li>
 <li>If <code>addresses</code> parameter is set, <code>getTransactions()</code> method returns transactions that contain transfer from at least one of specified addresses.</li>
-<li>If both above mentioned parameters are set, <code>getTransactions()</code> method returns transactions that contain both specified <code>payment_id</code> and transfer from at least one of specified addresses.</li>
+<li>If both above mentioned parameters are set, <code>getTransactions()</code> method returns transactions that contain both specified payment ID and transfer from at least one of specified addresses.</li>
 </ul>
 
 <p><strong>Output</strong></p>
@@ -818,52 +821,52 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 </thead><tbody>
 <tr>
 <td>transactionHash</td>
-<td>hash of the  transaction</td>
+<td>Hash of the transaction</td>
 <td>string</td>
 </tr>
 <tr>
 <td>blockIndex</td>
-<td>number of the block that contains a transaction</td>
-<td>uint32</td>
+<td>Number of the block that contains a transaction</td>
+<td>int</td>
 </tr>
 <tr>
 <td>timestamp</td>
-<td>timestamp of the transaction</td>
-<td>uint64</td>
+<td>Timestamp of the transaction</td>
+<td>int</td>
 </tr>
 <tr>
 <td>isBase</td>
-<td>shows if the transaction is a CoinBase transaction or not</td>
+<td>Shows if the transaction is a CoinBase transaction or not</td>
 <td>boolean</td>
 </tr>
 <tr>
 <td>unlockTime</td>
-<td>height of the block when transaction is going to be available for spending</td>
-<td>uint64</td>
+<td>Height of the block when transaction is going to be available for spending</td>
+<td>int</td>
 </tr>
 <tr>
 <td>amount</td>
-<td>amount of the transaction</td>
-<td>int64</td>
+<td>Amount of the transaction</td>
+<td>int</td>
 </tr>
 <tr>
 <td>fee</td>
-<td>transaction fee</td>
-<td>uint64</td>
+<td>Transaction fee</td>
+<td>int</td>
 </tr>
 <tr>
 <td>extra</td>
-<td>hash of the  transaction</td>
+<td>Hash of the  transaction</td>
 <td>string</td>
 </tr>
 <tr>
 <td>paymentId</td>
-<td>payment_id of the transaction (optional)</td>
+<td>Payment ID of the transaction (optional)</td>
 <td>string</td>
 </tr>
 <tr>
 <td>transfers</td>
-<td>array of address (string), amount (uint64)</td>
+<td>Array of address (string), amount (int)</td>
 <td>array</td>
 </tr>
 </tbody></table>
@@ -1013,52 +1016,52 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 </thead><tbody>
 <tr>
 <td>transactionHash</td>
-<td>hash of the  transaction</td>
+<td>Hash of the transaction</td>
 <td>string</td>
 </tr>
 <tr>
 <td>blockIndex</td>
-<td>number of the block that contains a transaction</td>
-<td>uint32</td>
+<td>Number of the block that contains a transaction</td>
+<td>int</td>
 </tr>
 <tr>
 <td>timestamp</td>
-<td>timestamp of the transaction</td>
-<td>uint64</td>
+<td>Timestamp of the transaction</td>
+<td>int</td>
 </tr>
 <tr>
 <td>isBase</td>
-<td>shows if the transaction is a CoinBase transaction or not</td>
+<td>Shows if the transaction is a CoinBase transaction or not</td>
 <td>boolean</td>
 </tr>
 <tr>
 <td>unlockTime</td>
-<td>height of the block when transaction is going to be available for spending</td>
-<td>uint64</td>
+<td>Height of the block when transaction is going to be available for spending</td>
+<td>int</td>
 </tr>
 <tr>
 <td>amount</td>
-<td>amount of the transaction</td>
-<td>int64</td>
+<td>Amount of the transaction</td>
+<td>int</td>
 </tr>
 <tr>
 <td>fee</td>
-<td>transaction fee</td>
-<td>uint64</td>
+<td>Transaction fee</td>
+<td>int</td>
 </tr>
 <tr>
 <td>extra</td>
-<td>hash of the  transaction</td>
+<td>Hash of the  transaction</td>
 <td>string</td>
 </tr>
 <tr>
 <td>paymentId</td>
-<td>payment_id of the transaction (optional)</td>
+<td>Payment ID of the transaction (optional)</td>
 <td>string</td>
 </tr>
 <tr>
 <td>transfers</td>
-<td>array of address (string), amount (uint64)</td>
+<td>Array of addresses (string), amount (int)</td>
 <td>array</td>
 </tr>
 </tbody></table>
@@ -1096,7 +1099,7 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code>sendTransaction()</code> method allows you to send transaction(s) to one or several addresses. Also, it allows you to use a payment_id for a transaction to a single address.</p>
+<p><code>sendTransaction()</code> method allows you to send transaction(s) to one or several addresses. Also, it allows you to use a payment ID for a transaction to a single address.</p>
 
 <p><strong>Input</strong></p>
 
@@ -1147,7 +1150,7 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <tr>
 <td>paymentId</td>
 <td>No</td>
-<td>payment_id</td>
+<td>Payment ID</td>
 <td>string</td>
 </tr>
 <tr>
@@ -1234,26 +1237,26 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <tr>
 <td>transfers</td>
 <td>Yes</td>
-<td>Array of address (string), amount (int64)</td>
+<td>Array of address (string), amount (int)</td>
 <td>array</td>
 </tr>
 <tr>
 <td>fee</td>
 <td>Yes</td>
-<td>Transaction fee. Minimal fee in TurtleCoin network is .01 BCN. This parameter should be specified in minimal available BCN units. For example, if your fee is .01 BCN, you should pass it as 1000000</td>
-<td>uint64</td>
+<td>Transaction fee. Minimal fee in TurtleCoin network is 0.10 TRTL. This parameter should be specified in minimal available TRTL units. For example, if your fee is 0.10 TRTL, you should pass it as 10.</td>
+<td>int</td>
 </tr>
 <tr>
 <td>unlockTime</td>
 <td>No</td>
 <td>Height of the block until which transaction is going to be locked for spending.</td>
-<td>uint64</td>
+<td>int</td>
 </tr>
 <tr>
 <td>anonymity</td>
 <td>Yes</td>
 <td>Privacy level (a discrete number from 1 to infinity). Level 6 and higher is recommended.</td>
-<td>uint64</td>
+<td>int</td>
 </tr>
 <tr>
 <td>extra</td>
@@ -1264,7 +1267,7 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <tr>
 <td>paymentId</td>
 <td>No</td>
-<td>payment_id</td>
+<td>Payment ID</td>
 <td>string</td>
 </tr>
 <tr>
@@ -1276,10 +1279,10 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 </tbody></table>
 
 <ul>
-<li>if container contains only 1 address, changeAddress field can be left empty and the change is going to be sent to this address</li>
-<li>if addresses field contains only 1 address, changeAddress can be left empty and the change is going to be sent to this address</li>
-<li>in the rest of the cases, changeAddress field is mandatory and must contain an address.</li>
-<li>outputs that were used for this transactions will be locked until the transaction is sent or cancelled</li>
+<li>If container contains only 1 address, <code>changeAddress</code> field can be left empty and the change is going to be sent to this address</li>
+<li>If addresses field contains only 1 address, <code>changeAddress</code> can be left empty and the change is going to be sent to this address</li>
+<li>In the rest of the cases, <code>changeAddress</code> field is mandatory and must contain an address.</li>
+<li>Outputs that were used for this transactions will be locked until the transaction is sent or cancelled</li>
 </ul>
 
 <p><strong>Output</strong></p>
@@ -1383,6 +1386,7 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 <span class="nv">$transactionHash</span> <span class="o">=</span> <span class="s1">'c37cd...'</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">sendDelayedTransaction</span><span class="p">(</span><span class="nv">$transactionHash</span><span class="p">);</span>
+
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -1427,6 +1431,7 @@ Transaction consists of transfers. Transfer is an amount-address pair. There cou
 <span class="nv">$addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'TRTLxxxx...'</span><span class="p">,</span> <span class="s1">'TRTLyyyy...'</span><span class="p">];</span>
 <span class="nv">$destinationAddress</span> <span class="o">=</span> <span class="s1">'TRTLzzzz...'</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">sendFusionTransaction</span><span class="p">(</span><span class="nv">$threshold</span><span class="p">,</span> <span class="nv">$anonymity</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">,</span> <span class="nv">$destinationAddress</span><span class="p">);</span>
+
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -1482,9 +1487,9 @@ use <code>estimateFusion</code> to check the outputs, available for the optimiza
 </tbody></table>
 
 <ul>
-<li>if container contains only 1 address, destinationAddress field can be left empty and the funds are going to be sent to this address.</li>
-<li>if addresses field contains only 1 address, destinationAddress can be left empty and the funds are going to be sent to this address.</li>
-<li>in the rest of the cases, destinationAddress field is mandatory and must contain an address.</li>
+<li>If container contains only 1 address, <code>destinationAddress</code> field can be left empty and the funds are going to be sent to this address.</li>
+<li>If addresses field contains only 1 address, <code>destinationAddress</code> can be left empty and the funds are going to be sent to this address.</li>
+<li>In the rest of the cases, <code>destinationAddress</code> field is mandatory and must contain an address.</li>
 </ul>
 
 <p><strong>Output</strong></p>
@@ -1510,6 +1515,7 @@ use <code>estimateFusion</code> to check the outputs, available for the optimiza
 <span class="nv">$threshold</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
 <span class="nv">$addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'TRTLxxxx...'</span><span class="p">,</span> <span class="s1">'TRTLyyyy...'</span><span class="p">];</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">estimateFusion</span><span class="p">(</span><span class="nv">$threshold</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">);</span>
+
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -1563,11 +1569,70 @@ This method is used to understand if a fusion transaction can be created. If <co
 <tr>
 <td>totalOutputCount</td>
 <td>Total number of unspent outputs of the specified addresses.</td>
-<td>uint64</td>
+<td>int</td>
 </tr>
 <tr>
 <td>fusionReadyCount</td>
 <td>Number of outputs that can be optimized.</td>
-<td>uint64</td>
+<td>int</td>
 </tr>
 </tbody></table>
+<h2 id='getmnemonicseed'>getMnemonicSeed</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getMnemonicSeed","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
+
+<span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+<span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getMnemonicSeed</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>Expected output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"mnemonicSeed"</span><span class="p">:</span><span class="s2">"turtles are cool..."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getMnemonicSeed()</code> method returns the mnemonic seed for the given <em>deterministic</em> address. A mnemonic seed is a list of words which can be used to recover a wallet.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>Yes</td>
+<td>Valid deterministic address that exists in this container</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mnemonicSeed</td>
+<td>Mnemonic seed</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  <div>The first wallet address that is generated when the container is created is the deterministic address. Only one wallet from a multi-wallet container can be deterministic. If a non-deterministic address is given, the RPC response will be an error with the message: "Keys not deterministic."</div>
+</aside>
