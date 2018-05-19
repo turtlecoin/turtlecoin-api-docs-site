@@ -665,10 +665,13 @@ No output in case of success.</p>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">firstBlockIndex</span> <span class="o">=</span> <span class="mi">400000</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">blockCount</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">firstBlockIndex</span> <span class="o">=</span> <span class="mi">400000</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">blockHash</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">paymentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getBlockHashes</span><span class="p">(</span><span class="nx">firstBlockIndex</span><span class="p">,</span> <span class="nx">blockCount</span><span class="p">)</span>
+<span class="nx">walletd</span><span class="p">.</span><span class="nx">getTransactionHashes</span><span class="p">(</span><span class="nx">blockCount</span><span class="p">,</span> <span class="nx">firstBlockIndex</span><span class="p">,</span> <span class="nx">blockHash</span><span class="p">,</span> <span class="nx">addresses</span><span class="p">,</span> <span class="nx">paymentId</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
     <span class="p">})</span>
