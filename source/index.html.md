@@ -5,8 +5,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - javascript
   - php
-  - python
-  - go
 
 toc_footers:
   - <a href='https://github.com/ar-x/turtlecoin-wiki/tree/import-api-docs/api' target='_blank'>Edit this on GitHub</a>
