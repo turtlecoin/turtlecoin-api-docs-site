@@ -5,13 +5,12 @@
 
 <ul>
 <li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-js">JavaScript</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-php">PHP</a></li>
 <li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-python">Python</a></li>
 <li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-go">Go</a></li>
-<li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-php">PHP</a></li>
 </ul>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">walletd</span><span class="o">-</span><span class="nx">rpc</span><span class="o">-</span><span class="nx">js</span>
 </code></pre><pre class="highlight php tab-php"><code>composer require turtlecoin/turtlecoin-walletd-rpc-php
-</code></pre><pre class="highlight python tab-python"><code><span class="n">pip</span> <span class="n">install</span> <span class="n">turtlecoin</span>
 </code></pre><h2 id='interacting-with-the-api'>Interacting with the API</h2>
 <blockquote>
 <p>API endpoint example</p>
@@ -58,7 +57,7 @@
 </tr>
 <tr>
 <td><code>&lt;service port&gt;</code></td>
-<td>TurtleCoin RPC Wallet port, by default it is binded to 8070 port, but it can be manually binded to any port you want</td>
+<td>TurtleCoin RPC Wallet port, by default it is bound to 8070 port, but it can be manually bound to any port you want</td>
 </tr>
 </tbody></table>
 <h2 id='reset'>reset</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"reset","params":{"viewSecretKey":"xxxxx..."}}'</span> http://localhost:8070/json_rpc
