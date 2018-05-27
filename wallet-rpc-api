@@ -1,4 +1,4 @@
-<h1 id='wallet-rpc-api'>Wallet RPC API</h1>
+<h1 id='wallet-rpc-api'><a href='#wallet-rpc-api' class='content-deep-link-anchor'>Wallet RPC API</a></h1>
 <p>TurtleCoin RPC Wallet is a HTTP server which provides JSON 2.0 RPC interface for TurtleCoin payment operations and address management.</p>
 
 <p>Currently we support the following official client bindings:</p>
@@ -11,7 +11,7 @@
 </ul>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">walletd</span><span class="o">-</span><span class="nx">rpc</span><span class="o">-</span><span class="nx">js</span>
 </code></pre><pre class="highlight php tab-php"><code>composer require turtlecoin/turtlecoin-walletd-rpc-php
-</code></pre><h2 id='interacting-with-the-api'>Interacting with the API</h2>
+</code></pre><h2 id='interacting-with-the-api'><a href='#interacting-with-the-api' class='content-deep-link-anchor'>Interacting with the API</a></h2>
 <blockquote>
 <p>API endpoint example</p>
 </blockquote>
@@ -60,7 +60,7 @@
 <td>TurtleCoin RPC Wallet port, by default it is bound to 8070 port, but it can be manually bound to any port you want</td>
 </tr>
 </tbody></table>
-<h2 id='reset'>reset</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"reset","params":{"viewSecretKey":"xxxxx..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='reset'><a href='#reset' class='content-deep-link-anchor'>reset</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"reset","params":{"viewSecretKey":"xxxxx..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -117,7 +117,7 @@
   re-syncs it. If the <code>viewSecretKey</code> argument is provided, the <code>reset()</code> method substitutes the 
   existing wallet with a new one with the specified key and creates an address for it.</div>
 </aside>
-<h2 id='save'>save</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"save","params":{}}'</span> http://localhost:8070/json_rpc
+<h2 id='save'><a href='#save' class='content-deep-link-anchor'>save</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"save","params":{}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -149,7 +149,7 @@
 
 <p>No input.
 No output in case of success.</p>
-<h2 id='getviewkey'>getViewKey</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getViewKey","params":{}}'</span> http://localhost:8070/json_rpc
+<h2 id='getviewkey'><a href='#getviewkey' class='content-deep-link-anchor'>getViewKey</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getViewKey","params":{}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -198,7 +198,7 @@ No output in case of success.</p>
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='getspendkeys'>getSpendKeys</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getSpendKeys","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='getspendkeys'><a href='#getspendkeys' class='content-deep-link-anchor'>getSpendKeys</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getSpendKeys","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -271,7 +271,7 @@ No output in case of success.</p>
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='getmnemonicseed'>getMnemonicSeed</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getMnemonicSeed","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='getmnemonicseed'><a href='#getmnemonicseed' class='content-deep-link-anchor'>getMnemonicSeed</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getMnemonicSeed","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -342,7 +342,7 @@ No output in case of success.</p>
 <aside class="notice">
   <div>The first wallet address that is generated when the container is created is the deterministic address. Only one wallet from a multi-wallet container can be deterministic. If a non-deterministic address is given, the RPC response will be an error with the message: "Keys not deterministic."</div>
 </aside>
-<h2 id='getstatus'>getStatus</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getStatus","params":{}}'</span> http://localhost:8070/json_rpc
+<h2 id='getstatus'><a href='#getstatus' class='content-deep-link-anchor'>getStatus</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getStatus","params":{}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -409,7 +409,7 @@ No output in case of success.</p>
 <td>int</td>
 </tr>
 </tbody></table>
-<h2 id='getaddresses'>getAddresses</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getAddresses","params":{}}'</span> http://localhost:8070/json_rpc
+<h2 id='getaddresses'><a href='#getaddresses' class='content-deep-link-anchor'>getAddresses</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getAddresses","params":{}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -461,7 +461,7 @@ No output in case of success.</p>
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='createaddress'>createAddress</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createAddress","params":{}}'</span> http://localhost:8070/json_rpc
+<h2 id='createaddress'><a href='#createaddress' class='content-deep-link-anchor'>createAddress</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createAddress","params":{}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -521,7 +521,7 @@ No output in case of success.</p>
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='deleteaddress'>deleteAddress</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"deleteAddress","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='deleteaddress'><a href='#deleteaddress' class='content-deep-link-anchor'>deleteAddress</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"deleteAddress","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -574,7 +574,7 @@ No output in case of success.</p>
 <p><strong>Output</strong></p>
 
 <p>In case of success returns an empty JSON object.</p>
-<h2 id='getbalance'>getBalance</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getBalance","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='getbalance'><a href='#getbalance' class='content-deep-link-anchor'>getBalance</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getBalance","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -652,7 +652,7 @@ No output in case of success.</p>
   <div>If address is not specified, <code>getBalance()</code> returns a cumulative balance of all RPC Wallet's addresses.
   Also note, balances are expressed in shells, so a balance of 10000 is equal to 100.00 TRTL.</div>
 </aside>
-<h2 id='getblockhashes'>getBlockHashes</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getBlockHashes","params":{"firstBlockIndex":0,"blockCount":3}}'</span> http://localhost:8070/json_rpc
+<h2 id='getblockhashes'><a href='#getblockhashes' class='content-deep-link-anchor'>getBlockHashes</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getBlockHashes","params":{"firstBlockIndex":0,"blockCount":3}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -731,7 +731,7 @@ No output in case of success.</p>
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='gettransactionhashes'>getTransactionHashes</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getTransactionHashes","params":{"firstBlockIndex":400000,"blockCount":100000}}'</span> http://localhost:8070/json_rpc
+<h2 id='gettransactionhashes'><a href='#gettransactionhashes' class='content-deep-link-anchor'>getTransactionHashes</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getTransactionHashes","params":{"firstBlockIndex":400000,"blockCount":100000}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -870,7 +870,7 @@ A transfer is an amount-address pair. There could be several transfers in a sing
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='gettransactions'>getTransactions</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getTransactions","params":{"firstBlockIndex":400000,"blockCount":100000}}'</span> http://localhost:8070/json_rpc
+<h2 id='gettransactions'><a href='#gettransactions' class='content-deep-link-anchor'>getTransactions</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getTransactions","params":{"firstBlockIndex":400000,"blockCount":100000}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -1100,7 +1100,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='getunconfirmedtransactionhashes'>getUnconfirmedTransactionHashes</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getUnconfirmedTransactionHashes","params":{}}'</span> http://localhost:8070/json_rpc
+<h2 id='getunconfirmedtransactionhashes'><a href='#getunconfirmedtransactionhashes' class='content-deep-link-anchor'>getUnconfirmedTransactionHashes</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getUnconfirmedTransactionHashes","params":{}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -1175,7 +1175,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='gettransaction'>getTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getTransaction","params":{"transactionHash":"55a23..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='gettransaction'><a href='#gettransaction' class='content-deep-link-anchor'>getTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getTransaction","params":{"transactionHash":"55a23..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -1319,7 +1319,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='sendtransaction'>sendTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":"5000"}],"fee":10,"anonymity":3,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='sendtransaction'><a href='#sendtransaction' class='content-deep-link-anchor'>sendTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":"5000"}],"fee":10,"anonymity":3,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -1458,7 +1458,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='createdelayedtransaction'>createDelayedTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createDelayedTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":"5000"}],"fee":10,"anonymity":3,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='createdelayedtransaction'><a href='#createdelayedtransaction' class='content-deep-link-anchor'>createDelayedTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createDelayedTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":"5000"}],"fee":10,"anonymity":3,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -1598,7 +1598,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='getdelayedtransactionhashes'>getDelayedTransactionHashes</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getDelayedTransactionHashes","params":{}}'</span> http://localhost:8070/json_rpc
+<h2 id='getdelayedtransactionhashes'><a href='#getdelayedtransactionhashes' class='content-deep-link-anchor'>getDelayedTransactionHashes</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getDelayedTransactionHashes","params":{}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -1647,7 +1647,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='deletedelayedtransaction'>deleteDelayedTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"deleteDelayedTransaction","params":{"transactionHash":"b3e37..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='deletedelayedtransaction'><a href='#deletedelayedtransaction' class='content-deep-link-anchor'>deleteDelayedTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"deleteDelayedTransaction","params":{"transactionHash":"b3e37..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -1700,7 +1700,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <p><strong>Output</strong></p>
 
 <p>In case of success returns an empty JSON object.</p>
-<h2 id='senddelayedtransaction'>sendDelayedTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendDelayedTransaction","params":{"transactionHash":"c37cd..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='senddelayedtransaction'><a href='#senddelayedtransaction' class='content-deep-link-anchor'>sendDelayedTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendDelayedTransaction","params":{"transactionHash":"c37cd..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -1754,7 +1754,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <p><strong>Output</strong></p>
 
 <p>In case of success returns an empty JSON object.</p>
-<h2 id='sendfusiontransaction'>sendFusionTransaction</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendFusionTransaction","params":{"threshold":1000000,"anonymity":3,"addresses":["TRTLxxxx...","TRTLyyyy..."],"destinationAddress":"TRTLzzzz..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='sendfusiontransaction'><a href='#sendfusiontransaction' class='content-deep-link-anchor'>sendFusionTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendFusionTransaction","params":{"threshold":1000000,"anonymity":3,"addresses":["TRTLxxxx...","TRTLyyyy..."],"destinationAddress":"TRTLzzzz..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -1855,7 +1855,7 @@ use <code>estimateFusion</code> to check the outputs, available for the optimiza
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='estimatefusion'>estimateFusion</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"estimateFusion","params":{"threshold":1000000,"addresses":["TRTLxxxx...","TRTLyyyy..."]}}'</span> http://localhost:8070/json_rpc
+<h2 id='estimatefusion'><a href='#estimatefusion' class='content-deep-link-anchor'>estimateFusion</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"estimateFusion","params":{"threshold":1000000,"addresses":["TRTLxxxx...","TRTLyyyy..."]}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
