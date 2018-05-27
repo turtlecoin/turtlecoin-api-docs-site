@@ -69,6 +69,24 @@ $content-edge-gutter-width: 28px;
     margin-bottom: 2em;
   }
 
+  .content-deep-link-anchor {
+    color: $gray-20;
+    text-decoration: none;
+
+    &::after {
+      display: none;
+      margin-left: 0.5em;
+      content: "#";
+      color: $green-20;
+    }
+
+    &:hover {
+      &::after {
+        display: inline;
+      }
+    }
+  }
+
   @media (max-width: $phone-width) {
     blockquote p {
       font-weight: bold;
