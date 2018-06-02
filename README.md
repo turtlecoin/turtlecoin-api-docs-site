@@ -4,24 +4,19 @@
 
 ## Developing
 
-#### Setup
+### Setup
 
 1. Make sure you have [Ruby](https://www.ruby-lang.org/en) 2.3 or newer installed.
 2. Run `gem install bundler` to install [bundler](http://bundler.io).
 3. Run `bundle install` to install the dependencies of this project.
-4. Run `bundle exec middleman server` to start the development server at `http://localhost:4567`.
+4. Create a symlink called `turtlecoin-docs` to the `turtlecoin-docs` project. For example run `ln -s ../turtlecoin-docs turtlecoin-docs` to create a link to the `turtlecoin-docs` folder located at the same level as the folder containing this project.
+5. Run `bundle exec middleman server` to start the development server at `http://localhost:4567`.
 
-#### Development notes
+### Development notes
 
 * Changes should target the `turtle-master` branch, instead of `master`.
 * Site specific styles are in `source/stylesheets/turtlecoin`.
-* Pulls content from the `api` folder in the `turtlecoin/turtlecoin-wiki` repository. Run `git submodule update --recursive --remote --merge` to get the latest.
-* Changes to the `turtlecoin/turtlecoin-wiki` git submodule in this repo are ignored. Make content changes in the `turtlecoin/turtlecoin-wiki` repo instead. See below to work with local content during development. 
-
-#### Developing with local turtlecoin-wiki content
-
-Create a symlink called `turtlecoin-wiki-dev` in this project to the `turtlecoin-wiki` repo on your machine. Editing files in that repo would then show up on this app. For example run `ln -s ../turtlecoin-wiki turtlecoin-wiki-dev` to creata a link to the `turtlecoin-wiki` folder located at the same level as the folder containing this repo. Once development is done, remove the link by running `unlink turtlecoin-wiki-dev`.
-
+* Pulls content from the `turtlecoin-docs/api` folder.
 
 ## About Slate 
 
@@ -30,4 +25,4 @@ This project is based on [Slate](https://github.com/lord/slate). Slate, in turn 
 
 ## Deployment
 
-This project includes `turtlecoin/turtlecoin-wiki` as a Git submodule. A commit to the `master` branch of `turtlecoin/turtlecoin-wiki` sends a webhook to a AWS lamda function. The AWS lambda function then triggers a CI run on the `turtle-master` branch of this project. The CI run fetches the latest `turtlecoin/turtlecoin-wiki` `master`, builds and deploys the site to Github pages. These steps can also be done manually.
+A commit to the `master` branch of `turtlecoin/turtlecoin-docs` auto builds this project, which deploys the latest docs content.

@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.4
 cache: bundler
-script: bundle exec middleman build
+script: ./scripts/build.sh
 deploy:
   provider: pages
   skip_cleanup: true
@@ -14,7 +14,7 @@ deploy:
   verbose: true
 
 before_install:
-  - git submodule update --recursive --remote --merge
+  - git clone https://github.com/ar-x/turtlecoin-wiki.git turtlecoin-docs
 
 env:
   global:
