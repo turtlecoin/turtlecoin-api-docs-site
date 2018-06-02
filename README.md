@@ -26,3 +26,9 @@ This project is based on [Slate](https://github.com/lord/slate). Slate, in turn 
 ## Deployment
 
 A commit to the `master` branch of `turtlecoin/turtlecoin-docs` auto builds this project, which deploys the latest docs content.
+
+
+## Contributors
+
+* [@ar-x](https://github.com/ar-x/)
+* [@timmcleod](https://github.com/timmcleod/)
