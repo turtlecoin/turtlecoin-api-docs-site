@@ -10,7 +10,7 @@ deploy:
   keep-history: true
   local_dir: build
   on: turtle-master
-  fqdn: api-docs.turtlecoin.lol
+  fqdn: hinata-104.shadow-clone-jutsu.com
   verbose: true
 
 before_install:

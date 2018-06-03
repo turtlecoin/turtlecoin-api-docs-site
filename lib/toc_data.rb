@@ -5,6 +5,7 @@ def toc_data(page_content)
 
   # get a flat list of headers
   headers = []
+
   html_doc.css('h1, h2, h3').each do |header|
     headers.push({
       id: header.attribute('id').to_s,
