@@ -14,7 +14,7 @@ deploy:
   verbose: true
 
 before_install:
-  - git clone https://github.com/ar-x/turtlecoin-wiki.git turtlecoin-docs
+  - git clone https://github.com/turtlecoin/turtlecoin-docs.git turtlecoin-docs
 
 env:
   global:
