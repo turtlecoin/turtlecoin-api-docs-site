@@ -32,7 +32,7 @@ Thanks to everyone who submitted PRs for this version!
   - Automatically updates the HTML title as you scroll
 - Updated design
   - New default colors!
-  - New spacings and sizes!
+  - New spacing and sizes!
   - System-default typefaces, just like GitHub
 - Added search input delay on large corpuses to reduce lag
 - We even bumped the major version cause hey, why not?
@@ -103,7 +103,7 @@ Instead of `rake build` and `rake deploy`, you should now run `bundle exec middl
 - Add Dockerfile
 - Remove unused gems
 - Optimize images, fonts, and generated asset files
-- Add chinese font support
+- Add Chinese font support
 - Remove RedCarpet header ID patch
 - Update language tabs to not disturb existing query strings
 
@@ -130,7 +130,7 @@ Instead of `rake build` and `rake deploy`, you should now run `bundle exec middl
 
 - Fixed 'unrecognized expression' error
 - Fixed #undefined hash bug
-- Fixed bug where the current language tab would be unselected
+- Fixed bug where the current language tab would be deselected
 - Fixed bug where tocify wouldn't highlight the current section while searching
 - Fixed bug where ids of header tags would have special characters that caused problems
 - Updated layout so that pages with disabled search wouldn't load search.js
