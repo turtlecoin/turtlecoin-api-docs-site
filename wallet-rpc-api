@@ -11,6 +11,7 @@
 </ul>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">walletd</span><span class="o">-</span><span class="nx">rpc</span><span class="o">-</span><span class="nx">js</span>
 </code></pre><pre class="highlight php tab-php"><code>composer require turtlecoin/turtlecoin-walletd-rpc-php
+</code></pre><pre class="highlight python tab-python"><code><span class="n">pip3</span> <span class="n">install</span> <span class="n">turtlecoin</span>
 </code></pre><h2 id='wallet-rpc-api-interacting-with-the-api'><a href='#wallet-rpc-api-interacting-with-the-api' class='content-deep-link-anchor'>Interacting with the API</a></h2>
 <blockquote>
 <p>API endpoint example</p>
@@ -40,6 +41,13 @@
 <span class="p">];</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">rpc_host</span> <span class="o">=</span> <span class="s">'localhost'</span>
+<span class="n">rpc_port</span> <span class="o">=</span> <span class="mi">8070</span>
+<span class="n">rpc_password</span> <span class="o">=</span> <span class="s">'passw0rd'</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
 </code></pre>
 <p>To make a JSON RPC request to your TurtleCoin RPC Wallet you should use a POST request that looks like this:</p>
 
@@ -80,6 +88,12 @@
 <span class="nv">$viewSecretKey</span> <span class="o">=</span> <span class="s1">'xxxxx...'</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">reset</span><span class="p">(</span><span class="nv">$viewSecretKey</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">view_secret_key</span> <span class="o">=</span> <span class="s">'xxxxx...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">view_secret_key</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -135,6 +149,11 @@
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -167,6 +186,11 @@ No output in case of success.</p>
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getViewKey</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_view_key</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -218,6 +242,12 @@ No output in case of success.</p>
 <span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getSpendKeys</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_spend_keys</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -291,6 +321,12 @@ No output in case of success.</p>
 <span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getMnemonicSeed</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_mnemonic_seed</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -360,6 +396,11 @@ No output in case of success.</p>
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getStatus</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -427,6 +468,11 @@ No output in case of success.</p>
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getAddresses</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_addresses</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -484,6 +530,14 @@ No output in case of success.</p>
 <span class="nv">$publicSpendKey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">createAddress</span><span class="p">(</span><span class="nv">$secretSpendKey</span><span class="p">,</span> <span class="nv">$publicSpendKey</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+
+<span class="n">spend_secret_key</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">spend_public_key</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">create_address</span><span class="p">(</span><span class="n">spend_secret_key</span><span class="p">,</span> <span class="n">spend_public_key</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -541,6 +595,14 @@ No output in case of success.</p>
 <span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">deleteAddress</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">delete_address</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+
+<span class="c"># If the delete was successful, response will be True</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -594,6 +656,12 @@ No output in case of success.</p>
 <span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getBalance</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -674,6 +742,13 @@ No output in case of success.</p>
 <span class="nv">$blockCount</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getBlockHashes</span><span class="p">(</span><span class="nv">$firstBlockIndex</span><span class="p">,</span> <span class="nv">$blockCount</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">first_block_index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">block_count</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_block_hashes</span><span class="p">(</span><span class="n">first_block_index</span><span class="p">,</span> <span class="n">block_count</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -763,6 +838,16 @@ No output in case of success.</p>
 <span class="p">);</span>
 
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">block_count</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">block_hash</span> <span class="o">=</span> <span class="s">'6c285...'</span>
+<span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">payment_id</span> <span class="o">=</span> <span class="s">''</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_transaction_hashes</span><span class="p">(</span><span class="n">addresses</span><span class="p">,</span> <span class="n">block_hash</span><span class="p">,</span> <span class="n">block_count</span><span class="p">,</span> <span class="n">payment_id</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -902,6 +987,16 @@ A transfer is an amount-address pair. There could be several transfers in a sing
 <span class="p">);</span>
 
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">block_count</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">block_hash</span> <span class="o">=</span> <span class="s">'6c285...'</span>
+<span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">payment_id</span> <span class="o">=</span> <span class="s">''</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_transactions</span><span class="p">(</span><span class="n">addresses</span><span class="p">,</span> <span class="n">block_hash</span><span class="p">,</span> <span class="n">block_count</span><span class="p">,</span> <span class="n">payment_id</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -1120,6 +1215,12 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <span class="nv">$addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getUnconfirmedTransactionHashes</span><span class="p">(</span><span class="nv">$addresses</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_unconfirmed_transaction_hashes</span><span class="p">(</span><span class="n">addresses</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -1195,6 +1296,12 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <span class="nv">$transactionHash</span> <span class="o">=</span> <span class="s1">'55a23...'</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getTransaction</span><span class="p">(</span><span class="nv">$transactionHash</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">transaction_hash</span> <span class="o">=</span> <span class="s">'55a23...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_transaction</span><span class="p">(</span><span class="n">transaction_hash</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -1363,6 +1470,25 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <span class="p">);</span>
 
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">anonymity</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">fee</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">unlock_time</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">extra</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">payment_id</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">change_address</span> <span class="o">=</span> <span class="s">'TRTLyyyy...'</span>
+
+<span class="n">transfers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">"address"</span> <span class="p">:</span> <span class="s">"TRTLxxxx..."</span><span class="p">,</span> <span class="s">"amount"</span> <span class="p">:</span> <span class="mi">5000</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">send_transaction</span><span class="p">(</span>
+    <span class="n">transfers</span><span class="p">,</span> <span class="n">anonymity</span><span class="p">,</span> <span class="n">fee</span><span class="p">,</span> <span class="n">addresses</span><span class="p">,</span> <span class="n">change_address</span><span class="p">,</span> <span class="n">extra</span><span class="p">,</span> <span class="n">payment_id</span><span class="p">,</span> <span class="n">unlock_time</span>
+<span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -1502,6 +1628,25 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <span class="p">);</span>
 
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">anonymity</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">fee</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">unlock_time</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">extra</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">payment_id</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">change_address</span> <span class="o">=</span> <span class="s">'TRTLyyyy...'</span>
+
+<span class="n">transfers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">"address"</span> <span class="p">:</span> <span class="s">"TRTLxxxx..."</span><span class="p">,</span> <span class="s">"amount"</span> <span class="p">:</span> <span class="mi">5000</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">create_delayed_transaction</span><span class="p">(</span>
+    <span class="n">transfers</span><span class="p">,</span> <span class="n">anonymity</span><span class="p">,</span> <span class="n">fee</span><span class="p">,</span> <span class="n">addresses</span><span class="p">,</span> <span class="n">change_address</span><span class="p">,</span> <span class="n">extra</span><span class="p">,</span> <span class="n">payment_id</span><span class="p">,</span> <span class="n">unlock_time</span>
+<span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -1616,6 +1761,11 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">getDelayedTransactionHashes</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_delayed_transaction_hashes</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -1667,6 +1817,14 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <span class="nv">$transactionHash</span> <span class="o">=</span> <span class="s1">'b3e37...'</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">deleteDelayedTransaction</span><span class="p">(</span><span class="nv">$transactionHash</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">transaction_hash</span> <span class="o">=</span> <span class="s">'50d83...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">delete_delayed_transaction</span><span class="p">(</span><span class="n">transaction_hash</span><span class="p">)</span>
+
+<span class="c"># If delete is successful, the response will be True</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -1721,6 +1879,14 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">sendDelayedTransaction</span><span class="p">(</span><span class="nv">$transactionHash</span><span class="p">);</span>
 
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">transaction_hash</span> <span class="o">=</span> <span class="s">'50d83...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">send_delayed_transaction</span><span class="p">(</span><span class="n">transaction_hash</span><span class="p">)</span>
+
+<span class="c"># If transaction is sent successful, the response will be True</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -1781,6 +1947,16 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">sendFusionTransaction</span><span class="p">(</span><span class="nv">$threshold</span><span class="p">,</span> <span class="nv">$anonymity</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">,</span> <span class="nv">$destinationAddress</span><span class="p">);</span>
 
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">anonymity</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s">'TRTLxxxx...'</span><span class="p">,</span> <span class="s">'TRTLyyyy...'</span><span class="p">]</span>
+<span class="n">destination_address</span> <span class="o">=</span> <span class="s">'TRTLzzzz...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">send_fusion_transaction</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">anonymity</span><span class="p">,</span> <span class="n">addresses</span><span class="p">,</span> <span class="n">destination_address</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
@@ -1878,6 +2054,13 @@ use <code>estimateFusion</code> to check the outputs, available for the optimiza
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">estimateFusion</span><span class="p">(</span><span class="nv">$threshold</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">);</span>
 
 <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
+
+<span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s">'TRTLxxxx...'</span><span class="p">,</span> <span class="s">'TRTLyyyy...'</span><span class="p">]</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">estimate_fusion</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">addresses</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>Expected output:</p>
