@@ -315,6 +315,53 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#daemon-json-rpc-api" class="toc-h1 toc-link" data-title="Daemon JSON RPC API">Daemon JSON RPC API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#daemon-json-rpc-api-interacting-with-the-api" class="toc-h2 toc-link" data-title="Interacting with the API">Interacting with the API</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-getblockcount" class="toc-h2 toc-link" data-title="getblockcount">getblockcount</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-getblockhash" class="toc-h2 toc-link" data-title="getblockhash">getblockhash</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-getblocktemplate" class="toc-h2 toc-link" data-title="getblocktemplate">getblocktemplate</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-submitblock" class="toc-h2 toc-link" data-title="submitblock">submitblock</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-getlastblockheader" class="toc-h2 toc-link" data-title="getlastblockheader">getlastblockheader</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-getblockheaderbyhash" class="toc-h2 toc-link" data-title="getblockheaderbyhash">getblockheaderbyhash</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-getblockheaderbyheight" class="toc-h2 toc-link" data-title="getblockheaderbyheight">getblockheaderbyheight</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-getcurrencyid" class="toc-h2 toc-link" data-title="getcurrencyid">getcurrencyid</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-getblocks" class="toc-h2 toc-link" data-title="getblocks">getblocks</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-getblock" class="toc-h2 toc-link" data-title="getblock">getblock</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-gettransaction" class="toc-h2 toc-link" data-title="gettransaction">gettransaction</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-gettransactionpool" class="toc-h2 toc-link" data-title="gettransactionpool">gettransactionpool</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-json-rpc-api-license" class="toc-h2 toc-link" data-title="License">License</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href='https://github.com/turtlecoin/turtlecoin-docs/tree/master/api' target='_blank'>Edit this on GitHub</a></li>
@@ -351,9 +398,9 @@
 <p>Currently we support the following official client bindings:</p>
 
 <ul>
-<li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-js">JavaScript</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-rpc-js">JavaScript</a></li>
 <li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-php">PHP</a></li>
-<li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-python">Python</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-rpc-python">Python</a></li>
 <li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-go">Go</a></li>
 </ul>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">walletd</span><span class="o">-</span><span class="nx">rpc</span><span class="o">-</span><span class="nx">js</span>
@@ -2469,6 +2516,1354 @@ This method is used to understand if a fusion transaction can be created. If <co
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-license'><a href='#wallet-rpc-api-license' class='content-deep-link-anchor'>License</a></h2>
+<p><a href="https://creativecommons.org/licenses/by-sa/3.0/"><img src="images/cc-by-sa.png" alt="Creative Commons License" /></a></p>
+
+<p>The content in this document were originally written by the <a href="https://bytecoin.org/">Bytecoin (BCN) Developers</a>. It is licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY SA 3.0 license</a>. The source material can be found at the <a href="https://wiki.bytecoin.org/">Bytecoin Wiki</a>.</p>
+
+<p>Also of note, TurtleCoin developers have altered and adapted the content to suit our implementation of the API. This was done independently of the Bytecoin development team. They neither endorse or acknowledge our changes. Feel free to adopt or change our content as per the <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY SA 3.0 license</a> requirements.</p>
+
+<p><em>TurtleCoin developers 2018</em></p>
+<h1 id='daemon-json-rpc-api'><a href='#daemon-json-rpc-api' class='content-deep-link-anchor'>Daemon JSON RPC API</a></h1>
+<p>Daemon JSON RPC is a HTTP server which provides JSON 2.0 RPC interface for intearcting with Daemon and Block Explorer.</p>
+
+<p>Currently we support the following official client bindings:</p>
+
+<ul>
+<li><a href="https://github.com/turtlecoin/turtlecoin-rpc-js">JavaScript</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-rpc-python">Python</a></li>
+</ul>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">rpc</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">pip3</span> <span class="n">install</span> <span class="n">turtlecoin</span>
+</code></pre><h2 id='daemon-json-rpc-api-interacting-with-the-api'><a href='#daemon-json-rpc-api-interacting-with-the-api' class='content-deep-link-anchor'>Interacting with the API</a></h2>
+<blockquote>
+<p>API endpoint example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>http://localhost:11898/json_rpc
+</code></pre>
+<blockquote>
+<p>Configuration and Instantiation</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">rpc_host</span> <span class="o">=</span> <span class="s">'localhost'</span>
+<span class="n">rpc_port</span> <span class="o">=</span> <span class="mi">11898</span>
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+</code></pre>
+<p>To start Daemon JSON RPC API server you should specify a port on which server binds (additionally to standard daemon&#39;s arguments). You can choose any free port. To do that execute the following command from the command line:</p>
+<pre class="highlight plaintext"><code>TurtleCoind --rpc-bind-port=11898
+</code></pre>
+<p>If you want Daemon to be accessed from other computer not only yours you should also use a --rpc-bind-ip 0.0.0.0 command. To do that execute the following command from the command line:</p>
+<pre class="highlight plaintext"><code>TurtleCoind --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898
+</code></pre>
+<p>To be able to utilize to the Block Explorer methods such as getblocks, gettransactionpool etc., daemon needs to be started with <code>--enable_blockexplorer</code> argument as shown below.</p>
+<pre class="highlight plaintext"><code>TurtleCoind --enable_blockexplorer
+</code></pre>
+<p>You can combine the above given commands to achieve remote access along with block explorer methods as shown below.</p>
+<pre class="highlight plaintext"><code>TurtleCoind --enable_blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898
+</code></pre>
+<p>Having done that you&#39;re ready to operate with the daemon through the following API URLs (e.g., your IP address is 126.0.1.100):</p>
+<pre class="highlight plaintext"><code>http://126.0.1.100:11898/json_rpc
+http://localhost:11898/json_rpc
+</code></pre>
+<p>To make a JSON RPC request to your Daemon RPC you should use a POST request that looks like this:</p>
+
+<p><code>http://&lt;service address&gt;:&lt;service port&gt;/json_rpc</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;service address&gt;</code></td>
+<td>IP of Daemon RPC, if it is located on local machine it is either 127.0.0.1 or localhost</td>
+</tr>
+<tr>
+<td><code>&lt;service port&gt;</code></td>
+<td>Daemon RPC port, by default it is bound to 11898 port, but it can be manually bound to any port you want</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-getblockcount'><a href='#daemon-json-rpc-api-getblockcount' class='content-deep-link-anchor'>getblockcount</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0", "method":"getblockcount", "params":{}}'</span> http://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_block_count</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">560915</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getblockcount()</code> method returns the current chain height.</p>
+
+<p>No Input.</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>count</td>
+<td>Current chain height</td>
+<td>int</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of request</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-getblockhash'><a href='#daemon-json-rpc-api-getblockhash' class='content-deep-link-anchor'>getblockhash</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"on_getblockhash","params":[123456]}'</span> http://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">123456</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_block_hash</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="s2">"4bd7d..."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getblockhash()</code> method returns block hash for a given height off by one.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>height</td>
+<td>Yes</td>
+<td>The height of the block whose previous hash is to be retrieved.</td>
+<td>int</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>Hash of previous block</td>
+<td>int</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-getblocktemplate'><a href='#daemon-json-rpc-api-getblocktemplate' class='content-deep-link-anchor'>getblocktemplate</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"getblocktemplate","params":{"reserve_size":200,"wallet_address":"TRTLxxxx..."}}'</span> http://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">reserve_size</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">wallet_address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_block_template</span><span class="p">(</span><span class="n">reserve_size</span><span class="p">,</span> <span class="n">wallet_address</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"blocktemplate_blob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0100de..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"difficulty"</span><span class="p">:</span><span class="w"> </span><span class="mi">65563</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reserved_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">395</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getblocktemplate(reserve_size, addr)</code> method returns blocktemplate with an empty &quot;hole&quot; for nonce.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reserve_size</td>
+<td>Yes</td>
+<td>Size of the reserve to be specified</td>
+<td>int</td>
+</tr>
+<tr>
+<td>wallet_address</td>
+<td>Yes</td>
+<td>Valid TurtleCoin wallet address</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>blocktempate_blob</td>
+<td>Blocktemplate with empty &quot;hole&quot; for nonce</td>
+<td>string</td>
+</tr>
+<tr>
+<td>difficulty</td>
+<td>Difficulty of the network</td>
+<td>int</td>
+</tr>
+<tr>
+<td>height</td>
+<td>Chain height of the network</td>
+<td>int</td>
+</tr>
+<tr>
+<td>reserved_offset</td>
+<td>Offset reserved</td>
+<td>int</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of the network</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-submitblock'><a href='#daemon-json-rpc-api-submitblock' class='content-deep-link-anchor'>submitblock</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"submitblock","params":["0100b...."]}'</span> https://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">block_blob</span> <span class="o">=</span> <span class="s">'0100b...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">submit_block</span><span class="p">(</span><span class="n">block_blob</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>submitblock(block_blob)</code> method submits mined block.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>block_blob</td>
+<td>Yes</td>
+<td>Block blob of the mined block</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Status of request</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-getlastblockheader'><a href='#daemon-json-rpc-api-getlastblockheader' class='content-deep-link-anchor'>getlastblockheader</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"getlastblockheader","params":{}}'</span> http://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_last_block_header</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"block_header"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"block_size"</span><span class="p">:</span><span class="mi">86171</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"depth"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"difficulty"</span><span class="p">:</span><span class="mi">431119113</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hash"</span><span class="p">:</span><span class="s2">"b746b..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"height"</span><span class="p">:</span><span class="mi">561342</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"major_version"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"minor_version"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nonce"</span><span class="p">:</span><span class="mi">715846563</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"num_txes"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orphan_status"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"prev_hash"</span><span class="p">:</span><span class="s2">"b8e02..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reward"</span><span class="p">:</span><span class="mi">2930801</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="mi">1529750993</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>No Input</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>block_size</td>
+<td>size of the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>depth</td>
+<td>height away from the known top block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>difficulty</td>
+<td>difficulty of the last block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>hash of the last block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>height</td>
+<td>height of the last block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>major_version</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>minor_version</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>nonce</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>num_txs</td>
+<td>Number of transactions in the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>orphan_status</td>
+<td>whether the last block was an orphan or not</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>prev_hash</td>
+<td>hash of the previous block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>reward</td>
+<td>reward of the block</td>
+<td>str</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>the time at which the block is occured on chain since Unix epoch</td>
+<td>int</td>
+</tr>
+<tr>
+<td>status</td>
+<td>status of the request</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-getblockheaderbyhash'><a href='#daemon-json-rpc-api-getblockheaderbyhash' class='content-deep-link-anchor'>getblockheaderbyhash</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"getblockheaderbyhash","params":{"hash":"30706..."}}'</span> http://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="nb">hash</span> <span class="o">=</span> <span class="s">'30706...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_block_header_by_hash</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"block_header"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"block_size"</span><span class="p">:</span><span class="mi">11640</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"depth"</span><span class="p">:</span><span class="mi">437898</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"difficulty"</span><span class="p">:</span><span class="mi">70050782</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hash"</span><span class="p">:</span><span class="s2">"30706..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"height"</span><span class="p">:</span><span class="mi">123456</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"major_version"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"minor_version"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nonce"</span><span class="p">:</span><span class="mi">3177228614</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"num_txes"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orphan_status"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"prev_hash"</span><span class="p">:</span><span class="s2">"4bd7d..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reward"</span><span class="p">:</span><span class="mi">2969487</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="mi">1516631879</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getblockheaderbyhash()</code> returns block header by given block hash</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>hash</td>
+<td>Yes</td>
+<td>Hash of the block</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>block_size</td>
+<td>size of the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>depth</td>
+<td>height away from the known top block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>difficulty</td>
+<td>difficulty of the requested block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>hash of the requested block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>height</td>
+<td>height of the requested block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>major_version</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>minor_version</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>nonce</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>num_txs</td>
+<td>Number of transactions in the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>orphan_status</td>
+<td>whether the requested block was an orphan or not</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>prev_hash</td>
+<td>hash of the previous block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>reward</td>
+<td>reward of the block</td>
+<td>str</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>the time at which the block is occured on chain since Unix epoch</td>
+<td>int</td>
+</tr>
+<tr>
+<td>status</td>
+<td>status of the request</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-getblockheaderbyheight'><a href='#daemon-json-rpc-api-getblockheaderbyheight' class='content-deep-link-anchor'>getblockheaderbyheight</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"getblockheaderbyheight","params":{"height":123456}}'</span> http://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">123456</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_block_header_by_height</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"block_header"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"block_size"</span><span class="p">:</span><span class="mi">11640</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"depth"</span><span class="p">:</span><span class="mi">437898</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"difficulty"</span><span class="p">:</span><span class="mi">70050782</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hash"</span><span class="p">:</span><span class="s2">"30706..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"height"</span><span class="p">:</span><span class="mi">123456</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"major_version"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"minor_version"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nonce"</span><span class="p">:</span><span class="mi">3177228614</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"num_txes"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orphan_status"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"prev_hash"</span><span class="p">:</span><span class="s2">"4bd7d..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reward"</span><span class="p">:</span><span class="mi">2969487</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="mi">1516631879</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getblockheaderbyheight()</code> method returns block header by given block height</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>height</td>
+<td>Yes</td>
+<td>Height of the block</td>
+<td>int</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>block_size</td>
+<td>size of the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>depth</td>
+<td>height away from the known top block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>difficulty</td>
+<td>difficulty of the requested block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>hash of the requested block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>height</td>
+<td>height of the requested block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>major_version</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>minor_version</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>nonce</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>num_txs</td>
+<td>Number of transactions in the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>orphan_status</td>
+<td>whether the requested block was an orphan or not</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>prev_hash</td>
+<td>hash of the previous block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>reward</td>
+<td>reward of the block</td>
+<td>str</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>the time at which the block is occured on chain since Unix epoch</td>
+<td>int</td>
+</tr>
+<tr>
+<td>status</td>
+<td>status of the request</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-getcurrencyid'><a href='#daemon-json-rpc-api-getcurrencyid' class='content-deep-link-anchor'>getcurrencyid</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"getcurrencyid","params":{}}'</span> http://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_currency_id</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"currency_id_blob"</span><span class="p">:</span><span class="s2">"7fb97..."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getcurrencyid()</code> method returns unique currency identifier.</p>
+
+<p>No Input</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency_id_blob</td>
+<td>unique currency identifier</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-getblocks'><a href='#daemon-json-rpc-api-getblocks' class='content-deep-link-anchor'>getblocks</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"f_blocks_list_json","params":{"height":500000}}'</span> http://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">500000</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_blocks</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"blocks"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"cumul_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">22041</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"difficulty"</span><span class="p">:</span><span class="w"> </span><span class="mi">285124963</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62f00..."</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">500000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1527834137</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tx_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getblocks()</code> method returns information on the last 30 blocks from height (inclusive)</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>height</td>
+<td>Yes</td>
+<td>height of the last block to be included in the result.</td>
+<td>int</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th></th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td></td>
+<td>status of the request</td>
+<td>string</td>
+</tr>
+<tr>
+<td>blocks</td>
+<td><strong>Array of</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>cumul_size</td>
+<td>size of the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td></td>
+<td>difficulty</td>
+<td>difficulty of the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td></td>
+<td>hash</td>
+<td>hash of the block</td>
+<td>string</td>
+</tr>
+<tr>
+<td></td>
+<td>height</td>
+<td>height of the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td></td>
+<td>timestamp</td>
+<td>the time at which the block is occured on the chain since Unix epoch</td>
+<td>int</td>
+</tr>
+<tr>
+<td></td>
+<td>tx_count</td>
+<td>number of transactions in the block</td>
+<td>int</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-getblock'><a href='#daemon-json-rpc-api-getblock' class='content-deep-link-anchor'>getblock</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","met":"f_block_json","params":{"hash":"980ff..."}}'</span> http://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="nb">hash</span> <span class="o">=</span> <span class="s">'980ff...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_block</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"block"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"alreadyGeneratedCoins"</span><span class="p">:</span><span class="s2">"1659188157030"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"alreadyGeneratedTransactions"</span><span class="p">:</span><span class="mi">1097221</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"baseReward"</span><span class="p">:</span><span class="mi">2930784</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"blockSize"</span><span class="p">:</span><span class="mi">384</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"depth"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"difficulty"</span><span class="p">:</span><span class="mi">264289473</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"effectiveSizeMedian"</span><span class="p">:</span><span class="mi">100000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hash"</span><span class="p">:</span><span class="s2">"980ff..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"height"</span><span class="p">:</span><span class="mi">561537</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"major_version"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"minor_version"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nonce"</span><span class="p">:</span><span class="mi">60779</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orphan_status"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"penalty"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"prev_hash"</span><span class="p">:</span><span class="s2">"c37f8..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reward"</span><span class="p">:</span><span class="mi">2930784</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sizeMedian"</span><span class="p">:</span><span class="mi">265</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="mi">1529757254</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalFeeAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transactions"</span><span class="p">:[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"amount_out"</span><span class="p">:</span><span class="mi">2930784</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"fee"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"hash"</span><span class="p">:</span><span class="s2">"c0a2d..."</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">265</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"transactionsCumulativeSize"</span><span class="p">:</span><span class="mi">265</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getblock()</code> method returns information on a single block</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>hash</td>
+<td>Yes</td>
+<td>hash of the block</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>alreadyGeneratedCoins</td>
+<td>total number of coins generated in the network upto that block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>alreadyGeneratedTransactions</td>
+<td>total number of transactions present in the network upto that block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>baseReward</td>
+<td>calculated reward</td>
+<td>int</td>
+</tr>
+<tr>
+<td>block_size</td>
+<td>size of the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>depth</td>
+<td>height away from the known top block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>difficulty</td>
+<td>difficulty of the requested block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>effectiveSizeMedian</td>
+<td>fixed constant for max size of block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>hash of the requested block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>height</td>
+<td>height of the requested block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>major_version</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>minor_version</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>nonce</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>orphan_status</td>
+<td>whether the requested block was an orphan or not</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>penalty</td>
+<td>penalty in block reward determined for deviation</td>
+<td>float</td>
+</tr>
+<tr>
+<td>prev_hash</td>
+<td>hash of the previous block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>reward</td>
+<td>total reward of the block after removing penalty</td>
+<td>str</td>
+</tr>
+<tr>
+<td>sizeMedian</td>
+<td>calculated median size from last 100 blocks</td>
+<td>int</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>the time at which the block is occured on chain since Unix epoch</td>
+<td>int</td>
+</tr>
+<tr>
+<td>totalFeeAmount</td>
+<td>total fees for the transactions in the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>transactions</td>
+<td>Array of transactions in the block</td>
+<td>array</td>
+</tr>
+<tr>
+<td>transactionsCumulativeSize</td>
+<td>total sum of size of all transactions in the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>status</td>
+<td>status of the request</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p>Transaction Attributes:</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount_out</td>
+<td>output amount of the transaction</td>
+<td>int</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>fees for the transaction</td>
+<td>int</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>hash of the transaction</td>
+<td>string</td>
+</tr>
+<tr>
+<td>size</td>
+<td>size of the transaction</td>
+<td>int</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-gettransaction'><a href='#daemon-json-rpc-api-gettransaction' class='content-deep-link-anchor'>gettransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"f_transaction_json","params":{"hash":"702ad..."}}'</span> http://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="nb">hash</span> <span class="o">=</span> <span class="s">'702ad...'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_transaction</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"block"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"cumul_size"</span><span class="p">:</span><span class="mi">22041</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"difficulty"</span><span class="p">:</span><span class="mi">106780143</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hash"</span><span class="p">:</span><span class="s2">"62f00..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"height"</span><span class="p">:</span><span class="mi">500000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="mi">1527834137</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tx_count"</span><span class="p">:</span><span class="mi">4</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tx"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"extra"</span><span class="p">:</span><span class="s2">"019e4..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"unlock_time"</span><span class="p">:</span><span class="mi">500040</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"version"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vin"</span><span class="p">:[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"ff"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:{</span><span class="w">
+                        </span><span class="s2">"height"</span><span class="p">:</span><span class="mi">500000</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"vout"</span><span class="p">:[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"target"</span><span class="p">:{</span><span class="w">
+                        </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+                            </span><span class="s2">"key"</span><span class="p">:</span><span class="s2">"5ce69..."</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"02"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"txDetails"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"amount_out"</span><span class="p">:</span><span class="mi">2936280</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hash"</span><span class="p">:</span><span class="s2">"702ad..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mixin"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"paymentId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">266</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>gettransaction()</code> method returns information on single transaction.</p>
+
+<p><strong>Input</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>hash</td>
+<td>Yes</td>
+<td>hash of the transaction</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>block</td>
+<td>details of the block in which transaction is present</td>
+<td>json object</td>
+</tr>
+<tr>
+<td>status</td>
+<td>status of the request</td>
+<td>string</td>
+</tr>
+<tr>
+<td>tx</td>
+<td>sub-transactions in the transaction</td>
+<td>json object</td>
+</tr>
+<tr>
+<td>txDetails</td>
+<td>details of the transaction</td>
+<td>json object</td>
+</tr>
+</tbody></table>
+
+<p>Block attributes:</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cumul_size</td>
+<td>size of the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>difficulty</td>
+<td>difficulty of the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>hash of the block</td>
+<td>string</td>
+</tr>
+<tr>
+<td>height</td>
+<td>height of the block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>the time at which the block is occured on chain since Unix epoch</td>
+<td>int</td>
+</tr>
+<tr>
+<td>tx_count</td>
+<td>number of transactions in the block</td>
+<td>int</td>
+</tr>
+</tbody></table>
+
+<p>Transaction Details attributes:</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount_out</td>
+<td>total amount present in the transaction</td>
+<td>int</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>total fees of the transaction</td>
+<td>int</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>hash of the transaction</td>
+<td>string</td>
+</tr>
+<tr>
+<td>mixin</td>
+<td>mixin of the transaction</td>
+<td>int</td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>payment Id of the transaction</td>
+<td>string</td>
+</tr>
+<tr>
+<td>size</td>
+<td>total size of the transaction</td>
+<td>int</td>
+</tr>
+</tbody></table>
+
+<p>Transaction attributes:</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>extra</td>
+<td>Transaction extra which can be any information in hex</td>
+<td>string</td>
+</tr>
+<tr>
+<td>unlock_time</td>
+<td>delay in unlocking the amount</td>
+<td>int</td>
+</tr>
+<tr>
+<td>version</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>vin</td>
+<td>array of input transactions</td>
+<td>array</td>
+</tr>
+<tr>
+<td>vout</td>
+<td>array of output transactions</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-gettransactionpool'><a href='#daemon-json-rpc-api-gettransactionpool' class='content-deep-link-anchor'>gettransactionpool</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"f_on_transactions_pool_json","params":{}}'</span> http://localhost:11898/json_rpc
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_transaction_pool</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transactions"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount_out"</span><span class="p">:</span><span class="mi">8990</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fee"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"hash"</span><span class="p">:</span><span class="s2">"a5e88..."</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">541</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>gettransactionpool()</code> returns the list of transaction hashes present in mempool</p>
+
+<p>No Input</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>status of the request</td>
+<td>string</td>
+</tr>
+<tr>
+<td>transactions</td>
+<td>array of transactions in mempool</td>
+<td>array</td>
+</tr>
+</tbody></table>
+
+<p>Transactions attributes:</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount_out</td>
+<td>output amount of the transaction</td>
+<td>int</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>fees for the transaction</td>
+<td>int</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>hash of the transaction</td>
+<td>string</td>
+</tr>
+<tr>
+<td>size</td>
+<td>size of the transaction</td>
+<td>int</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-json-rpc-api-license'><a href='#daemon-json-rpc-api-license' class='content-deep-link-anchor'>License</a></h2>
 <p><a href="https://creativecommons.org/licenses/by-sa/3.0/"><img src="images/cc-by-sa.png" alt="Creative Commons License" /></a></p>
 
 <p>The content in this document were originally written by the <a href="https://bytecoin.org/">Bytecoin (BCN) Developers</a>. It is licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY SA 3.0 license</a>. The source material can be found at the <a href="https://wiki.bytecoin.org/">Bytecoin Wiki</a>.</p>
