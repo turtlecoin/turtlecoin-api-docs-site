@@ -1584,7 +1584,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='wallet-rpc-api-createdelayedtransaction'><a href='#wallet-rpc-api-createdelayedtransaction' class='content-deep-link-anchor'>createDelayedTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createDelayedTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":"5000"}],"fee":10,"anonymity":3,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='wallet-rpc-api-createdelayedtransaction'><a href='#wallet-rpc-api-createdelayedtransaction' class='content-deep-link-anchor'>createDelayedTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createDelayedTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":5000}],"fee":10,"anonymity":3,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
@@ -1988,13 +1988,13 @@ use <code>estimateFusion</code> to check the outputs, available for the optimiza
 <td>threshold</td>
 <td>Yes</td>
 <td>Value that determines which outputs will be optimized. Only the outputs, lesser than the threshold value, will be included into a fusion transaction.</td>
-<td>string</td>
+<td>int</td>
 </tr>
 <tr>
 <td>anonymity</td>
 <td>Yes</td>
 <td>Privacy level (a discrete number from 1 to infinity). Level 6 and higher is recommended.</td>
-<td>string</td>
+<td>int</td>
 </tr>
 <tr>
 <td>addresses</td>
@@ -2091,7 +2091,7 @@ This method is used to understand if a fusion transaction can be created. If <co
 <td>threshold</td>
 <td>Yes</td>
 <td>Value that determines which outputs will be optimized. Only the outputs, lesser than the threshold value, will be included into a fusion transaction.</td>
-<td>string</td>
+<td>int</td>
 </tr>
 <tr>
 <td>addresses</td>
