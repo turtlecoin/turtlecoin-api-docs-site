@@ -2002,11 +2002,11 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <td>array</td>
 </tr>
 </tbody></table>
-<h2 id='wallet-rpc-api-sendtransaction'><a href='#wallet-rpc-api-sendtransaction' class='content-deep-link-anchor'>sendTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":5000}],"fee":10,"anonymity":3,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='wallet-rpc-api-sendtransaction'><a href='#wallet-rpc-api-sendtransaction' class='content-deep-link-anchor'>sendTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":5000}],"fee":10,"anonymity":7,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">anonymity</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">fee</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">unlockTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -2029,7 +2029,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-<span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
 <span class="nv">$fee</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="nv">$addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$unlockTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -2049,7 +2049,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
 
 <span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
-<span class="n">anonymity</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">anonymity</span> <span class="o">=</span> <span class="mi">7</span>
 <span class="n">fee</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">unlock_time</span> <span class="o">=</span> <span class="mi">0</span>
@@ -2116,7 +2116,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <tr>
 <td>anonymity</td>
 <td>Yes</td>
-<td>Privacy (mixin) level from block 600,000 needs to be seven (7), this will be removed / ignored in a future version</td>
+<td>Privacy (mixin) level from block 620,000 needs to be seven (7), this will be removed / ignored in a future version</td>
 <td>int</td>
 </tr>
 <tr>
@@ -2160,11 +2160,11 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='wallet-rpc-api-createdelayedtransaction'><a href='#wallet-rpc-api-createdelayedtransaction' class='content-deep-link-anchor'>createDelayedTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createDelayedTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":5000}],"fee":10,"anonymity":3,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='wallet-rpc-api-createdelayedtransaction'><a href='#wallet-rpc-api-createdelayedtransaction' class='content-deep-link-anchor'>createDelayedTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createDelayedTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":5000}],"fee":10,"anonymity":7,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">anonymity</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">fee</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">unlockTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -2187,7 +2187,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-<span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
 <span class="nv">$fee</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="nv">$addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nv">$unlockTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -2207,7 +2207,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
 
 <span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
-<span class="n">anonymity</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">anonymity</span> <span class="o">=</span> <span class="mi">7</span>
 <span class="n">fee</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">unlock_time</span> <span class="o">=</span> <span class="mi">0</span>
@@ -2274,7 +2274,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <tr>
 <td>anonymity</td>
 <td>Yes</td>
-<td>Privacy level (a discrete number from 1 to infinity). Level 6 and higher is recommended.</td>
+<td>Privacy (mixin) level from block 620,000 needs to be seven (7), this will be removed / ignored in a future version</td>
 <td>int</td>
 </tr>
 <tr>
@@ -2496,12 +2496,12 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <p><strong>Output</strong></p>
 
 <p>In case of success returns an empty JSON object.</p>
-<h2 id='wallet-rpc-api-sendfusiontransaction'><a href='#wallet-rpc-api-sendfusiontransaction' class='content-deep-link-anchor'>sendFusionTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendFusionTransaction","params":{"threshold":1000000,"anonymity":3,"addresses":["TRTLxxxx...","TRTLyyyy..."],"destinationAddress":"TRTLzzzz..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='wallet-rpc-api-sendfusiontransaction'><a href='#wallet-rpc-api-sendfusiontransaction' class='content-deep-link-anchor'>sendFusionTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendFusionTransaction","params":{"threshold":1000000,"anonymity":7,"addresses":["TRTLxxxx...","TRTLyyyy..."],"destinationAddress":"TRTLzzzz..."}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">threshold</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">anonymity</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'TRTLxxxx...'</span><span class="p">,</span> <span class="s1">'TRTLyyyy...'</span><span class="p">];</span>
 <span class="kd">let</span> <span class="nx">destinationAddress</span> <span class="o">=</span> <span class="s1">'TRTLzzzz...'</span><span class="p">;</span>
 
@@ -2517,7 +2517,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 
 <span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 <span class="nv">$threshold</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
-<span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
 <span class="nv">$addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'TRTLxxxx...'</span><span class="p">,</span> <span class="s1">'TRTLyyyy...'</span><span class="p">];</span>
 <span class="nv">$destinationAddress</span> <span class="o">=</span> <span class="s1">'TRTLzzzz...'</span><span class="p">;</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$walletd</span><span class="o">-&gt;</span><span class="na">sendFusionTransaction</span><span class="p">(</span><span class="nv">$threshold</span><span class="p">,</span> <span class="nv">$anonymity</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">,</span> <span class="nv">$destinationAddress</span><span class="p">);</span>
@@ -2527,7 +2527,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 
 <span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
 <span class="n">threshold</span> <span class="o">=</span> <span class="mi">1000000</span>
-<span class="n">anonymity</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">anonymity</span> <span class="o">=</span> <span class="mi">7</span>
 <span class="n">addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s">'TRTLxxxx...'</span><span class="p">,</span> <span class="s">'TRTLyyyy...'</span><span class="p">]</span>
 <span class="n">destination_address</span> <span class="o">=</span> <span class="s">'TRTLzzzz...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">send_fusion_transaction</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">anonymity</span><span class="p">,</span> <span class="n">addresses</span><span class="p">,</span> <span class="n">destination_address</span><span class="p">)</span>
@@ -2569,7 +2569,7 @@ use <code>estimateFusion</code> to check the outputs, available for the optimiza
 <tr>
 <td>anonymity</td>
 <td>Yes</td>
-<td>Privacy level (a discrete number from 1 to infinity). Level 6 and higher is recommended.</td>
+<td>Privacy (mixin) level from block 620,000 needs to be seven (7), this will be removed / ignored in a future version</td>
 <td>int</td>
 </tr>
 <tr>
