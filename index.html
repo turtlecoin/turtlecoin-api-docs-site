@@ -366,6 +366,32 @@
               </ul>
           </li>
           <li>
+            <a href="#daemon-http-rpc-api" class="toc-h1 toc-link" data-title="Daemon HTTP RPC API">Daemon HTTP RPC API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#daemon-http-rpc-api-interacting-with-the-api" class="toc-h2 toc-link" data-title="Interacting with the API">Interacting with the API</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-http-rpc-api-getheight" class="toc-h2 toc-link" data-title="getheight">getheight</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-http-rpc-api-getinfo" class="toc-h2 toc-link" data-title="getinfo">getinfo</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-http-rpc-api-gettransactions" class="toc-h2 toc-link" data-title="gettransactions">gettransactions</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-http-rpc-api-getpeers" class="toc-h2 toc-link" data-title="getpeers">getpeers</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-http-rpc-api-feeinfo" class="toc-h2 toc-link" data-title="feeinfo">feeinfo</a>
+                  </li>
+                  <li>
+                    <a href="#daemon-http-rpc-api-license" class="toc-h2 toc-link" data-title="License">License</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#rpc-errors" class="toc-h1 toc-link" data-title="RPC Errors">RPC Errors</a>
               <ul class="toc-list-h2">
                   <li>
@@ -2784,6 +2810,7 @@ This method is used to understand if a fusion transaction can be created. If <co
 <ul>
 <li><a href="https://github.com/turtlecoin/turtlecoin-rpc-js">JavaScript</a></li>
 <li><a href="https://github.com/turtlecoin/turtlecoin-rpc-python">Python</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-rpc-go">Go</a></li>
 </ul>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">rpc</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">pip3</span> <span class="n">install</span> <span class="n">turtlecoin</span>
@@ -3599,7 +3626,7 @@ This method is used to understand if a fusion transaction can be created. If <co
 <td>int</td>
 </tr>
 </tbody></table>
-<h2 id='daemon-json-rpc-api-getblock'><a href='#daemon-json-rpc-api-getblock' class='content-deep-link-anchor'>getblock</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","met":"f_block_json","params":{"hash":"980ff..."}}'</span> http://localhost:11898/json_rpc
+<h2 id='daemon-json-rpc-api-getblock'><a href='#daemon-json-rpc-api-getblock' class='content-deep-link-anchor'>getblock</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"f_block_json","params":{"hash":"980ff..."}}'</span> http://localhost:11898/json_rpc
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
 
 <span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
@@ -4125,6 +4152,421 @@ This method is used to understand if a fusion transaction can be created. If <co
 </tr>
 </tbody></table>
 <h2 id='daemon-json-rpc-api-license'><a href='#daemon-json-rpc-api-license' class='content-deep-link-anchor'>License</a></h2>
+<p><a href="https://creativecommons.org/licenses/by-sa/3.0/"><img src="images/cc-by-sa.png" alt="Creative Commons License" /></a></p>
+
+<p>The content in this document were originally written by the <a href="https://bytecoin.org/">Bytecoin (BCN) Developers</a>. It is licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY SA 3.0 license</a>. The source material can be found at the <a href="https://wiki.bytecoin.org/">Bytecoin Wiki</a>.</p>
+
+<p>Also of note, TurtleCoin developers have altered and adapted the content to suit our implementation of the API. This was done independently of the Bytecoin development team. They neither endorse or acknowledge our changes. Feel free to adopt or change our content as per the <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY SA 3.0 license</a> requirements.</p>
+
+<p><em>TurtleCoin developers 2018</em></p>
+<h1 id='daemon-http-rpc-api'><a href='#daemon-http-rpc-api' class='content-deep-link-anchor'>Daemon HTTP RPC API</a></h1>
+<p>Daemon HTTP RPC is a HTTP server which provides additional information regarding Network and Daemon connections.</p>
+
+<p>Currently we support the following official client bindings:</p>
+
+<ul>
+<li><a href="https://www.npmjs.com/package/turtlecoin-rpc">NodeJS</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-rpc-python">Python</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-rpc-go">Go</a></li>
+</ul>
+<pre class="highlight python tab-python"><code><span class="n">pip3</span> <span class="n">install</span> <span class="n">turtlecoin</span>
+</code></pre><h2 id='daemon-http-rpc-api-interacting-with-the-api'><a href='#daemon-http-rpc-api-interacting-with-the-api' class='content-deep-link-anchor'>Interacting with the API</a></h2>
+<blockquote>
+<p>API endpoint example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>http://localhost:11898
+</code></pre>
+<blockquote>
+<p>Configuration and Instantiation</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">rpc_host</span> <span class="o">=</span> <span class="s">'localhost'</span>
+<span class="n">rpc_port</span> <span class="o">=</span> <span class="mi">11898</span>
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+</code></pre>
+<p>To start the Daemon JSON RPC API server at <code>http://localhost:11898</code>, run:</p>
+
+<p><code>TurtleCoind --rpc-bind-port=11898</code></p>
+
+<p>To make the server accessible from another computer, use the <code>--rpc-bind-ip 0.0.0.0</code> switch.</p>
+
+<p><code>TurtleCoind --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898</code></p>
+
+<p>To enable block explorer API access (like for <code>getblocks</code>, <code>gettransactionpool</code>, etc.), use the <code>--enable_blockexplorer</code> switch.</p>
+
+<p><code>TurtleCoind --enable_blockexplorer</code></p>
+
+<p>The above given switches can be combined to achieve remote access with block explorer methods as shown below.</p>
+
+<p><code>TurtleCoind --enable_blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898</code></p>
+
+<p>This would make the RPC server accessible at</p>
+
+<p><code>http://&lt;your ip address&gt;:11898</code></p>
+
+<p>and, locally at</p>
+
+<p><code>http://localhost:11898</code></p>
+
+<p>To make a JSON RPC request to your Daemon RPC you should use a POST request that looks like this:</p>
+
+<p><code>http://&lt;service address&gt;:&lt;service port&gt;</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;service address&gt;</code></td>
+<td>IP of Daemon RPC, if it is located on local machine it is either 127.0.0.1 or localhost</td>
+</tr>
+<tr>
+<td><code>&lt;service port&gt;</code></td>
+<td>Daemon RPC port, by default it is bound to 11898 port, but it can be manually bound to any port you want</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-http-rpc-api-getheight'><a href='#daemon-http-rpc-api-getheight' class='content-deep-link-anchor'>getheight</a></h2><pre class="highlight shell tab-shell"><code>curl http://localhost:11898/getheight
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"height"</span><span class="p">:</span><span class="mi">614214</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"network_height"</span><span class="p">:</span><span class="mi">614218</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getheight()</code> returns the height of the daemon and the network</p>
+
+<p>No Input.</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>height</td>
+<td>Current daemon height</td>
+<td>int</td>
+</tr>
+<tr>
+<td>network_height</td>
+<td>Current Network height</td>
+<td>int</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of request</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-http-rpc-api-getinfo'><a href='#daemon-http-rpc-api-getinfo' class='content-deep-link-anchor'>getinfo</a></h2><pre class="highlight shell tab-shell"><code>curl http://localhost:11898/getinfo
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_info</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"alt_blocks_count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"difficulty"</span><span class="p">:</span><span class="mi">250340644</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grey_peerlist_size"</span><span class="p">:</span><span class="mi">493</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hashrate"</span><span class="p">:</span><span class="mi">8344688</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"height"</span><span class="p">:</span><span class="mi">614321</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"incoming_connections_count"</span><span class="p">:</span><span class="mi">28</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_known_block_index"</span><span class="p">:</span><span class="mi">614319</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"major_version"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"minor_version"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"network_height"</span><span class="p">:</span><span class="mi">614321</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"outgoing_connections_count"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"start_time"</span><span class="p">:</span><span class="mi">1531403048</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"supported_height"</span><span class="p">:</span><span class="mi">620000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"synced"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"testnet"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tx_count"</span><span class="p">:</span><span class="mi">720189</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tx_pool_size"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"upgrade_heights"</span><span class="p">:[</span><span class="w">
+        </span><span class="mi">187000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">350000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">440000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">620000</span><span class="p">,</span><span class="w">
+        </span><span class="err">.....</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"version"</span><span class="p">:</span><span class="s2">"0.6.3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"white_peerlist_size"</span><span class="p">:</span><span class="mi">43</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getinfo()</code> returns information related to the network and daemon connection</p>
+
+<p>No Input.</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>alt_blocks_count</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>difficulty</td>
+<td>difficulty of the top block</td>
+<td>int</td>
+</tr>
+<tr>
+<td>gray_peerlist_size</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>hashrate</td>
+<td>hashrate of the network</td>
+<td>int</td>
+</tr>
+<tr>
+<td>height</td>
+<td>height of the daemon</td>
+<td>int</td>
+</tr>
+<tr>
+<td>incoming_connections_count</td>
+<td>number of incoming connections to the daemon</td>
+<td>int</td>
+</tr>
+<tr>
+<td>last_known_block_index</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>major_version</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>minor_version</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>network_height</td>
+<td>height of the network</td>
+<td>int</td>
+</tr>
+<tr>
+<td>outgoing_connections_count</td>
+<td>number of outgoing connections from the daemon</td>
+<td>int</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of request</td>
+<td>string</td>
+</tr>
+<tr>
+<td>supported_height</td>
+<td>supported fork height</td>
+<td>int</td>
+</tr>
+<tr>
+<td>synced</td>
+<td>sync status</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>testnet</td>
+<td>whether the daemon is on testnet or not</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>tx_count</td>
+<td>transaction count in the network</td>
+<td>int</td>
+</tr>
+<tr>
+<td>tx_pool_size</td>
+<td>-</td>
+<td>int</td>
+</tr>
+<tr>
+<td>upgrade_heights</td>
+<td>pre-determined fork heights</td>
+<td>array</td>
+</tr>
+<tr>
+<td>version</td>
+<td>version of the daemon</td>
+<td>string</td>
+</tr>
+<tr>
+<td>white_peerlist_size</td>
+<td>-</td>
+<td>int</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-http-rpc-api-gettransactions'><a href='#daemon-http-rpc-api-gettransactions' class='content-deep-link-anchor'>gettransactions</a></h2><pre class="highlight shell tab-shell"><code>curl http://localhost:11898/gettransactions
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_transactions</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"missed_tx"</span><span class="p">:[],</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"txs_as_hex"</span><span class="p">:[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>gettransactions()</code> method returns list of missed transactions</p>
+
+<p>No Input</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>missed_tx</td>
+<td>array of missed transactions</td>
+<td>array</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of request</td>
+<td>string</td>
+</tr>
+<tr>
+<td>txs_as_hex</td>
+<td>array of hex values of missed transactions</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-http-rpc-api-getpeers'><a href='#daemon-http-rpc-api-getpeers' class='content-deep-link-anchor'>getpeers</a></h2><pre class="highlight shell tab-shell"><code>curl http://localhost:11898/getpeers
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_peers</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"peers"</span><span class="p">:[</span><span class="w">
+        </span><span class="s2">"192.222.157.172:11897"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"94.23.49.75:11897"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"112.78.10.43:11897"</span><span class="p">,</span><span class="w">
+        </span><span class="err">.....</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>getpeers()</code> method returns the list of peers connected to the daemon</p>
+
+<p>No Input.</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>peers</td>
+<td>array of peers (peer_ip:peer_port)</td>
+<td>array</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of request</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-http-rpc-api-feeinfo'><a href='#daemon-http-rpc-api-feeinfo' class='content-deep-link-anchor'>feeinfo</a></h2><pre class="highlight shell tab-shell"><code>curl http://localhost:11898/feeinfo
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
+
+<span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_fee_info</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Expected Output:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"Node's fee address is not set"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>feeinfo()</code> method returns information about the fee set for the remote node.</p>
+
+<p>No Input.</p>
+
+<p><strong>Output</strong></p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>address to which the fee is paid</td>
+<td>string</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>fee amount</td>
+<td>int</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of fees for the node</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='daemon-http-rpc-api-license'><a href='#daemon-http-rpc-api-license' class='content-deep-link-anchor'>License</a></h2>
 <p><a href="https://creativecommons.org/licenses/by-sa/3.0/"><img src="images/cc-by-sa.png" alt="Creative Commons License" /></a></p>
 
 <p>The content in this document were originally written by the <a href="https://bytecoin.org/">Bytecoin (BCN) Developers</a>. It is licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY SA 3.0 license</a>. The source material can be found at the <a href="https://wiki.bytecoin.org/">Bytecoin Wiki</a>.</p>

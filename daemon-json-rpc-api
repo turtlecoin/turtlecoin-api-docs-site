@@ -6,6 +6,7 @@
 <ul>
 <li><a href="https://github.com/turtlecoin/turtlecoin-rpc-js">JavaScript</a></li>
 <li><a href="https://github.com/turtlecoin/turtlecoin-rpc-python">Python</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-rpc-go">Go</a></li>
 </ul>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">rpc</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">pip3</span> <span class="n">install</span> <span class="n">turtlecoin</span>
@@ -821,7 +822,7 @@
 <td>int</td>
 </tr>
 </tbody></table>
-<h2 id='daemon-json-rpc-api-getblock'><a href='#daemon-json-rpc-api-getblock' class='content-deep-link-anchor'>getblock</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","met":"f_block_json","params":{"hash":"980ff..."}}'</span> http://localhost:11898/json_rpc
+<h2 id='daemon-json-rpc-api-getblock'><a href='#daemon-json-rpc-api-getblock' class='content-deep-link-anchor'>getblock</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","method":"f_block_json","params":{"hash":"980ff..."}}'</span> http://localhost:11898/json_rpc
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">TurtleCoind</span>
 
 <span class="n">turtlecoind</span> <span class="o">=</span> <span class="n">TurtleCoind</span><span class="p">(</span><span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
