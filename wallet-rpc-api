@@ -122,6 +122,18 @@
 <td>Private view key</td>
 <td>string</td>
 </tr>
+<tr>
+<td>newAddress</td>
+<td>No</td>
+<td>Is this a new address being created? If so, blocks before the creation timestamp will not be scanned. Only one of newAddress and scanHeight can be specified, as if a new address is being created, there is no need to scan from a certain height.</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>scanHeight</td>
+<td>No</td>
+<td>The height to begin scanning for transactions at. This can greatly speed up wallet syncing time.</td>
+<td>int</td>
+</tr>
 </tbody></table>
 
 <p>No output in case of success.</p>
@@ -129,7 +141,7 @@
 <aside class="notice">
   <div>If the <code>viewSecretKey</code> argument is not provided, the <code>reset()</code> method resets the wallet and 
   re-syncs it. If the <code>viewSecretKey</code> argument is provided, the <code>reset()</code> method substitutes the 
-  existing wallet with a new one with the specified key and creates an address for it.</div>
+  existing wallet with a new one with the specified key.</div>
 </aside>
 <h2 id='wallet-rpc-api-save'><a href='#wallet-rpc-api-save' class='content-deep-link-anchor'>save</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"save","params":{}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
@@ -573,6 +585,18 @@ No output in case of success.</p>
 <td>No</td>
 <td>Public spend key. If <code>publicSpendKey</code> was specified, RPC Wallet creates view address</td>
 <td>string</td>
+</tr>
+<tr>
+<td>newAddress</td>
+<td>No</td>
+<td>Is this a new address being created? If so, blocks before the creation timestamp will not be scanned. Defaults to true if neither keys are given, as it is guaranteed to be a new address.</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>scanHeight</td>
+<td>No</td>
+<td>The height to begin scanning for transactions at. Only applies if a public/secret key is supplied. This can greatly speed up wallet syncing time.</td>
+<td>int</td>
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-deleteaddress'><a href='#wallet-rpc-api-deleteaddress' class='content-deep-link-anchor'>deleteAddress</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"deleteAddress","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
