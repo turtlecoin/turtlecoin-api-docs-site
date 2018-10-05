@@ -9,7 +9,7 @@
 <li><a href="https://github.com/turtlecoin/turtlecoin-rpc-python">Python</a></li>
 <li><a href="https://github.com/turtlecoin/turtlecoin-rpc-go">Go</a></li>
 </ul>
-<pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">walletd</span><span class="o">-</span><span class="nx">rpc</span><span class="o">-</span><span class="nx">js</span>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">rpc</span>
 </code></pre><pre class="highlight php tab-php"><code>composer require turtlecoin/turtlecoin-walletd-rpc-php
 </code></pre><pre class="highlight python tab-python"><code><span class="n">pip3</span> <span class="n">install</span> <span class="n">turtlecoin</span>
 </code></pre><h2 id='wallet-rpc-api-interacting-with-the-api'><a href='#wallet-rpc-api-interacting-with-the-api' class='content-deep-link-anchor'>Interacting with the API</a></h2>
@@ -21,16 +21,24 @@
 <blockquote>
 <p>Configuration and instantiation</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+<pre class="highlight plaintext"><code>const TurtleService = require('turtlecoin-rpc').TurtleService
 
-<span class="kd">let</span> <span class="nx">rpcHost</span> <span class="o">=</span> <span class="s1">'http://localhost'</span><span class="p">,</span>
-    <span class="nx">rpcPort</span> <span class="o">=</span> <span class="mi">8070</span><span class="p">,</span>
-    <span class="nx">rpcPassword</span> <span class="o">=</span> <span class="s1">'passw0rd'</span><span class="p">,</span>
-    <span class="nx">logging</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+const service = new TurtleService({
+  host: '127.0.0.1', // ip address or hostname of the turtle-service host
+  port: 8070, // what port is turtle-service running on
+  timeout: 2000, // request timeout
+  ssl: false, // whether we need to connect using SSL/TLS
+  rpcPassword: 'changeme', // must be set to the password used to run turtle-service
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span>
-    <span class="nx">rpcHost</span><span class="p">,</span> <span class="nx">rpcPort</span><span class="p">,</span> <span class="nx">rpcPassword</span><span class="p">,</span> <span class="nx">logging</span>
-<span class="p">);</span>
+  // RPC API default values
+  defaultMixin: false, // the default mixin to use for transactions, the default setting is false which means we don't have a default value
+  defaultFee: 0.1, // the default transaction fee for transactions
+  defaultBlockCount: 1, // the default number of blocks when blockCount is required
+  decimalDivisor: 100, // Currency has many decimal places?
+  defaultFirstBlockIndex: 1, // the default first block index we will use when it is required
+  defaultUnlockTime: 0, // the default unlockTime for transactions
+  defaultFusionThreshold: 10000000, // the default fusionThreshold for fusion transactions
+})
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -69,18 +77,23 @@
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-reset'><a href='#wallet-rpc-api-reset' class='content-deep-link-anchor'>reset</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"reset","params":{"viewSecretKey":"xxxxx..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">viewSecretKey</span> <span class="o">=</span> <span class="s1">'xxxxx...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">reset</span><span class="p">(</span><span class="nx">viewSecretKey</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">})</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">reset</span><span class="p">({</span>
+  <span class="na">viewSecretKey</span><span class="p">:</span> <span class="s1">'12345678901234567890'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -139,22 +152,26 @@
 <p>No output in case of success.</p>
 
 <aside class="notice">
-  <div>If the <code>viewSecretKey</code> argument is not provided, the <code>reset()</code> method resets the wallet and 
-  re-syncs it. If the <code>viewSecretKey</code> argument is provided, the <code>reset()</code> method substitutes the 
+  <div>If the <code>viewSecretKey</code> argument is not provided, the <code>reset()</code> method resets the wallet and
+  re-syncs it. If the <code>viewSecretKey</code> argument is provided, the <code>reset()</code> method substitutes the
   existing wallet with a new one with the specified key.</div>
 </aside>
 <h2 id='wallet-rpc-api-save'><a href='#wallet-rpc-api-save' class='content-deep-link-anchor'>save</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"save","params":{}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">save</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -181,17 +198,21 @@
 <p>No input.
 No output in case of success.</p>
 <h2 id='wallet-rpc-api-getviewkey'><a href='#wallet-rpc-api-getviewkey' class='content-deep-link-anchor'>getViewKey</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getViewKey","params":{}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getViewKey</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getViewKey</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -235,18 +256,23 @@ No output in case of success.</p>
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-getspendkeys'><a href='#wallet-rpc-api-getspendkeys' class='content-deep-link-anchor'>getSpendKeys</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getSpendKeys","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getSpendKeys</span><span class="p">(</span><span class="nx">address</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getSpendKeys</span><span class="p">({</span>
+  <span class="na">address</span><span class="p">:</span> <span class="s1">'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -314,18 +340,23 @@ No output in case of success.</p>
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-getmnemonicseed'><a href='#wallet-rpc-api-getmnemonicseed' class='content-deep-link-anchor'>getMnemonicSeed</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getMnemonicSeed","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getMnemonicSeed</span><span class="p">(</span><span class="nx">address</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getMnemonicSeed</span><span class="p">({</span>
+  <span class="na">address</span><span class="p">:</span> <span class="s1">'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -391,17 +422,21 @@ No output in case of success.</p>
   <div>The first wallet address that is generated when the container is created is the deterministic address. Only one wallet from a multi-wallet container can be deterministic. If a non-deterministic address is given, the RPC response will be an error with the message: "Keys not deterministic."</div>
 </aside>
 <h2 id='wallet-rpc-api-getstatus'><a href='#wallet-rpc-api-getstatus' class='content-deep-link-anchor'>getStatus</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getStatus","params":{}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getStatus</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getStatus</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -463,17 +498,21 @@ No output in case of success.</p>
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-getaddresses'><a href='#wallet-rpc-api-getaddresses' class='content-deep-link-anchor'>getAddresses</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getAddresses","params":{}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getAddresses</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getAddresses</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -520,19 +559,25 @@ No output in case of success.</p>
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-createaddress'><a href='#wallet-rpc-api-createaddress' class='content-deep-link-anchor'>createAddress</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createAddress","params":{}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">secretSpendKey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">publicSpendKey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">createAddress</span><span class="p">(</span><span class="nx">secretSpendKey</span><span class="p">,</span> <span class="nx">publicSpendKey</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="c1">// Public and Secret key optional</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">createAddress</span><span class="p">({</span>
+  <span class="na">secretSpendKey</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+  <span class="na">publicSpendKey</span><span class="p">:</span> <span class="s1">''</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -600,18 +645,22 @@ No output in case of success.</p>
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-deleteaddress'><a href='#wallet-rpc-api-deleteaddress' class='content-deep-link-anchor'>deleteAddress</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"deleteAddress","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">deleteAddress</span><span class="p">(</span><span class="nx">address</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="c1">// Address optional</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">deleteAddress</span><span class="p">({</span>
+  <span class="na">address</span><span class="p">:</span> <span class="s1">'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -661,18 +710,22 @@ No output in case of success.</p>
 
 <p>In case of success returns an empty JSON object.</p>
 <h2 id='wallet-rpc-api-getbalance'><a href='#wallet-rpc-api-getbalance' class='content-deep-link-anchor'>getBalance</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getBalance","params":{"address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">(</span><span class="nx">address</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="c1">// Address optional</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">({</span>
+  <span class="na">address</span><span class="p">:</span> <span class="s1">'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -745,19 +798,23 @@ No output in case of success.</p>
   Also note, balances are expressed in shells, so a balance of 10000 is equal to 100.00 TRTL.</div>
 </aside>
 <h2 id='wallet-rpc-api-getblockhashes'><a href='#wallet-rpc-api-getblockhashes' class='content-deep-link-anchor'>getBlockHashes</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getBlockHashes","params":{"firstBlockIndex":0,"blockCount":3}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">firstBlockIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">blockCount</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getBlockHashes</span><span class="p">(</span><span class="nx">firstBlockIndex</span><span class="p">,</span> <span class="nx">blockCount</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="c1">//firstBlockIndex and blockCount mandatory</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getBlockHashes</span><span class="p">({</span>
+  <span class="na">firstBlockIndex</span><span class="p">:</span> <span class="mi">500000</span><span class="p">,</span>
+  <span class="na">blockCount</span><span class="p">:</span> <span class="mi">10</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -831,22 +888,27 @@ No output in case of success.</p>
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-gettransactionhashes'><a href='#wallet-rpc-api-gettransactionhashes' class='content-deep-link-anchor'>getTransactionHashes</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getTransactionHashes","params":{"firstBlockIndex":400000,"blockCount":100000}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">blockCount</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">firstBlockIndex</span> <span class="o">=</span> <span class="mi">400000</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">blockHash</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">paymentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getTransactionHashes</span><span class="p">(</span><span class="nx">blockCount</span><span class="p">,</span> <span class="nx">firstBlockIndex</span><span class="p">,</span> <span class="nx">blockHash</span><span class="p">,</span> <span class="nx">addresses</span><span class="p">,</span> <span class="nx">paymentId</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="c1">// Only blockCount is mandatory</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getTransactionHashes</span><span class="p">({</span>
+  <span class="na">addresses</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">"TRTLux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n"</span><span class="p">,</span>
+    <span class="s2">"TRTLv1mPerM2ckUuNvxrkzDE7QKd9PFVUXYbVfbvx8YxB5BYEdSqQvUFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJbQMVgF"</span>
+  <span class="p">],</span>
+  <span class="na">blockHash</span><span class="p">:</span> <span class="s1">'f98d6bbe80a81b3aa0aebd004096e2223524f58f347a1f21be122450f244b948'</span><span class="p">,</span>
+  <span class="na">blockCount</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -980,22 +1042,27 @@ A transfer is an amount-address pair. There could be several transfers in a sing
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-gettransactions'><a href='#wallet-rpc-api-gettransactions' class='content-deep-link-anchor'>getTransactions</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getTransactions","params":{"firstBlockIndex":400000,"blockCount":100000}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">blockCount</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">firstBlockIndex</span> <span class="o">=</span> <span class="mi">400000</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">blockHash</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">paymentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getTransactions</span><span class="p">(</span><span class="nx">blockCount</span><span class="p">,</span> <span class="nx">firstBlockIndex</span><span class="p">,</span> <span class="nx">blockHash</span><span class="p">,</span> <span class="nx">addresses</span><span class="p">,</span> <span class="nx">paymentId</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="c1">// Only one of either blockHash or firstBlockIndex may be supplied, but not both.</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getTransactions</span><span class="p">({</span>
+  <span class="na">addresses</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">"TRTLux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n"</span><span class="p">,</span>
+    <span class="s2">"TRTLv1mPerM2ckUuNvxrkzDE7QKd9PFVUXYbVfbvx8YxB5BYEdSqQvUFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJbQMVgF"</span>
+  <span class="p">],</span>
+  <span class="na">firstBlockIndex</span><span class="p">:</span> <span class="mi">469419</span><span class="p">,</span>
+  <span class="na">blockCount</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -1220,18 +1287,22 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-getunconfirmedtransactionhashes'><a href='#wallet-rpc-api-getunconfirmedtransactionhashes' class='content-deep-link-anchor'>getUnconfirmedTransactionHashes</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getUnconfirmedTransactionHashes","params":{}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getUnconfirmedTransactionHashes</span><span class="p">(</span><span class="nx">addresses</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="c1">// addresses not mandatory</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getUnconfirmedTransactionHashes</span><span class="p">({</span>
+  <span class="na">address</span><span class="p">:</span> <span class="s1">'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -1301,18 +1372,22 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-gettransaction'><a href='#wallet-rpc-api-gettransaction' class='content-deep-link-anchor'>getTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getTransaction","params":{"transactionHash":"55a23..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">transactionHash</span> <span class="o">=</span> <span class="s1">'55a23...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getTransaction</span><span class="p">(</span><span class="nx">transactionHash</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="c1">// transactionHash mandatory</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getTransaction</span><span class="p">({</span>
+  <span class="na">transactionHash</span><span class="p">:</span> <span class="s1">'d01e448f7b631cebd989e3a150258b0da59c66f96adecec392bbf61814310751'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -1451,28 +1526,24 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-sendtransaction'><a href='#wallet-rpc-api-sendtransaction' class='content-deep-link-anchor'>sendTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":5000}],"fee":10,"anonymity":7,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">anonymity</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">fee</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">unlockTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">extra</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">paymentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">changeAddress</span> <span class="o">=</span> <span class="s1">'TRTLyyyy...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="kd">let</span> <span class="nx">transfers</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="na">address</span><span class="p">:</span> <span class="s2">"TRTLxxxx..."</span><span class="p">,</span> <span class="na">amount</span><span class="p">:</span> <span class="mi">5000</span><span class="p">}</span>
-<span class="p">];</span>
-
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">sendTransaction</span><span class="p">(</span><span class="nx">anonymity</span><span class="p">,</span> <span class="nx">transfers</span><span class="p">,</span> <span class="nx">fee</span><span class="p">,</span> <span class="nx">addresses</span><span class="p">,</span> <span class="nx">unlockTime</span><span class="p">,</span> <span class="nx">extra</span><span class="p">,</span> <span class="nx">paymentId</span><span class="p">,</span> <span class="nx">changeAddress</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">sendTransaction</span><span class="p">({</span>
+  <span class="na">transfers</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">service</span><span class="p">.</span><span class="nx">newTransfer</span><span class="p">(</span><span class="s1">'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+  <span class="p">],</span>
+  <span class="na">fee</span><span class="p">:</span> <span class="mf">0.1</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -1609,28 +1680,24 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-createdelayedtransaction'><a href='#wallet-rpc-api-createdelayedtransaction' class='content-deep-link-anchor'>createDelayedTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createDelayedTransaction","params":{"transfers":[{"address":"TRTLxxxx...","amount":5000}],"fee":10,"anonymity":7,"changeAddress":"TRTLyyyy..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">anonymity</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">fee</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">unlockTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">extra</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">paymentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">changeAddress</span> <span class="o">=</span> <span class="s1">'TRTLyyyy...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="kd">let</span> <span class="nx">transfers</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="na">address</span><span class="p">:</span> <span class="s2">"TRTLxxxx..."</span><span class="p">,</span> <span class="na">amount</span><span class="p">:</span> <span class="mi">5000</span><span class="p">}</span>
-<span class="p">];</span>
-
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">createDelayedTransaction</span><span class="p">(</span><span class="nx">anonymity</span><span class="p">,</span> <span class="nx">transfers</span><span class="p">,</span> <span class="nx">fee</span><span class="p">,</span> <span class="nx">addresses</span><span class="p">,</span> <span class="nx">unlockTime</span><span class="p">,</span> <span class="nx">extra</span><span class="p">,</span> <span class="nx">paymentId</span><span class="p">,</span> <span class="nx">changeAddress</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">createDelayedTransaction</span><span class="p">({</span>
+  <span class="na">transfers</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">service</span><span class="p">.</span><span class="nx">newTransfer</span><span class="p">(</span><span class="s1">'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+  <span class="p">],</span>
+  <span class="na">fee</span><span class="p">:</span> <span class="mf">0.1</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -1768,17 +1835,19 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-getdelayedtransactionhashes'><a href='#wallet-rpc-api-getdelayedtransactionhashes' class='content-deep-link-anchor'>getDelayedTransactionHashes</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getDelayedTransactionHashes","params":{}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">getDelayedTransactionHashes</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">getDelayedTransactionHashes</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -1822,18 +1891,21 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-deletedelayedtransaction'><a href='#wallet-rpc-api-deletedelayedtransaction' class='content-deep-link-anchor'>deleteDelayedTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"deleteDelayedTransaction","params":{"transactionHash":"b3e37..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">transactionHash</span> <span class="o">=</span> <span class="s1">'b3e37...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">deleteDelayedTransaction</span><span class="p">(</span><span class="nx">transactionHash</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">deleteDelayedTransaction</span><span class="p">({</span>
+  <span class="na">transactionHash</span><span class="p">:</span> <span class="s1">'d01e448f7b631cebd989e3a150258b0da59c66f96adecec392bbf61814310751'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -1883,18 +1955,21 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 
 <p>In case of success returns an empty JSON object.</p>
 <h2 id='wallet-rpc-api-senddelayedtransaction'><a href='#wallet-rpc-api-senddelayedtransaction' class='content-deep-link-anchor'>sendDelayedTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendDelayedTransaction","params":{"transactionHash":"c37cd..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">transactionHash</span> <span class="o">=</span> <span class="s1">'c37cd...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">sendDelayedTransaction</span><span class="p">(</span><span class="nx">transactionHash</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">sendDelayedTransaction</span><span class="p">({</span>
+  <span class="na">transactionHash</span><span class="p">:</span> <span class="s1">'d01e448f7b631cebd989e3a150258b0da59c66f96adecec392bbf61814310751'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -1945,21 +2020,21 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 
 <p>In case of success returns an empty JSON object.</p>
 <h2 id='wallet-rpc-api-sendfusiontransaction'><a href='#wallet-rpc-api-sendfusiontransaction' class='content-deep-link-anchor'>sendFusionTransaction</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"sendFusionTransaction","params":{"threshold":1000000,"anonymity":7,"addresses":["TRTLxxxx...","TRTLyyyy..."],"destinationAddress":"TRTLzzzz..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">threshold</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">anonymity</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'TRTLxxxx...'</span><span class="p">,</span> <span class="s1">'TRTLyyyy...'</span><span class="p">];</span>
-<span class="kd">let</span> <span class="nx">destinationAddress</span> <span class="o">=</span> <span class="s1">'TRTLzzzz...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">sendFusionTransaction</span><span class="p">(</span><span class="nx">threshold</span><span class="p">,</span> <span class="nx">anonymity</span><span class="p">,</span> <span class="nx">addresses</span><span class="p">,</span> <span class="nx">destinationAddress</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">sendFusionTransaction</span><span class="p">({</span>
+  <span class="na">destinationAddress</span><span class="p">:</span> <span class="s1">'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -1993,9 +2068,9 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code>sendFusionTransaction()</code> method allows you to send a fusion transaction, by taking funds from selected addresses and 
+<p><code>sendFusionTransaction()</code> method allows you to send a fusion transaction, by taking funds from selected addresses and
 transferring them to the destination address.
-If there aren&#39;t any outputs that can be optimized, <code>sendFusionTransaction()</code> will return an error. You can 
+If there aren&#39;t any outputs that can be optimized, <code>sendFusionTransaction()</code> will return an error. You can
 use <code>estimateFusion</code> to check the outputs, available for the optimization.</p>
 
 <p><strong>Input</strong></p>
@@ -2056,19 +2131,24 @@ use <code>estimateFusion</code> to check the outputs, available for the optimiza
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-estimatefusion'><a href='#wallet-rpc-api-estimatefusion' class='content-deep-link-anchor'>estimateFusion</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"estimateFusion","params":{"threshold":1000000,"addresses":["TRTLxxxx...","TRTLyyyy..."]}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TurtleCoinWalletd</span> <span class="nx">from</span> <span class="s1">'turtlecoin-walletd-rpc-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
 
-<span class="kd">let</span> <span class="nx">walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoinWalletd</span><span class="p">(</span><span class="nx">hostname</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">logging</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">threshold</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'TRTLxxxx...'</span><span class="p">,</span> <span class="s1">'TRTLyyyy...'</span><span class="p">];</span>
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
 
-<span class="nx">walletd</span><span class="p">.</span><span class="nx">estimateFusion</span><span class="p">(</span><span class="nx">threshold</span><span class="p">,</span> <span class="nx">addresses</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">});</span>
+<span class="nx">service</span><span class="p">.</span><span class="nx">estimateFusion</span><span class="p">({</span>
+  <span class="na">threshold</span><span class="p">:</span> <span class="mi">100000000</span><span class="p">,</span>
+  <span class="na">addresses</span><span class="p">:[</span>
+    <span class="s1">'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'</span>
+  <span class="p">]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -2146,7 +2226,22 @@ This method is used to understand if a fusion transaction can be created. If <co
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-createintegratedaddress'><a href='#wallet-rpc-api-createintegratedaddress' class='content-deep-link-anchor'>createIntegratedAddress</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createIntegratedAddress","params":{"paymentId":"7FE73BD90EF05DEA0B5C15FC78696619C50DD5F2BA628F2FD16A2E3445B1922F", "address":"TRTLxxxx..."}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="cm">/* Needs to be added */</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
+
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
+
+<span class="nx">service</span><span class="p">.</span><span class="nx">createIntegratedAddress</span><span class="p">({</span>
+  <span class="na">address</span><span class="p">:</span> <span class="s1">'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'</span><span class="p">,</span>
+  <span class="na">paymentId</span><span class="p">:</span> <span class="s1">'80ec855eef7df4bce718442cabe086f19dfdd0d03907c7768eddb8eca8c5a667'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
@@ -2217,7 +2312,19 @@ This method is used to understand if a fusion transaction can be created. If <co
 </tr>
 </tbody></table>
 <h2 id='wallet-rpc-api-getfeeinfo'><a href='#wallet-rpc-api-getfeeinfo' class='content-deep-link-anchor'>getFeeInfo</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"getFeeInfo","params":{}}'</span> http://localhost:8070/json_rpc
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="cm">/* Needs to be added */</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">TurtleService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'turtlecoin-rpc'</span><span class="p">).</span><span class="nx">TurtleService</span>
+
+<span class="kr">const</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="c1">// ip address or hostname of the turtle-service host</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">8070</span><span class="p">,</span> <span class="c1">// what port is turtle-service running on</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
+  <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
+  <span class="na">rpcPassword</span><span class="p">:</span> <span class="s1">'changeme'</span><span class="p">,</span> <span class="c1">// must be set to the password used to run turtle-service</span>
+<span class="p">})</span>
+
+<span class="nx">service</span><span class="p">.</span><span class="nx">getFeeInfo</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
 
