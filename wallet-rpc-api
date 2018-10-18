@@ -12,7 +12,8 @@
 <pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">rpc</span>
 </code></pre><pre class="highlight php tab-php"><code>composer require turtlecoin/turtlecoin-walletd-rpc-php
 </code></pre><pre class="highlight python tab-python"><code><span class="n">pip3</span> <span class="n">install</span> <span class="n">turtlecoin</span>
-</code></pre><h2 id='wallet-rpc-api-interacting-with-the-api'><a href='#wallet-rpc-api-interacting-with-the-api' class='content-deep-link-anchor'>Interacting with the API</a></h2>
+</code></pre><pre class="highlight go tab-go"><code><span class="k">go</span><span class="x"> </span><span class="n">get</span><span class="x"> </span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">turtlecoin</span><span class="o">/</span><span class="n">turtlecoin</span><span class="o">-</span><span class="n">rpc</span><span class="o">-</span><span class="k">go</span><span class="x">
+</span></code></pre><h2 id='wallet-rpc-api-interacting-with-the-api'><a href='#wallet-rpc-api-interacting-with-the-api' class='content-deep-link-anchor'>Interacting with the API</a></h2>
 <blockquote>
 <p>API endpoint example</p>
 </blockquote>
@@ -56,7 +57,19 @@
 <span class="n">rpc_password</span> <span class="o">=</span> <span class="s">'passw0rd'</span>
 
 <span class="n">walletd</span> <span class="o">=</span> <span class="n">Walletd</span><span class="p">(</span><span class="n">rpc_password</span><span class="p">,</span> <span class="n">rpc_host</span><span class="p">,</span> <span class="n">rpc_port</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+  </span><span class="n">trpc</span><span class="x"> </span><span class="s">"github.com/turtlecoin/turtlecoin-rpc-go"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+
+</span><span class="n">rpcHost</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"localhost"</span><span class="x">
+</span><span class="n">rpcPort</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">8070</span><span class="x">
+</span><span class="n">rpcPassword</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"passw0rd"</span><span class="x">
+
+</span><span class="n">service</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">trpc</span><span class="o">.</span><span class="n">Walletd</span><span class="p">{</span><span class="x">
+  </span><span class="n">URL</span><span class="o">:</span><span class="x"> </span><span class="n">rpcHost</span><span class="p">,</span><span class="x">
+  </span><span class="n">Port</span><span class="o">:</span><span class="x"> </span><span class="n">rpcPort</span><span class="p">,</span><span class="x">
+  </span><span class="n">RPCPassword</span><span class="o">:</span><span class="x"> </span><span class="n">rpcPassword</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <p>To make a JSON RPC request to your TurtleCoin RPC Wallet you should use a POST request that looks like this:</p>
 
 <p><code>http://&lt;service address&gt;:&lt;service port&gt;/json_rpc</code></p>
@@ -90,7 +103,14 @@ echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">view_secret_key</span> <span class="o">=</span> <span class="s">'xxxxx...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">view_secret_key</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">scanHeight</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="x"> </span><span class="c">// starting height to scan</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">Reset</span><span class="p">(</span><span class="n">scanHeight</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -149,7 +169,13 @@ echo $response-&gt;getBody()-&gt;getContents();
 echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">Save</span><span class="p">()</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -173,7 +199,13 @@ No output in case of success.</p>
 echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_view_key</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetViewKey</span><span class="p">()</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -218,7 +250,14 @@ echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_spend_keys</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">address</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"TRTLxxxx..."</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetSpendKeys</span><span class="p">(</span><span class="n">address</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -285,7 +324,14 @@ echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_mnemonic_seed</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">address</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"TRTLxxxx..."</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetMnemonicSeed</span><span class="p">(</span><span class="n">address</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -346,7 +392,13 @@ echo $response-&gt;getBody()-&gt;getContents();
 echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">()</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -405,7 +457,13 @@ echo $response-&gt;getBody()-&gt;getContents();
 echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_addresses</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetAddresses</span><span class="p">()</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -456,7 +514,17 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="n">spend_public_key</span> <span class="o">=</span> <span class="s">''</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">create_address</span><span class="p">(</span><span class="n">spend_secret_key</span><span class="p">,</span> <span class="n">spend_public_key</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">spendSecretKey</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="n">spendPublicKey</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="n">scanHeight</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">850000</span><span class="x">
+</span><span class="n">newAddress</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="no">true</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">CreateAddress</span><span class="p">(</span><span class="n">spendSecretKey</span><span class="p">,</span><span class="x"> </span><span class="n">spendPublicKey</span><span class="p">,</span><span class="x"> </span><span class="n">scanHeight</span><span class="p">,</span><span class="x"> </span><span class="n">newAddress</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -519,7 +587,14 @@ echo $response-&gt;getBody()-&gt;getContents();
 
 <span class="c"># If the delete was successful, response will be True</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">address</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"TRTLxxxx..."</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">DeleteAddress</span><span class="p">(</span><span class="n">address</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -565,7 +640,14 @@ echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">address</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"TRTLxxxx..."</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetBalance</span><span class="p">(</span><span class="n">address</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -638,7 +720,15 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="n">block_count</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_block_hashes</span><span class="p">(</span><span class="n">first_block_index</span><span class="p">,</span> <span class="n">block_count</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">firstBlockIndex</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="x">
+</span><span class="n">blockCount</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">3</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetBlockHashes</span><span class="p">(</span><span class="n">firstBlockIndex</span><span class="p">,</span><span class="x"> </span><span class="n">blockCount</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -724,7 +814,18 @@ echo $response-&gt;getBody()-&gt;getContents();
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_transaction_hashes</span><span class="p">(</span><span class="n">addresses</span><span class="p">,</span> <span class="n">block_hash</span><span class="p">,</span> <span class="n">block_count</span><span class="p">,</span> <span class="n">payment_id</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">addresses</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"TRTLxxxx..."</span><span class="p">}</span><span class="x">
+</span><span class="n">blockHash</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="n">firstBlockIndex</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="x">
+</span><span class="n">blockCount</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">3</span><span class="x">
+</span><span class="n">paymentID</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetTransactionHashes</span><span class="p">(</span><span class="n">addresses</span><span class="p">,</span><span class="x"> </span><span class="n">blockHash</span><span class="p">,</span><span class="x"> </span><span class="n">firstBlockIndex</span><span class="p">,</span><span class="x"> </span><span class="n">blockCount</span><span class="p">,</span><span class="x"> </span><span class="n">paymentID</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -860,7 +961,18 @@ echo $response-&gt;getBody()-&gt;getContents();
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_transactions</span><span class="p">(</span><span class="n">addresses</span><span class="p">,</span> <span class="n">block_hash</span><span class="p">,</span> <span class="n">block_count</span><span class="p">,</span> <span class="n">payment_id</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">addresses</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"TRTLxxxx..."</span><span class="p">}</span><span class="x">
+</span><span class="n">blockHash</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="n">firstBlockIndex</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="x">
+</span><span class="n">blockCount</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">3</span><span class="x">
+</span><span class="n">paymentID</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetTransactions</span><span class="p">(</span><span class="n">addresses</span><span class="p">,</span><span class="x"> </span><span class="n">blockHash</span><span class="p">,</span><span class="x"> </span><span class="n">firstBlockIndex</span><span class="p">,</span><span class="x"> </span><span class="n">blockCount</span><span class="p">,</span><span class="x"> </span><span class="n">paymentID</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -1070,7 +1182,14 @@ echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_unconfirmed_transaction_hashes</span><span class="p">(</span><span class="n">addresses</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">addresses</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"TRTLxxxx..."</span><span class="p">}</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetUnconfirmedTransactionHashes</span><span class="p">(</span><span class="n">addresses</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -1137,7 +1256,14 @@ echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">transaction_hash</span> <span class="o">=</span> <span class="s">'55a23...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_transaction</span><span class="p">(</span><span class="n">transaction_hash</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">transactionHash</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"55a23..."</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetTransaction</span><span class="p">(</span><span class="n">transactionHash</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -1303,7 +1429,27 @@ echo $response-&gt;getBody()-&gt;getContents();
     <span class="n">transfers</span><span class="p">,</span> <span class="n">anonymity</span><span class="p">,</span> <span class="n">fee</span><span class="p">,</span> <span class="n">addresses</span><span class="p">,</span> <span class="n">change_address</span><span class="p">,</span> <span class="n">extra</span><span class="p">,</span> <span class="n">payment_id</span><span class="p">,</span> <span class="n">unlock_time</span>
 <span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">addresses</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"TRTLyyyy..."</span><span class="p">}</span><span class="x"> </span><span class="c">// can be empty</span><span class="x">
+</span><span class="n">unlockTime</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="x">
+</span><span class="n">extra</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="n">paymentID</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="n">fee</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">10</span><span class="x">
+</span><span class="n">changeAddress</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"TRTLyyyy..."</span><span class="x">
+
+</span><span class="n">transfers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="k">interface</span><span class="p">{}{</span><span class="x">
+  </span><span class="p">{</span><span class="x">
+    </span><span class="s">"address"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"TRTLxxxx..."</span><span class="p">,</span><span class="x">
+    </span><span class="s">"amount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="m">5000</span><span class="p">,</span><span class="x">
+  </span><span class="p">},</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">SendTransaction</span><span class="p">(</span><span class="n">addresses</span><span class="p">,</span><span class="x"> </span><span class="n">transfers</span><span class="p">,</span><span class="x"> </span><span class="n">fee</span><span class="p">,</span><span class="x"> </span><span class="n">unlockTime</span><span class="p">,</span><span class="x"> </span><span class="n">extra</span><span class="p">,</span><span class="x"> </span><span class="n">paymentID</span><span class="p">,</span><span class="x"> </span><span class="n">changeAddress</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -1440,7 +1586,27 @@ echo $response-&gt;getBody()-&gt;getContents();
     <span class="n">transfers</span><span class="p">,</span> <span class="n">anonymity</span><span class="p">,</span> <span class="n">fee</span><span class="p">,</span> <span class="n">addresses</span><span class="p">,</span> <span class="n">change_address</span><span class="p">,</span> <span class="n">extra</span><span class="p">,</span> <span class="n">payment_id</span><span class="p">,</span> <span class="n">unlock_time</span>
 <span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">addresses</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"TRTLyyyy..."</span><span class="p">}</span><span class="x"> </span><span class="c">// can be empty</span><span class="x">
+</span><span class="n">unlockTime</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="x">
+</span><span class="n">extra</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="n">paymentID</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="n">fee</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">10</span><span class="x">
+</span><span class="n">changeAddress</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"TRTLyyyy..."</span><span class="x">
+
+</span><span class="n">transfers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="k">interface</span><span class="p">{}{</span><span class="x">
+  </span><span class="p">{</span><span class="x">
+    </span><span class="s">"address"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"TRTLxxxx..."</span><span class="p">,</span><span class="x">
+    </span><span class="s">"amount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="m">5000</span><span class="p">,</span><span class="x">
+  </span><span class="p">},</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">CreateDelayedTransaction</span><span class="p">(</span><span class="n">addresses</span><span class="p">,</span><span class="x"> </span><span class="n">transfers</span><span class="p">,</span><span class="x"> </span><span class="n">fee</span><span class="p">,</span><span class="x"> </span><span class="n">unlockTime</span><span class="p">,</span><span class="x"> </span><span class="n">extra</span><span class="p">,</span><span class="x"> </span><span class="n">paymentID</span><span class="p">,</span><span class="x"> </span><span class="n">changeAddress</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -1544,7 +1710,13 @@ echo $response-&gt;getBody()-&gt;getContents();
 echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_delayed_transaction_hashes</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetDelayedTransactionHashes</span><span class="p">()</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -1589,7 +1761,14 @@ echo $response-&gt;getBody()-&gt;getContents();
 
 <span class="c"># If delete is successful, the response will be True</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">transactionHash</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"50d83..."</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">DeleteDelayedTransaction</span><span class="p">(</span><span class="n">transactionHash</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -1637,7 +1816,14 @@ echo $response-&gt;getBody()-&gt;getContents();
 
 <span class="c"># If transaction is sent successful, the response will be True</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">transactionHash</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"50d83..."</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">SendDelayedTransaction</span><span class="p">(</span><span class="n">transactionHash</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -1690,7 +1876,16 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">send_fusion_transaction</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">anonymity</span><span class="p">,</span> <span class="n">addresses</span><span class="p">,</span> <span class="n">destination_address</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">threshold</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">1000000</span><span class="x">
+</span><span class="n">addresses</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"TRTLxxxx..."</span><span class="p">,</span><span class="x"> </span><span class="s">"TRTLyyyy..."</span><span class="p">}</span><span class="x">
+</span><span class="n">destinationAddress</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"TRTLzzzz..."</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">SendfusionTransaction</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span><span class="x"> </span><span class="n">addresses</span><span class="p">,</span><span class="x"> </span><span class="n">destinationAddress</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -1782,7 +1977,15 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="n">addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s">'TRTLxxxx...'</span><span class="p">,</span> <span class="s">'TRTLyyyy...'</span><span class="p">]</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">estimate_fusion</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">addresses</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">threshold</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">1000000</span><span class="x">
+</span><span class="n">addresses</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"TRTLxxxx..."</span><span class="p">,</span><span class="s">"TRTLyyyy..."</span><span class="p">}</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">EstimateFusion</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span><span class="x"> </span><span class="n">addresses</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -1858,7 +2061,15 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="n">payment_id</span> <span class="o">=</span> <span class="s">'7FE73BD90EF05DEA0B5C15FC78696619C50DD5F2BA628F2FD16A2E3445B1922F'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">create_integrated_address</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">payment_id</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">address</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"TRTLxxxx..."</span><span class="x">
+</span><span class="n">paymentID</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"7FE73BD90EF05DEA0B5C15FC78696619C50DD5F2BA628F2FD16A2E3445B1922F"</span><span class="x">
+</span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">CreateIntegratedAddress</span><span class="p">(</span><span class="n">address</span><span class="p">,</span><span class="x"> </span><span class="n">paymentID</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
@@ -1920,7 +2131,13 @@ echo $response-&gt;getBody()-&gt;getContents();
 echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_fee_info</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre>
+</code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetFeeInfo</span><span class="p">()</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x"> </span><span class="k">else</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 <blockquote>
 <p>Expected output:</p>
 </blockquote>
