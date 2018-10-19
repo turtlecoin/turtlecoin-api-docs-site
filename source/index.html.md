@@ -6,6 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
   - php
   - python
+  - go
 
 toc_footers:
   - <a href='https://github.com/turtlecoin/turtlecoin-docs/tree/master/api' target='_blank'>Edit this on GitHub</a>
