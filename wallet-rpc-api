@@ -5,12 +5,12 @@
 
 <ul>
 <li><a href="https://www.npmjs.com/package/turtlecoin-rpc">JavaScript</a></li>
-<li><a href="https://github.com/turtlecoin/turtlecoin-walletd-rpc-php">PHP</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-rpc-php">PHP</a></li>
 <li><a href="https://github.com/turtlecoin/turtlecoin-rpc-python">Python</a></li>
 <li><a href="https://github.com/turtlecoin/turtlecoin-rpc-go">Go</a></li>
 </ul>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">rpc</span>
-</code></pre><pre class="highlight php tab-php"><code>composer require turtlecoin/turtlecoin-walletd-rpc-php
+</code></pre><pre class="highlight php tab-php"><code>composer require turtlecoin/turtlecoin-rpc-php
 </code></pre><pre class="highlight python tab-python"><code><span class="n">pip3</span> <span class="n">install</span> <span class="n">turtlecoin</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="k">go</span><span class="x"> </span><span class="n">get</span><span class="x"> </span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">turtlecoin</span><span class="o">/</span><span class="n">turtlecoin</span><span class="o">-</span><span class="n">rpc</span><span class="o">-</span><span class="k">go</span><span class="x">
 </span></code></pre><h2 id='wallet-rpc-api-interacting-with-the-api'><a href='#wallet-rpc-api-interacting-with-the-api' class='content-deep-link-anchor'>Interacting with the API</a></h2>
@@ -41,7 +41,7 @@
   <span class="na">defaultFusionThreshold</span><span class="p">:</span> <span class="mi">10000000</span><span class="p">,</span> <span class="c1">// the default fusionThreshold for fusion transactions</span>
 <span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-<span class="k">use</span> <span class="nx">TurtleCoin\Walletd</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">TurtleCoin\TurtleService</span><span class="p">;</span>
 
 <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'rpcHost'</span>     <span class="o">=&gt;</span> <span class="s1">'http://localhost'</span><span class="p">,</span>
@@ -49,7 +49,7 @@
     <span class="s1">'rpcPassword'</span> <span class="o">=&gt;</span> <span class="s1">'passw0rd'</span><span class="p">,</span>
 <span class="p">];</span>
 
-<span class="nv">$walletd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Walletd\Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+<span class="nv">$turtleService</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleService</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">turtlecoin</span> <span class="kn">import</span> <span class="n">Walletd</span>
 
 <span class="n">rpc_host</span> <span class="o">=</span> <span class="s">'localhost'</span>
@@ -98,9 +98,10 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$viewSecretKey = 'xxxxx...';
-$response = $walletd-&gt;reset($viewSecretKey);
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$viewSecretKey</span> <span class="o">=</span> <span class="s1">'xxxxx...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">reset</span><span class="p">(</span><span class="nv">$viewSecretKey</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">view_secret_key</span> <span class="o">=</span> <span class="s">'xxxxx...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">view_secret_key</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -166,8 +167,9 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$response = $walletd-&gt;save();
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">Save</span><span class="p">()</span><span class="x">
@@ -196,8 +198,9 @@ No output in case of success.</p>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$response = $walletd-&gt;getViewKey();
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getViewKey</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_view_key</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetViewKey</span><span class="p">()</span><span class="x">
@@ -245,9 +248,10 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$address = 'TRTLxxxx...';
-$response = $walletd-&gt;getSpendKeys($address);
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getSpendKeys</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_spend_keys</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -319,9 +323,10 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$address = 'TRTLxxxx...';
-$response = $walletd-&gt;getMnemonicSeed($address);
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getMnemonicSeed</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_mnemonic_seed</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -389,8 +394,9 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$response = $walletd-&gt;getStatus();
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getStatus</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">()</span><span class="x">
@@ -454,8 +460,9 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">//do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$response = $walletd-&gt;getAddresses();
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getAddresses</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_addresses</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetAddresses</span><span class="p">()</span><span class="x">
@@ -507,10 +514,11 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">//do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$secretSpendKey = null;
-$publicSpendKey = null;
-$response = $walletd-&gt;createAddress($secretSpendKey, $publicSpendKey);
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$secretSpendKey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$publicSpendKey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">createAddress</span><span class="p">(</span><span class="nv">$secretSpendKey</span><span class="p">,</span> <span class="nv">$publicSpendKey</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">spend_secret_key</span> <span class="o">=</span> <span class="s">''</span>
 <span class="n">spend_public_key</span> <span class="o">=</span> <span class="s">''</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">create_address</span><span class="p">(</span><span class="n">spend_secret_key</span><span class="p">,</span> <span class="n">spend_public_key</span><span class="p">)</span>
@@ -580,9 +588,10 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$address = 'TRTLxxxx...';
-$response = $walletd-&gt;deleteAddress($address);
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">deleteAddress</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">delete_address</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
 
@@ -635,9 +644,10 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$address = 'TRTLxxxx...';
-$response = $walletd-&gt;getBalance($address);
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getBalance</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -713,10 +723,11 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$firstBlockIndex = 0;
-$blockCount = 3;
-$response = $walletd-&gt;getBlockHashes($firstBlockIndex, $blockCount);
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$firstBlockIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nv">$blockCount</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getBlockHashes</span><span class="p">(</span><span class="nv">$firstBlockIndex</span><span class="p">,</span> <span class="nv">$blockCount</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">first_block_index</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">block_count</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_block_hashes</span><span class="p">(</span><span class="n">first_block_index</span><span class="p">,</span> <span class="n">block_count</span><span class="p">)</span>
@@ -797,17 +808,18 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$blockCount = 100000;
-$firstBlockIndex = 400000;
-$blockHash = null;
-$addresses = null;
-$paymentId = null;
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$blockCount</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
+<span class="nv">$firstBlockIndex</span> <span class="o">=</span> <span class="mi">400000</span><span class="p">;</span>
+<span class="nv">$blockHash</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$paymentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
-$response = $walletd-&gt;getTransactionHashes(
-    $blockCount, $firstBlockIndex, $blockHash, $addresses, $paymentId
-);
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getTransactionHashes</span><span class="p">(</span>
+    <span class="nv">$blockCount</span><span class="p">,</span> <span class="nv">$firstBlockIndex</span><span class="p">,</span> <span class="nv">$blockHash</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">,</span> <span class="nv">$paymentId</span>
+<span class="p">);</span>
 
-echo $response-&gt;getBody()-&gt;getContents();
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">block_count</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="n">block_hash</span> <span class="o">=</span> <span class="s">'6c285...'</span>
 <span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
@@ -944,17 +956,18 @@ A transfer is an amount-address pair. There could be several transfers in a sing
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$blockCount = 100000;
-$firstBlockIndex = 400000;
-$blockHash = null;
-$addresses = null;
-$paymentId = null;
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$blockCount</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
+<span class="nv">$firstBlockIndex</span> <span class="o">=</span> <span class="mi">400000</span><span class="p">;</span>
+<span class="nv">$blockHash</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$paymentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
-$response = $walletd-&gt;getTransactions(
-    $blockCount, $firstBlockIndex, $blockHash, $addresses, $paymentId
-);
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getTransactions</span><span class="p">(</span>
+    <span class="nv">$blockCount</span><span class="p">,</span> <span class="nv">$firstBlockIndex</span><span class="p">,</span> <span class="nv">$blockHash</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">,</span> <span class="nv">$paymentId</span>
+<span class="p">);</span>
 
-echo $response-&gt;getBody()-&gt;getContents();
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">block_count</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="n">block_hash</span> <span class="o">=</span> <span class="s">'6c285...'</span>
 <span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1177,9 +1190,10 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$addresses = null;
-$response = $walletd-&gt;getUnconfirmedTransactionHashes($addresses);
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getUnconfirmedTransactionHashes</span><span class="p">(</span><span class="nv">$addresses</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_unconfirmed_transaction_hashes</span><span class="p">(</span><span class="n">addresses</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1251,9 +1265,10 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$transactionHash = '55a23...';
-$response = $walletd-&gt;getTransaction($transactionHash);
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$transactionHash</span> <span class="o">=</span> <span class="s1">'55a23...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getTransaction</span><span class="p">(</span><span class="nv">$transactionHash</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">transaction_hash</span> <span class="o">=</span> <span class="s">'55a23...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_transaction</span><span class="p">(</span><span class="n">transaction_hash</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1397,23 +1412,24 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$anonymity = 3;
-$fee = 10;
-$addresses = null;
-$unlockTime = null;
-$extra = null;
-$paymentId = null;
-$changeAddress = 'TRTLyyyy...';
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nv">$fee</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="nv">$addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$unlockTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$extra</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$paymentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$changeAddress</span> <span class="o">=</span> <span class="s1">'TRTLyyyy...'</span><span class="p">;</span>
 
-$transfers = [
-    ["address" =&gt; "TRTLxxxx...", "amount"  =&gt; 5000],
-];
+<span class="nv">$transfers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">"address"</span> <span class="o">=&gt;</span> <span class="s2">"TRTLxxxx..."</span><span class="p">,</span> <span class="s2">"amount"</span>  <span class="o">=&gt;</span> <span class="mi">5000</span><span class="p">],</span>
+<span class="p">];</span>
 
-$response = $walletd-&gt;sendTransaction(
-    $anonymity, $transfers, $fee, $addresses, $unlockTime, $extra, $paymentId, $changeAddress
-);
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">sendTransaction</span><span class="p">(</span>
+    <span class="nv">$anonymity</span><span class="p">,</span> <span class="nv">$transfers</span><span class="p">,</span> <span class="nv">$fee</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">,</span> <span class="nv">$unlockTime</span><span class="p">,</span> <span class="nv">$extra</span><span class="p">,</span> <span class="nv">$paymentId</span><span class="p">,</span> <span class="nv">$changeAddress</span>
+<span class="p">);</span>
 
-echo $response-&gt;getBody()-&gt;getContents();
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">anonymity</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">fee</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1554,23 +1570,24 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$anonymity = 3;
-$fee = 10;
-$addresses = null;
-$unlockTime = null;
-$extra = null;
-$paymentId = null;
-$changeAddress = 'TRTLyyyy...';
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nv">$fee</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="nv">$addresses</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$unlockTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$extra</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$paymentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$changeAddress</span> <span class="o">=</span> <span class="s1">'TRTLyyyy...'</span><span class="p">;</span>
 
-$transfers = [
-    ["address" =&gt; "TRTLxxxx...", "amount"  =&gt; 5000],
-];
+<span class="nv">$transfers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">"address"</span> <span class="o">=&gt;</span> <span class="s2">"TRTLxxxx..."</span><span class="p">,</span> <span class="s2">"amount"</span>  <span class="o">=&gt;</span> <span class="mi">5000</span><span class="p">],</span>
+<span class="p">];</span>
 
-$response = $walletd-&gt;createDelayedTransaction(
-    $anonymity, $transfers, $fee, $addresses, $unlockTime, $extra, $paymentId, $changeAddress
-);
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">createDelayedTransaction</span><span class="p">(</span>
+    <span class="nv">$anonymity</span><span class="p">,</span> <span class="nv">$transfers</span><span class="p">,</span> <span class="nv">$fee</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">,</span> <span class="nv">$unlockTime</span><span class="p">,</span> <span class="nv">$extra</span><span class="p">,</span> <span class="nv">$paymentId</span><span class="p">,</span> <span class="nv">$changeAddress</span>
+<span class="p">);</span>
 
-echo $response-&gt;getBody()-&gt;getContents();
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">anonymity</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">fee</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1707,8 +1724,9 @@ echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">service</span><span class="p">.</span><span class="nx">getDelayedTransactionHashes</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$response = $walletd-&gt;getDelayedTransactionHashes();
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getDelayedTransactionHashes</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_delayed_transaction_hashes</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetDelayedTransactionHashes</span><span class="p">()</span><span class="x">
@@ -1754,9 +1772,10 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$transactionHash = 'b3e37...';
-$response = $walletd-&gt;deleteDelayedTransaction($transactionHash);
-echo $response-&gt;getBody()-&gt;getContents();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$transactionHash</span> <span class="o">=</span> <span class="s1">'b3e37...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">deleteDelayedTransaction</span><span class="p">(</span><span class="nv">$transactionHash</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">transaction_hash</span> <span class="o">=</span> <span class="s">'50d83...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">delete_delayed_transaction</span><span class="p">(</span><span class="n">transaction_hash</span><span class="p">)</span>
 
@@ -1808,10 +1827,11 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$transactionHash = 'c37cd...';
-$response = $walletd-&gt;sendDelayedTransaction($transactionHash);
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$transactionHash</span> <span class="o">=</span> <span class="s1">'c37cd...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">sendDelayedTransaction</span><span class="p">(</span><span class="nv">$transactionHash</span><span class="p">);</span>
 
-echo $response-&gt;getBody()-&gt;getContents();
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">transaction_hash</span> <span class="o">=</span> <span class="s">'50d83...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">send_delayed_transaction</span><span class="p">(</span><span class="n">transaction_hash</span><span class="p">)</span>
 
@@ -1863,13 +1883,14 @@ echo $response-&gt;getBody()-&gt;getContents();
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$threshold = 1000000;
-$anonymity = 3;
-$addresses = ['TRTLxxxx...', 'TRTLyyyy...'];
-$destinationAddress = 'TRTLzzzz...';
-$response = $walletd-&gt;sendFusionTransaction($threshold, $anonymity, $addresses, $destinationAddress);
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$threshold</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
+<span class="nv">$anonymity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nv">$addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'TRTLxxxx...'</span><span class="p">,</span> <span class="s1">'TRTLyyyy...'</span><span class="p">];</span>
+<span class="nv">$destinationAddress</span> <span class="o">=</span> <span class="s1">'TRTLzzzz...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">sendFusionTransaction</span><span class="p">(</span><span class="nv">$threshold</span><span class="p">,</span> <span class="nv">$anonymity</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">,</span> <span class="nv">$destinationAddress</span><span class="p">);</span>
 
-echo $response-&gt;getBody()-&gt;getContents();
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">threshold</span> <span class="o">=</span> <span class="mi">1000000</span>
 <span class="n">anonymity</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s">'TRTLxxxx...'</span><span class="p">,</span> <span class="s">'TRTLyyyy...'</span><span class="p">]</span>
@@ -1969,11 +1990,12 @@ use <code>estimateFusion</code> to check the outputs, available for the optimiza
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$threshold = 1000000;
-$addresses = ['TRTLxxxx...', 'TRTLyyyy...'];
-$response = $walletd-&gt;estimateFusion($threshold, $addresses);
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$threshold</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
+<span class="nv">$addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'TRTLxxxx...'</span><span class="p">,</span> <span class="s1">'TRTLyyyy...'</span><span class="p">];</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">estimateFusion</span><span class="p">(</span><span class="nv">$threshold</span><span class="p">,</span> <span class="nv">$addresses</span><span class="p">);</span>
 
-echo $response-&gt;getBody()-&gt;getContents();
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">threshold</span> <span class="o">=</span> <span class="mi">1000000</span>
 <span class="n">addresses</span> <span class="o">=</span> <span class="p">[</span><span class="s">'TRTLxxxx...'</span><span class="p">,</span> <span class="s">'TRTLyyyy...'</span><span class="p">]</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">estimate_fusion</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">addresses</span><span class="p">)</span>
@@ -2053,11 +2075,12 @@ This method is used to understand if a fusion transaction can be created. If <co
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$address = 'TRTLxxxx...';
-$paymentId = '7FE73BD90EF05DEA0B5C15FC78696619C50DD5F2BA628F2FD16A2E3445B1922F';
-$response = $walletd-&gt;createIntegratedAddress($address, $paymentId);
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
+<span class="nv">$paymentId</span> <span class="o">=</span> <span class="s1">'7FE73BD90EF05DEA0B5C15FC78696619C50DD5F2BA628F2FD16A2E3445B1922F'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">createIntegratedAddress</span><span class="p">(</span><span class="nv">$address</span><span class="p">,</span> <span class="nv">$paymentId</span><span class="p">);</span>
 
-echo $response-&gt;getBody()-&gt;getContents();
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
 <span class="n">payment_id</span> <span class="o">=</span> <span class="s">'7FE73BD90EF05DEA0B5C15FC78696619C50DD5F2BA628F2FD16A2E3445B1922F'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">create_integrated_address</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">payment_id</span><span class="p">)</span>
@@ -2127,9 +2150,10 @@ echo $response-&gt;getBody()-&gt;getContents();
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">service</span><span class="p">.</span><span class="nx">getFeeInfo</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code>$response = $walletd-&gt;getFeeInfo();
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">getFeeInfo</span><span class="p">();</span>
 
-echo $response-&gt;getBody()-&gt;getContents();
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">get_fee_info</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">GetFeeInfo</span><span class="p">()</span><span class="x">

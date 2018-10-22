@@ -5,10 +5,12 @@
 
 <ul>
 <li><a href="https://www.npmjs.com/package/turtlecoin-rpc">JavaScript</a></li>
+<li><a href="https://github.com/turtlecoin/turtlecoin-rpc-php">PHP</a></li>
 <li><a href="https://github.com/turtlecoin/turtlecoin-rpc-python">Python</a></li>
 <li><a href="https://github.com/turtlecoin/turtlecoin-rpc-go">Go</a></li>
 </ul>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">turtlecoin</span><span class="o">-</span><span class="nx">rpc</span>
+</code></pre><pre class="highlight php tab-php"><code>composer require turtlecoin/turtlecoin-rpc-php
 </code></pre><pre class="highlight python tab-python"><code><span class="n">pip3</span> <span class="n">install</span> <span class="n">turtlecoin</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="k">go</span><span class="x"> </span><span class="n">get</span><span class="x"> </span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">turtlecoin</span><span class="o">/</span><span class="n">turtlecoin</span><span class="o">-</span><span class="n">rpc</span><span class="o">-</span><span class="k">go</span><span class="x">
 </span></code></pre><h2 id='daemon-json-rpc-api-interacting-with-the-api'><a href='#daemon-json-rpc-api-interacting-with-the-api' class='content-deep-link-anchor'>Interacting with the API</a></h2>
@@ -33,6 +35,15 @@
   <span class="na">timeout</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// request timeout</span>
   <span class="na">ssl</span><span class="p">:</span> <span class="kc">false</span> <span class="c1">// whether we need to connect using SSL/TLS</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">TurtleCoin\TurtleCoind</span><span class="p">;</span>
+
+<span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'rpcHost'</span> <span class="o">=&gt;</span> <span class="s1">'http://localhost'</span><span class="p">,</span>
+    <span class="s1">'rpcPort'</span> <span class="o">=&gt;</span> <span class="mi">11898</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$turtlecoind</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TurtleCoind</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
     </span><span class="s">"fmt"</span><span class="x">
     </span><span class="n">trpc</span><span class="x"> </span><span class="s">"github.com/turtlecoin/turtlecoin-rpc-go"</span><span class="x">
@@ -94,6 +105,9 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">getBlockCount</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_block_count</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">daemon</span><span class="o">.</span><span class="n">GetBlockCount</span><span class="p">()</span><span class="x">
@@ -142,6 +156,10 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$height</span> <span class="o">=</span> <span class="mi">123456</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">getBlockHash</span><span class="p">(</span><span class="nv">$height</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">height</span> <span class="o">=</span> <span class="mi">123456</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_block_hash</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -201,6 +219,11 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$reserveSize</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+<span class="nv">$address</span> <span class="o">=</span> <span class="s1">'TRTLxxxx...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">getBlockTemplate</span><span class="p">(</span><span class="nv">$reserveSize</span><span class="p">,</span> <span class="nv">$address</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">reserve_size</span> <span class="o">=</span> <span class="mi">200</span>
 <span class="n">wallet_address</span> <span class="o">=</span> <span class="s">'TRTLxxxx...'</span>
 
@@ -295,6 +318,10 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$blockBlob</span> <span class="o">=</span> <span class="s1">'0100b...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">submitBlock</span><span class="p">(</span><span class="nv">$blockBlob</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">block_blob</span> <span class="o">=</span> <span class="s">'0100b...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">submit_block</span><span class="p">(</span><span class="n">block_blob</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -353,6 +380,9 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">getLastBlockHeader</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_last_block_header</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">daemon</span><span class="o">.</span><span class="n">GetLastBlockHeader</span><span class="p">()</span><span class="x">
@@ -473,6 +503,10 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$hash</span> <span class="o">=</span> <span class="s1">'30706...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">getBlockHeaderByHash</span><span class="p">(</span><span class="nv">$hash</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="nb">hash</span> <span class="o">=</span> <span class="s">'30706...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_block_header_by_hash</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -613,6 +647,10 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$height</span> <span class="o">=</span> <span class="mi">123456</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">getBlockHeaderByHeight</span><span class="p">(</span><span class="nv">$height</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">height</span> <span class="o">=</span> <span class="mi">123456</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_block_header_by_height</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -751,6 +789,9 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">getCurrencyId</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_currency_id</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">daemon</span><span class="o">.</span><span class="n">GetCurrencyID</span><span class="p">()</span><span class="x">
@@ -793,6 +834,10 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$height</span> <span class="o">=</span> <span class="mi">500000</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">getBlocks</span><span class="p">(</span><span class="nv">$height</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">height</span> <span class="o">=</span> <span class="mi">500000</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_blocks</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -907,6 +952,10 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$hash</span> <span class="o">=</span> <span class="s1">'980ff...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">getBlock</span><span class="p">(</span><span class="nv">$hash</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="nb">hash</span> <span class="o">=</span> <span class="s">'980ff...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_block</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1133,6 +1182,10 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$hash</span> <span class="o">=</span> <span class="s1">'702ad...'</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">getTransaction</span><span class="p">(</span><span class="nv">$hash</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="nb">hash</span> <span class="o">=</span> <span class="s">'702ad...'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_transaction</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1364,6 +1417,9 @@
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtlecoind</span><span class="o">-&gt;</span><span class="na">getTransactionPool</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">response</span> <span class="o">=</span> <span class="n">turtlecoind</span><span class="o">.</span><span class="n">get_transaction_pool</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="n">response</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">daemon</span><span class="o">.</span><span class="n">GetTransactionPool</span><span class="p">()</span><span class="x">
