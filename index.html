@@ -696,20 +696,20 @@
 <td>TurtleCoin RPC Wallet port, by default it is bound to 8070 port, but it can be manually bound to any port you want</td>
 </tr>
 </tbody></table>
-<h2 id='wallet-rpc-api-reset'><a href='#wallet-rpc-api-reset' class='content-deep-link-anchor'>reset</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"reset","params":{"viewSecretKey":"xxxxx..."}}'</span> http://localhost:8070/json_rpc
+<h2 id='wallet-rpc-api-reset'><a href='#wallet-rpc-api-reset' class='content-deep-link-anchor'>reset</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"reset","params":{"scanHeight":100000}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">service</span><span class="p">.</span><span class="nx">reset</span><span class="p">({</span>
-  <span class="na">viewSecretKey</span><span class="p">:</span> <span class="s1">'12345678901234567890'</span>
+  <span class="na">scanHeight</span><span class="p">:</span> <span class="mi">100000</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-<span class="nv">$viewSecretKey</span> <span class="o">=</span> <span class="s1">'xxxxx...'</span><span class="p">;</span>
-<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">reset</span><span class="p">(</span><span class="nv">$viewSecretKey</span><span class="p">);</span>
+<span class="nv">$scanHeight</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">reset</span><span class="p">(</span><span class="nv">$scanHeight</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="n">view_secret_key</span> <span class="o">=</span> <span class="s">'xxxxx...'</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">view_secret_key</span><span class="p">)</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">scan_height</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">walletd</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">scan_height</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre><pre class="highlight go tab-go"><code><span class="n">scanHeight</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="x"> </span><span class="c">// starting height to scan</span><span class="x">
 </span><span class="n">response</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">service</span><span class="o">.</span><span class="n">Reset</span><span class="p">(</span><span class="n">scanHeight</span><span class="p">)</span><span class="x">
@@ -740,18 +740,6 @@
 <th>Format</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>viewSecretKey</td>
-<td>No</td>
-<td>Private view key</td>
-<td>string</td>
-</tr>
-<tr>
-<td>newAddress</td>
-<td>No</td>
-<td>Is this a new address being created? If so, blocks before the creation timestamp will not be scanned. Only one of newAddress and scanHeight can be specified, as if a new address is being created, there is no need to scan from a certain height.</td>
-<td>bool</td>
-</tr>
 <tr>
 <td>scanHeight</td>
 <td>No</td>
