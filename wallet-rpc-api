@@ -887,7 +887,7 @@ A transfer is an amount-address pair. There could be several transfers in a sing
 <tr>
 <td>paymentId</td>
 <td>No</td>
-<td>Valid payment ID</td>
+<td>Valid payment ID (64char hex string)</td>
 <td>string</td>
 </tr>
 </tbody></table>
@@ -1071,7 +1071,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <tr>
 <td>paymentId</td>
 <td>No</td>
-<td>Valid payment ID</td>
+<td>Valid payment ID (64char hex string)</td>
 <td>string</td>
 </tr>
 </tbody></table>
@@ -1163,7 +1163,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 </tr>
 <tr>
 <td>paymentId</td>
-<td>Payment ID of the transaction (optional)</td>
+<td>Payment ID of the transaction (optional) (64char hex string)</td>
 <td>string</td>
 </tr>
 <tr>
@@ -1382,7 +1382,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 </tr>
 <tr>
 <td>paymentId</td>
-<td>Payment ID of the transaction (optional)</td>
+<td>Payment ID of the transaction (optional)  (64char hex string)</td>
 <td>string</td>
 </tr>
 <tr>
@@ -1517,7 +1517,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <tr>
 <td>paymentId</td>
 <td>No</td>
-<td>Payment ID</td>
+<td>Payment ID (64char hex string)</td>
 <td>string</td>
 </tr>
 <tr>
@@ -1675,7 +1675,7 @@ A transaction consists of transfers. A transfer is an amount-address pair. There
 <tr>
 <td>paymentId</td>
 <td>No</td>
-<td>Payment ID</td>
+<td>Payment ID  (64char hex string)</td>
 <td>string</td>
 </tr>
 <tr>
@@ -2114,7 +2114,7 @@ This method is used to understand if a fusion transaction can be created. If <co
 <tr>
 <td>paymentId</td>
 <td>Yes</td>
-<td>A valid paymentId</td>
+<td>A valid paymentId (64char hex string)</td>
 <td>string</td>
 </tr>
 </tbody></table>
