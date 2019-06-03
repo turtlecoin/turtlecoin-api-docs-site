@@ -5,7 +5,7 @@ files.watch :source, path: File.join(root, "source")
 
 set :turtlecoin_docs_folder, File.join(root, "turtlecoin-docs")
 
-files.watch :source, path: "#{config[:turtlecoin_docs_folder]}/api"
+files.watch :source, path: "#{config[:turtlecoin_docs_folder]}/docs/api"
 
 # Markdown
 set :markdown_engine, :redcarpet
