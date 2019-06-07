@@ -2,6 +2,7 @@
 set -euox pipefail
 
 ln -sfF ../turtlecoin-docs turtlecoin-docs
-bundle exec middleman build
+cd docs
+bundle exec middleman build --verbose
 
 echo "Build complete"
