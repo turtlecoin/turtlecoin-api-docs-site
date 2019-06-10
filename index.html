@@ -1101,17 +1101,17 @@ No output in case of success.</p>
 </tbody></table>
 <h2 id='wallet-rpc-api-createaddress'><a href='#wallet-rpc-api-createaddress' class='content-deep-link-anchor'>createAddress</a></h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"jsonrpc":"2.0","id":1,"password":"passw0rd","method":"createAddress","params":{}}'</span> http://localhost:8070/json_rpc
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">service</span><span class="p">.</span><span class="nx">createAddress</span><span class="p">({</span>
-  <span class="na">secretSpendKey</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-  <span class="na">publicSpendKey</span><span class="p">:</span> <span class="s1">''</span>
+  <span class="na">spendSecretKey</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+  <span class="na">spendPublicKey</span><span class="p">:</span> <span class="s1">''</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// do something</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">//do something</span>
 <span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-<span class="nv">$secretSpendKey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="nv">$publicSpendKey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">createAddress</span><span class="p">(</span><span class="nv">$secretSpendKey</span><span class="p">,</span> <span class="nv">$publicSpendKey</span><span class="p">);</span>
+<span class="nv">$spendSecretKey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$spendPublicKey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$turtleService</span><span class="o">-&gt;</span><span class="na">createAddress</span><span class="p">(</span><span class="nv">$spendSecretKey</span><span class="p">,</span> <span class="nv">$spendPublicKey</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">spend_secret_key</span> <span class="o">=</span> <span class="s">''</span>
 <span class="n">spend_public_key</span> <span class="o">=</span> <span class="s">''</span>
@@ -1152,15 +1152,15 @@ No output in case of success.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>secretSpendKey</td>
+<td>spendSecretKey</td>
 <td>No</td>
-<td>Private spend key. If <code>secretSpendKey</code> was specified, RPC Wallet creates spend address</td>
+<td>Private spend key. If <code>spendSecretKey</code> was specified, RPC Wallet creates spend address</td>
 <td>string</td>
 </tr>
 <tr>
-<td>publicSpendKey</td>
+<td>spendPublicKey</td>
 <td>No</td>
-<td>Public spend key. If <code>publicSpendKey</code> was specified, RPC Wallet creates view address</td>
+<td>Public spend key. If <code>spendPublicKey</code> was specified, RPC Wallet creates view address</td>
 <td>string</td>
 </tr>
 <tr>
@@ -2867,13 +2867,13 @@ This method is used to understand if a fusion transaction can be created. If <co
 
 <p><code>TurtleCoind --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898</code></p>
 
-<p>To enable block explorer API access (like for <code>getblocks</code>, <code>gettransactionpool</code>, etc.), use the <code>--enable_blockexplorer</code> switch.</p>
+<p>To enable block explorer API access (like for <code>getblocks</code>, <code>gettransactionpool</code>, etc.), use the <code>--enable-blockexplorer</code> switch.</p>
 
-<p><code>TurtleCoind --enable_blockexplorer</code></p>
+<p><code>TurtleCoind --enable-blockexplorer</code></p>
 
 <p>The above given switches can be combined to achieve remote access with block explorer methods as shown below.</p>
 
-<p><code>TurtleCoind --enable_blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898</code></p>
+<p><code>TurtleCoind --enable-blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898</code></p>
 
 <p>This would make the RPC server accessible at</p>
 
@@ -4374,13 +4374,13 @@ This method is used to understand if a fusion transaction can be created. If <co
 
 <p><code>TurtleCoind --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898</code></p>
 
-<p>To enable block explorer API access (like for <code>getblocks</code>, <code>gettransactionpool</code>, etc.), use the <code>--enable_blockexplorer</code> switch.</p>
+<p>To enable block explorer API access (like for <code>getblocks</code>, <code>gettransactionpool</code>, etc.), use the <code>--enable-blockexplorer</code> switch.</p>
 
-<p><code>TurtleCoind --enable_blockexplorer</code></p>
+<p><code>TurtleCoind --enable-blockexplorer</code></p>
 
 <p>The above given switches can be combined to achieve remote access with block explorer methods as shown below.</p>
 
-<p><code>TurtleCoind --enable_blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898</code></p>
+<p><code>TurtleCoind --enable-blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898</code></p>
 
 <p>This would make the RPC server accessible at</p>
 

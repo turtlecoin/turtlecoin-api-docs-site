@@ -64,13 +64,13 @@
 
 <p><code>TurtleCoind --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898</code></p>
 
-<p>To enable block explorer API access (like for <code>getblocks</code>, <code>gettransactionpool</code>, etc.), use the <code>--enable_blockexplorer</code> switch.</p>
+<p>To enable block explorer API access (like for <code>getblocks</code>, <code>gettransactionpool</code>, etc.), use the <code>--enable-blockexplorer</code> switch.</p>
 
-<p><code>TurtleCoind --enable_blockexplorer</code></p>
+<p><code>TurtleCoind --enable-blockexplorer</code></p>
 
 <p>The above given switches can be combined to achieve remote access with block explorer methods as shown below.</p>
 
-<p><code>TurtleCoind --enable_blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898</code></p>
+<p><code>TurtleCoind --enable-blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=11898</code></p>
 
 <p>This would make the RPC server accessible at</p>
 
