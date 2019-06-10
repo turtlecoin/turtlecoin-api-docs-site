@@ -1,5 +1,5 @@
 def sidebar_page_paths
-  sidebar_config_path = "#{config[:turtlecoin_docs_folder]}/api/sidebar.yml"
+  sidebar_config_path = "#{config[:turtlecoin_docs_folder]}/docs/api/sidebar.yml"
   YAML.load(File.read(sidebar_config_path))["sidebar"]
 end
 

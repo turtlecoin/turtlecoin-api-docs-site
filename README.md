@@ -16,7 +16,7 @@
 
 * Changes should target the `turtle-master` branch, instead of `master`.
 * Site specific styles are in `source/stylesheets/turtlecoin`.
-* Pulls content from the `turtlecoin-docs/api` folder.
+* Pulls content from the `turtlecoin-docs/docs/api` folder.
 
 ## About Slate 
 
